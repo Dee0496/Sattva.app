@@ -3,7 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-<title>Sattva</title>
+<title>Sattva — Ancient Wisdom · Modern Mind</title>
+<meta name="description" content="AI-powered yoga and wellness rooted in the Bhagavad Gita, four Vedas and Yoga Sutras. Guided breathwork, meditation and your personal Dharma Guru.">
+<meta property="og:title" content="Sattva — Ancient Wisdom · Modern Mind">
+<meta property="og:description" content="5,000 years of Vedic wisdom. Transform stress into stillness, one breath at a time.">
+<meta property="og:url" content="https://www.sattvaapp.com">
+<meta name="theme-color" content="#0A080E">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Cinzel:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 /* ───────────────
@@ -859,7 +867,7 @@ input{font-family:'DM Sans',sans-serif}
 <div class="view" id="v-home">
   <div class="scroll" style="position:relative;z-index:1;">
     <div class="topbar">
-      <div><div class="tb-greet" id="h-greet">Good Morning</div><div class="tb-name" id="h-name">Dee 🙏</div></div>
+      <div><div class="tb-greet" id="h-greet">Good Morning</div><div class="tb-name" id="h-name">Seeker 🙏</div></div>
       <div class="avatar" onclick="navTo('v-profile',4)">🧘</div>
     </div>
     <!-- Verse -->
@@ -1137,6 +1145,8 @@ input{font-family:'DM Sans',sans-serif}
 
 </div><!-- /app -->
 <script>
+var API_URL = 'https://sattva-backend-production.up.railway.app';
+
 /* ============================================================
    SATTVA COMPLETE JS — single source of truth
    All IDs verified against HTML above.
