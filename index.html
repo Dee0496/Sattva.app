@@ -871,9 +871,9 @@ input{font-family:'DM Sans',sans-serif}
     </div>
     <!-- Stats -->
     <div class="stats-row">
-      <div class="sc fire"><div class="sc-ic">🔥</div><div class="sc-num">12</div><div class="sc-lb">Day Streak</div></div>
-      <div class="sc mind"><div class="sc-ic">🧠</div><div class="sc-num">34</div><div class="sc-lb">Sessions</div></div>
-      <div class="sc breath"><div class="sc-ic">💨</div><div class="sc-num">280</div><div class="sc-lb">Prana Min</div></div>
+      <div class="sc fire"><div class="sc-ic">🔥</div><div class="sc-num">0</div><div class="sc-lb">Day Streak</div></div>
+      <div class="sc mind"><div class="sc-ic">🧠</div><div class="sc-num" id="home-sessions">0</div><div class="sc-lb">Sessions</div></div>
+      <div class="sc breath"><div class="sc-ic">💨</div><div class="sc-num" id="home-mins">0</div><div class="sc-lb">Prana Min</div></div>
     </div>
     <!-- Today -->
     <div class="sh"><span class="sec">Today's Sadhana</span><span class="sh-lnk" onclick="navTo('v-player',1)">See all →</span></div>
@@ -1047,7 +1047,7 @@ input{font-family:'DM Sans',sans-serif}
   <div class="scroll" style="position:relative;z-index:1;padding-top:64px;">
     <div class="pro-hero">
       <div class="pro-av">🧘</div>
-      <div><div class="pro-name" id="pro-name">Dee</div><div class="pro-mem">Sattva Member</div></div>
+      <div><div class="pro-name" id="pro-name">Seeker</div><div class="pro-mem">Sattva Member</div></div>
       <div class="pro-plan-badge pb-pro" id="pro-badge"><div class="pb-nm" id="pb-nm">Pro</div><div class="pb-pr" id="pb-pr">$3.99</div></div>
     </div>
     <div class="upg-banner" id="upg-banner" onclick="showUpgrade()">
@@ -1056,16 +1056,16 @@ input{font-family:'DM Sans',sans-serif}
       <span style="color:var(--sf);font-size:18px;">›</span>
     </div>
     <div class="big-stats">
-      <div class="bstat"><div class="bstat-num">12</div><div class="bstat-lb">Day Streak</div></div>
-      <div class="bstat"><div class="bstat-num">34</div><div class="bstat-lb">Sessions</div></div>
-      <div class="bstat"><div class="bstat-num">280</div><div class="bstat-lb">Prana Min</div></div>
+      <div class="bstat"><div class="bstat-num" id="stat-streak">0</div><div class="bstat-lb">Day Streak</div></div>
+      <div class="bstat"><div class="bstat-num" id="stat-sessions">0</div><div class="bstat-lb">Sessions</div></div>
+      <div class="bstat"><div class="bstat-num" id="stat-mins">0</div><div class="bstat-lb">Prana Min</div></div>
     </div>
     <div class="badge-sec">
       <div class="sh" style="padding:0;margin-bottom:11px;"><span class="sec">Achievements</span></div>
       <div class="bg-grid">
-        <div class="bdg earned"><div class="bdg-ic">🔥</div><div class="bdg-nm">7 Day Streak</div></div>
-        <div class="bdg earned"><div class="bdg-ic">🌅</div><div class="bdg-nm">Dawn Yogi</div></div>
-        <div class="bdg earned"><div class="bdg-ic">🌬️</div><div class="bdg-nm">Prana Master</div></div>
+        <div class="bdg"><div class="bdg-ic">🔥</div><div class="bdg-nm">7 Day Streak</div></div>
+        <div class="bdg"><div class="bdg-ic">🌅</div><div class="bdg-nm">Dawn Yogi</div></div>
+        <div class="bdg"><div class="bdg-ic">🌬️</div><div class="bdg-nm">Prana Master</div></div>
         <div class="bdg"><div class="bdg-ic">📿</div><div class="bdg-nm">108 Sessions</div></div>
         <div class="bdg"><div class="bdg-ic">🪷</div><div class="bdg-nm">21 Day Tapas</div></div>
         <div class="bdg"><div class="bdg-ic">⭐</div><div class="bdg-nm">Vedic Scholar</div></div>
@@ -1075,9 +1075,9 @@ input{font-family:'DM Sans',sans-serif}
     </div>
     <div class="prog-sec">
       <div class="sh" style="padding:0;margin-bottom:12px;"><span class="sec">Practice Progress</span></div>
-      <div class="pb-item"><div class="pb-hdr"><span class="pb-name">Hatha Yoga</span><span class="pb-pct">68%</span></div><div class="pb-track"><div class="pb-fill" style="width:68%;background:var(--sf);"></div></div></div>
-      <div class="pb-item"><div class="pb-hdr"><span class="pb-name">Pranayama</span><span class="pb-pct">82%</span></div><div class="pb-track"><div class="pb-fill" style="width:82%;background:var(--lotus);"></div></div></div>
-      <div class="pb-item"><div class="pb-hdr"><span class="pb-name">Meditation</span><span class="pb-pct">45%</span></div><div class="pb-track"><div class="pb-fill" style="width:45%;background:var(--sage);"></div></div></div>
+      <div class="pb-item"><div class="pb-hdr"><span class="pb-name">Hatha Yoga</span><span class="pb-pct">0%</span></div><div class="pb-track"><div class="pb-fill" style="width:0%;background:var(--sf);"></div></div></div>
+      <div class="pb-item"><div class="pb-hdr"><span class="pb-name">Pranayama</span><span class="pb-pct">0%</span></div><div class="pb-track"><div class="pb-fill" style="width:0%;background:var(--lotus);"></div></div></div>
+      <div class="pb-item"><div class="pb-hdr"><span class="pb-name">Meditation</span><span class="pb-pct">0%</span></div><div class="pb-track"><div class="pb-fill" style="width:0%;background:var(--sage);"></div></div></div>
       <div class="pb-item"><div class="pb-hdr"><span class="pb-name">Vedic Knowledge</span><span class="pb-pct">31%</span></div><div class="pb-track"><div class="pb-fill" style="width:31%;background:var(--gold);"></div></div></div>
     </div>
     <div class="menu-list">
@@ -1146,8 +1146,8 @@ input{font-family:'DM Sans',sans-serif}
 
 /* ── STATE ── */
 var S = {
-  name: 'Dee',
-  tier: 'pro',  // demo default — set by chooseTier() during onboarding
+  name: '',
+  tier: 'free',  // demo default — set by chooseTier() during onboarding
   playing: false,
   timer: null,
   phaseTimer: null,
