@@ -32,8 +32,8 @@
   --lotus:   #C87B8E;
   --sage:    #6E9E78;
   --iv:      #F5EFE4;
-  --mu:      rgba(245,239,228,.45);
-  --fa:      rgba(245,239,228,.18);
+  --mu:      rgba(245,239,228,.92);
+  --fa:      rgba(245,239,228,.85);
 }
 /* ────────────────────────────────────────
    RESET
@@ -614,6 +614,31 @@ input{font-family:'DM Sans',sans-serif}
 }
 .upg-card::-webkit-scrollbar{display:none}
 .upg-close{position:absolute;top:14px;right:14px;background:none;border:none;color:var(--mu);font-size:20px}
+
+/* ── AUDIO GUIDE PLAYER ── */
+.audio-guide-bar {
+  display:flex;align-items:center;gap:12px;
+  background:rgba(110,158,120,0.12);
+  border:1px solid rgba(110,158,120,0.3);
+  border-radius:50px;
+  padding:10px 16px;
+  margin:12px 22px 0;
+  flex-shrink:0;
+  cursor:pointer;
+  transition:all .25s;
+}
+.audio-guide-bar:active { background:rgba(110,158,120,0.2); }
+.audio-guide-bar.playing {
+  background:rgba(110,158,120,0.2);
+  border-color:rgba(110,158,120,0.6);
+}
+.agb-icon { font-size:18px; flex-shrink:0; }
+.agb-text { flex:1; }
+.agb-title { font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;color:#6E9E78;text-transform:uppercase; }
+.agb-sub { font-size:11px;color:rgba(245,239,228,.7);margin-top:2px; }
+.agb-btn { width:32px;height:32px;border-radius:50%;background:#6E9E78;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:13px;color:#0A080E;flex-shrink:0; }
+.agb-progress { height:2px;background:rgba(110,158,120,0.2);border-radius:1px;margin:6px 22px 0;flex-shrink:0;overflow:hidden; }
+.agb-progress-fill { height:100%;background:#6E9E78;border-radius:1px;width:0%;transition:width .5s linear; }
 </style>
 </head>
 <body>
@@ -945,6 +970,20 @@ input{font-family:'DM Sans',sans-serif}
       <span style="width:60px;"></span>
     </div>
   </div>
+  
+  <!-- AUDIO GUIDE BAR -->
+  <div class="audio-guide-bar" id="audio-guide-bar" style="display:none;" onclick="toggleGuideAudio()">
+    <div class="agb-icon">🎙️</div>
+    <div class="agb-text">
+      <div class="agb-title">Voice Guide</div>
+      <div class="agb-sub" id="agb-sub">Guided instructions</div>
+    </div>
+    <div class="agb-btn" id="agb-btn">▶</div>
+  </div>
+  <div class="agb-progress" id="agb-progress" style="display:none;">
+    <div class="agb-progress-fill" id="agb-fill"></div>
+  </div>
+
   <div class="pl-body">
     <div class="pl-ic" id="pl-ic">🧘</div>
     <div class="pl-title" id="pl-title">Select a Session</div>
@@ -1091,8 +1130,8 @@ input{font-family:'DM Sans',sans-serif}
     <div class="menu-list">
       <div class="mi" onclick="openLibrary()" style="cursor:pointer;"><div class="mi-ic">📖</div><div><div class="mi-nm">Sacred Library</div><div class="mi-ds">Vedas, Gita, Yoga Sutras</div></div><div class="mi-arr">›</div></div>
       <div class="mi" onclick="navTo('v-pricing',null)"><div class="mi-ic">💳</div><div><div class="mi-nm">Subscription</div><div class="mi-ds" id="sub-ds">Yogi Pro · $3.99/week</div></div><div class="mi-arr">›</div></div>
-      <div class="mi"><div class="mi-ic">⚙️</div><div><div class="mi-nm">Settings</div><div class="mi-ds">Notifications and account</div></div><div class="mi-arr">›</div></div>
-      <div class="mi"><div class="mi-ic">🤝</div><div><div class="mi-nm">Refer a Friend</div><div class="mi-ds">Share Sattva, earn 1 free week</div></div><div class="mi-arr">›</div></div>
+      <div class="mi" onclick="showSettings()"><div class="mi-ic">⚙️</div><div><div class="mi-nm">Settings</div><div class="mi-ds">Notifications and account</div></div><div class="mi-arr">›</div></div>
+      <div class="mi" onclick="showRefer()"><div class="mi-ic">🤝</div><div><div class="mi-nm">Refer a Friend</div><div class="mi-ds">Share Sattva, earn 1 free week</div></div><div class="mi-arr">›</div></div>
       <div class="mi" onclick="navTo('v-splash',null)"><div class="mi-ic">🚪</div><div><div class="mi-nm">Sign Out</div><div class="mi-ds">Return to welcome screen</div></div><div class="mi-arr">›</div></div>
     </div>
   </div>
@@ -2712,6 +2751,169 @@ refreshGuruUI();
     }
   }
 })();
+
+// ── SETTINGS & REFER ──
+function showSettings(){var m=document.getElementById('settings-modal');if(m){m.style.display='block';document.body.style.overflow='hidden';}}
+function closeSettings(){var m=document.getElementById('settings-modal');if(m){m.style.display='none';document.body.style.overflow='';}}
+function showRefer(){var m=document.getElementById('refer-modal');if(m){m.style.display='flex';document.body.style.overflow='hidden';}}
+function closeRefer(){var m=document.getElementById('refer-modal');if(m){m.style.display='none';document.body.style.overflow='';}}
+function toggleNotif(){var t=document.getElementById('notif-toggle'),k=document.getElementById('notif-knob');if(!t||!k)return;var on=k.style.left==='24px';k.style.left=on?'2px':'24px';t.style.background=on?'rgba(240,144,10,.3)':'rgba(240,144,10,.8)';}
+function toggleSound(){var t=document.getElementById('sound-toggle'),k=document.getElementById('sound-knob');if(!t||!k)return;var on=k.style.left==='24px';k.style.left=on?'2px':'24px';t.style.background=on?'rgba(240,144,10,.3)':'rgba(240,144,10,.8)';}
+function shareApp(){if(navigator.share){navigator.share({title:'Sattva',text:'Try this incredible Vedic yoga app free!',url:'https://www.sattvaapp.com'}).catch(function(){});}else{var el=document.createElement('textarea');el.value='https://www.sattvaapp.com';document.body.appendChild(el);el.select();document.execCommand('copy');document.body.removeChild(el);alert('Link copied! Share sattvaapp.com with friends');}}
+
+
+// ── GUIDED AUDIO PLAYER ──
+var GUIDE_AUDIO_URLS = {
+  'surya': 'https://dee0496.github.io/Sattva.app/Surya_Namaskar.mp3',
+  'nadi': 'https://dee0496.github.io/Sattva.app/Nadi_Shodhana.mp3'
+};
+
+var guideAudio = null;
+var guideAudioPlaying = false;
+var guideProgressTimer = null;
+
+function initGuideAudio(sessId) {
+  // Show or hide the audio bar based on whether audio exists
+  var bar = document.getElementById('audio-guide-bar');
+  var prog = document.getElementById('agb-progress');
+  var sub = document.getElementById('agb-sub');
+  
+  if (!bar) return;
+  
+  if (GUIDE_AUDIO_URLS[sessId]) {
+    bar.style.display = 'flex';
+    if (prog) prog.style.display = 'block';
+    if (sub) sub.textContent = 'Tap to play guided instructions';
+    bar.classList.remove('playing');
+    document.getElementById('agb-btn').textContent = '▶';
+    
+    // Stop any existing audio
+    if (guideAudio) {
+      guideAudio.pause();
+      guideAudio = null;
+    }
+    clearInterval(guideProgressTimer);
+    
+    // Pre-load audio
+    guideAudio = new Audio(GUIDE_AUDIO_URLS[sessId]);
+    guideAudio.preload = 'none';
+    guideAudioPlaying = false;
+    
+    // Reset progress
+    var fill = document.getElementById('agb-fill');
+    if (fill) fill.style.width = '0%';
+    
+    // On ended
+    guideAudio.onended = function() {
+      guideAudioPlaying = false;
+      bar.classList.remove('playing');
+      document.getElementById('agb-btn').textContent = '▶';
+      if (sub) sub.textContent = 'Tap to replay';
+      clearInterval(guideProgressTimer);
+    };
+  } else {
+    bar.style.display = 'none';
+    if (prog) prog.style.display = 'none';
+  }
+}
+
+function toggleGuideAudio() {
+  if (!guideAudio) return;
+  var bar = document.getElementById('audio-guide-bar');
+  var btn = document.getElementById('agb-btn');
+  var sub = document.getElementById('agb-sub');
+  
+  if (guideAudioPlaying) {
+    guideAudio.pause();
+    guideAudioPlaying = false;
+    bar.classList.remove('playing');
+    btn.textContent = '▶';
+    if (sub) sub.textContent = 'Paused — tap to resume';
+    clearInterval(guideProgressTimer);
+  } else {
+    guideAudio.play().then(function() {
+      guideAudioPlaying = true;
+      bar.classList.add('playing');
+      btn.textContent = '⏸';
+      if (sub) sub.textContent = 'Playing guided instructions...';
+      
+      // Progress bar update
+      guideProgressTimer = setInterval(function() {
+        if (guideAudio && guideAudio.duration) {
+          var pct = (guideAudio.currentTime / guideAudio.duration) * 100;
+          var fill = document.getElementById('agb-fill');
+          if (fill) fill.style.width = pct + '%';
+        }
+      }, 500);
+    }).catch(function(e) {
+      console.log('Audio play error:', e);
+    });
+  }
+}
+
+function stopGuideAudio() {
+  if (guideAudio) {
+    guideAudio.pause();
+    guideAudio.currentTime = 0;
+    guideAudio = null;
+  }
+  guideAudioPlaying = false;
+  clearInterval(guideProgressTimer);
+  var bar = document.getElementById('audio-guide-bar');
+  if (bar) { bar.style.display = 'none'; bar.classList.remove('playing'); }
+}
+
 </script>
+
+<div id="settings-modal" style="display:none;position:fixed;inset:0;z-index:500;background:rgba(10,8,14,.97);overflow-y:auto;">
+  <div style="max-width:430px;margin:0 auto;padding:60px 24px 40px;">
+    <div style="display:flex;align-items:center;gap:16px;margin-bottom:32px;">
+      <button onclick="closeSettings()" style="background:none;border:none;color:#F5EFE4;font-size:26px;cursor:pointer;">&#8249;</button>
+      <div style="font-family:'Cinzel',serif;font-size:13px;letter-spacing:3px;color:#F5EFE4;text-transform:uppercase;">Settings</div>
+    </div>
+    <div style="background:#110E18;border:1px solid rgba(255,255,255,.1);border-radius:16px;overflow:hidden;margin-bottom:16px;">
+      <div style="padding:20px;border-bottom:1px solid rgba(255,255,255,.06);">
+        <div style="font-family:'Cinzel',serif;font-size:9px;letter-spacing:3px;color:rgba(240,144,10,.8);text-transform:uppercase;margin-bottom:16px;">Practice</div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;">
+          <span style="font-size:15px;color:#F5EFE4;">Daily reminder</span>
+          <div id="notif-toggle" onclick="toggleNotif()" style="width:48px;height:26px;background:rgba(240,144,10,.3);border-radius:13px;cursor:pointer;position:relative;transition:background .3s;">
+            <div id="notif-knob" style="width:22px;height:22px;background:#F5EFE4;border-radius:50%;position:absolute;top:2px;left:2px;transition:left .3s;"></div>
+          </div>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+          <span style="font-size:15px;color:#F5EFE4;">Sound guidance</span>
+          <div id="sound-toggle" onclick="toggleSound()" style="width:48px;height:26px;background:rgba(240,144,10,.8);border-radius:13px;cursor:pointer;position:relative;transition:background .3s;">
+            <div id="sound-knob" style="width:22px;height:22px;background:#F5EFE4;border-radius:50%;position:absolute;top:2px;left:24px;transition:left .3s;"></div>
+          </div>
+        </div>
+      </div>
+      <div style="padding:20px;border-bottom:1px solid rgba(255,255,255,.06);">
+        <div style="font-family:'Cinzel',serif;font-size:9px;letter-spacing:3px;color:rgba(240,144,10,.8);text-transform:uppercase;margin-bottom:16px;">Account</div>
+        <div onclick="window.open('mailto:hello@sattvaapp.com')" style="font-size:15px;color:#F5EFE4;cursor:pointer;margin-bottom:16px;display:flex;justify-content:space-between;"><span>Contact support</span><span style="color:#F0900A;">&#8250;</span></div>
+        <div onclick="window.open('https://www.sattvaapp.com')" style="font-size:15px;color:#F5EFE4;cursor:pointer;margin-bottom:16px;display:flex;justify-content:space-between;"><span>Privacy policy</span><span style="color:#F0900A;">&#8250;</span></div>
+        <div onclick="window.open('https://www.sattvaapp.com')" style="font-size:15px;color:#F5EFE4;cursor:pointer;display:flex;justify-content:space-between;"><span>Terms of service</span><span style="color:#F0900A;">&#8250;</span></div>
+      </div>
+      <div style="padding:20px;">
+        <div style="font-size:13px;color:rgba(245,239,228,.7);display:flex;justify-content:space-between;"><span>Version</span><span>1.0.0</span></div>
+      </div>
+    </div>
+    <button onclick="if(confirm('Sign out?')){S.name='';S.tier='free';navTo('v-splash',null);closeSettings();}" style="width:100%;background:none;border:1px solid rgba(255,255,255,.15);border-radius:50px;padding:16px;font-family:'Cinzel',serif;font-size:11px;letter-spacing:3px;color:rgba(245,239,228,.8);cursor:pointer;text-transform:uppercase;">Sign Out</button>
+  </div>
+</div>
+<div id="refer-modal" style="display:none;position:fixed;inset:0;z-index:500;background:rgba(10,8,14,.95);backdrop-filter:blur(12px);align-items:center;justify-content:center;padding:24px;">
+  <div style="background:#110E18;border:1px solid rgba(240,144,10,.25);border-radius:24px;padding:36px 28px;max-width:380px;width:100%;text-align:center;">
+    <div style="font-size:52px;margin-bottom:16px;">&#129306;</div>
+    <div style="font-family:'Cinzel',serif;font-size:13px;letter-spacing:3px;color:#F5EFE4;text-transform:uppercase;margin-bottom:10px;">Refer a Friend</div>
+    <div style="font-family:'Cormorant Garamond',serif;font-size:18px;font-style:italic;color:#F5EFE4;line-height:1.7;margin-bottom:8px;">Share Sattva. Earn together.</div>
+    <div style="font-size:14px;color:rgba(245,239,228,.9);line-height:1.7;margin-bottom:24px;">When a friend subscribes through your link, you both receive one week of Yogi Pro free.</div>
+    <div style="background:rgba(240,144,10,.08);border:1px solid rgba(240,144,10,.2);border-radius:12px;padding:14px;margin-bottom:20px;">
+      <div style="font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;color:rgba(240,144,10,.8);text-transform:uppercase;margin-bottom:6px;">Your link</div>
+      <div style="font-size:14px;color:#F5EFE4;">sattvaapp.com</div>
+    </div>
+    <button onclick="shareApp()" style="width:100%;background:linear-gradient(135deg,#F0900A,#C96B10);border:none;border-radius:50px;padding:16px;font-family:'Cinzel',serif;font-size:12px;letter-spacing:3px;color:#0A080E;cursor:pointer;text-transform:uppercase;margin-bottom:12px;">Share Sattva &#128591;</button>
+    <button onclick="closeRefer()" style="width:100%;background:none;border:1px solid rgba(255,255,255,.12);border-radius:50px;padding:14px;font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;color:rgba(245,239,228,.8);cursor:pointer;text-transform:uppercase;">Close</button>
+  </div>
+</div>
+
 </body>
 </html>
