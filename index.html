@@ -1095,7 +1095,7 @@ input{font-family:'DM Sans',sans-serif}
     <div class="pro-hero">
       <div class="pro-av">🧘</div>
       <div><div class="pro-name" id="pro-name">Seeker</div><div class="pro-mem">Sattva Member</div></div>
-      <div class="pro-plan-badge pb-pro" id="pro-badge"><div class="pb-nm" id="pb-nm">Pro</div><div class="pb-pr" id="pb-pr">$3.99</div></div>
+      <div class="pro-plan-badge pb-pro" id="pro-badge"><div class="pb-nm" id="pb-nm">Pro</div><div class="pb-pr" id="pb-pr"><span id="price-pro-weekly">$3.99</span></div></div>
     </div>
     <div class="upg-banner" id="upg-banner" onclick="showUpgrade()">
       <span style="font-size:26px;">✨</span>
@@ -1166,8 +1166,8 @@ input{font-family:'DM Sans',sans-serif}
     <!-- Sadhaka -->
     <div style="background:rgba(200,123,142,.08);border:1px solid rgba(200,123,142,.3);border-radius:16px;padding:18px;margin-bottom:12px;cursor:pointer;" onclick="doUpgrade('mid')">
       <div style="font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;color:var(--lotus);text-transform:uppercase;margin-bottom:6px;">Sadhaka</div>
-      <div style="font-family:'DM Sans',sans-serif;font-size:32px;font-weight:700;color:var(--iv);letter-spacing:-1px;margin-bottom:3px;">$1.99<span style="font-size:14px;font-weight:400;color:var(--mu);"> / week</span></div>
-      <div style="font-size:11px;color:var(--sage);margin-bottom:10px;">7 days free · or $49 per year</div>
+      <div style="font-family:'DM Sans',sans-serif;font-size:32px;font-weight:700;color:var(--iv);letter-spacing:-1px;margin-bottom:3px;"><span id="price-mid-weekly">$1.99</span><span style="font-size:14px;font-weight:400;color:var(--mu);"> / week</span></div>
+      <div style="font-size:11px;color:var(--sage);margin-bottom:10px;">7 days free · or $49 / ₹1,499 per year</div>
       <div style="font-size:12px;color:var(--mu);">◆ All sessions · Audio guide · 15 AI messages/month · Habit tracker</div>
     </div>
     <!-- Pro -->
@@ -1175,7 +1175,7 @@ input{font-family:'DM Sans',sans-serif}
       <div style="position:absolute;top:12px;right:12px;background:var(--sf);color:var(--bg);font-family:'Cinzel',serif;font-size:8px;letter-spacing:2px;padding:3px 8px;border-radius:20px;">BEST VALUE</div>
       <div style="font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;color:var(--sf);text-transform:uppercase;margin-bottom:6px;">Yogi Pro</div>
       <div style="font-family:'DM Sans',sans-serif;font-size:32px;font-weight:700;color:var(--iv);letter-spacing:-1px;margin-bottom:3px;">$3.99<span style="font-size:14px;font-weight:400;color:var(--mu);"> / week</span></div>
-      <div style="font-size:11px;color:var(--sage);margin-bottom:10px;">7 days free · or $89 per year</div>
+      <div style="font-size:11px;color:var(--sage);margin-bottom:10px;">7 days free · or $89 / ₹2,999 per year</div>
       <div style="font-size:12px;color:var(--mu);">◆ Unlimited everything · Full library · Unlimited AI Guru · Offline</div>
     </div>
     <button onclick="closeUpgrade()" style="width:100%;background:transparent;border:1px solid var(--bdr2);border-radius:50px;padding:13px;font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;color:var(--mu);cursor:pointer;text-transform:uppercase;">Maybe later</button>
@@ -1605,6 +1605,7 @@ function loadAndPlay(id) {
 function loadSession(s) {
   stopAll();
   S.session = s; S.playing = false; S.phase = 0;
+  initGuideAudio(s.id);
   S.secs = s.mins * 60; S.totalSecs = s.mins * 60;
   var ic = document.getElementById('pl-ic'); if (ic) ic.textContent = s.ic;
   var ti = document.getElementById('pl-title'); if (ti) ti.textContent = s.title;
@@ -2765,7 +2766,10 @@ function shareApp(){if(navigator.share){navigator.share({title:'Sattva',text:'Tr
 // ── GUIDED AUDIO PLAYER ──
 var GUIDE_AUDIO_URLS = {
   'surya': 'https://dee0496.github.io/Sattva.app/Surya_Namaskar.mp3',
-  'nadi': 'https://dee0496.github.io/Sattva.app/Nadi_Shodhana.mp3'
+  'nadi': 'https://dee0496.github.io/Sattva.app/Nadi_Shodhana.mp3',
+  'nidra': 'https://dee0496.github.io/Sattva.app/Yoga_Nidra.mp3',
+  'kapal': 'https://dee0496.github.io/Sattva.app/Kapalbharti.mp3',
+  'bhram': 'https://dee0496.github.io/Sattva.app/Bharamari.mp3'
 };
 
 var guideAudio = null;
@@ -2795,8 +2799,7 @@ function initGuideAudio(sessId) {
     clearInterval(guideProgressTimer);
     
     // Pre-load audio
-    guideAudio = new Audio(GUIDE_AUDIO_URLS[sessId]);
-    guideAudio.preload = 'none';
+    // Audio created on first tap for iOS compatibility
     guideAudioPlaying = false;
     
     // Reset progress
@@ -2818,36 +2821,55 @@ function initGuideAudio(sessId) {
 }
 
 function toggleGuideAudio() {
-  if (!guideAudio) return;
   var bar = document.getElementById('audio-guide-bar');
   var btn = document.getElementById('agb-btn');
   var sub = document.getElementById('agb-sub');
+  var sessId = S.session ? S.session.id : null;
+  
+  if (!sessId || !GUIDE_AUDIO_URLS[sessId]) return;
+  
+  // iOS fix: create Audio object on first user tap (not before)
+  if (!guideAudio) {
+    guideAudio = new Audio(GUIDE_AUDIO_URLS[sessId]);
+    guideAudio.onended = function() {
+      guideAudioPlaying = false;
+      if (bar) bar.classList.remove('playing');
+      if (btn) btn.textContent = '▶';
+      if (sub) sub.textContent = 'Tap to replay';
+      clearInterval(guideProgressTimer);
+    };
+    guideAudio.onerror = function() {
+      if (sub) sub.textContent = 'Audio unavailable';
+    };
+  }
   
   if (guideAudioPlaying) {
     guideAudio.pause();
     guideAudioPlaying = false;
-    bar.classList.remove('playing');
-    btn.textContent = '▶';
+    if (bar) bar.classList.remove('playing');
+    if (btn) btn.textContent = '▶';
     if (sub) sub.textContent = 'Paused — tap to resume';
     clearInterval(guideProgressTimer);
   } else {
-    guideAudio.play().then(function() {
-      guideAudioPlaying = true;
-      bar.classList.add('playing');
-      btn.textContent = '⏸';
-      if (sub) sub.textContent = 'Playing guided instructions...';
-      
-      // Progress bar update
-      guideProgressTimer = setInterval(function() {
-        if (guideAudio && guideAudio.duration) {
-          var pct = (guideAudio.currentTime / guideAudio.duration) * 100;
-          var fill = document.getElementById('agb-fill');
-          if (fill) fill.style.width = pct + '%';
-        }
-      }, 500);
-    }).catch(function(e) {
-      console.log('Audio play error:', e);
-    });
+    var playPromise = guideAudio.play();
+    if (playPromise !== undefined) {
+      playPromise.then(function() {
+        guideAudioPlaying = true;
+        if (bar) bar.classList.add('playing');
+        if (btn) btn.textContent = '⏸';
+        if (sub) sub.textContent = 'Playing...';
+        guideProgressTimer = setInterval(function() {
+          if (guideAudio && guideAudio.duration) {
+            var pct = (guideAudio.currentTime / guideAudio.duration) * 100;
+            var fill = document.getElementById('agb-fill');
+            if (fill) fill.style.width = pct + '%';
+          }
+        }, 500);
+      }).catch(function(e) {
+        if (sub) sub.textContent = 'Tap play button to start';
+        console.log('Audio error:', e.message);
+      });
+    }
   }
 }
 
@@ -2862,6 +2884,34 @@ function stopGuideAudio() {
   var bar = document.getElementById('audio-guide-bar');
   if (bar) { bar.style.display = 'none'; bar.classList.remove('playing'); }
 }
+
+
+// ── CURRENCY DETECTION ──
+var USER_CURRENCY = 'USD';
+var PRICES = {
+  USD: { mid_weekly: '$1.99', mid_annual: '$49', pro_weekly: '$3.99', pro_annual: '$89',
+         mid_weekly_val: '1.99', mid_annual_val: '49', pro_weekly_val: '3.99', pro_annual_val: '89' },
+  INR: { mid_weekly: '₹39', mid_annual: '₹1,499', pro_weekly: '₹69', pro_annual: '₹2,999',
+         mid_weekly_val: '39', mid_annual_val: '1499', pro_weekly_val: '69', pro_annual_val: '2999' }
+};
+
+function detectCurrency() {
+  try {
+    var tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+    var lang = navigator.language || navigator.userLanguage || '';
+    if (tz.indexOf('Asia/Kolkata') > -1 || tz.indexOf('Asia/Calcutta') > -1 || 
+        lang.indexOf('hi') > -1 || lang.indexOf('en-IN') > -1) {
+      USER_CURRENCY = 'INR';
+    }
+  } catch(e) {}
+  applyPricing();
+}
+
+function applyPricing() {
+  setBilling(S.billing || 'weekly');
+}
+
+document.addEventListener('DOMContentLoaded', detectCurrency);
 
 </script>
 
