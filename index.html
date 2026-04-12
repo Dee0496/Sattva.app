@@ -2922,6 +2922,47 @@ function showRefer(){var m=document.getElementById('refer-modal');if(m){m.style.
 function closeRefer(){var m=document.getElementById('refer-modal');if(m){m.style.display='none';document.body.style.overflow='';}}
 function shareApp(){if(navigator.share){navigator.share({title:'Sattva',text:'Try this Vedic yoga app free!',url:'https://www.sattvaapp.com'}).catch(function(){});}else{var el=document.createElement('textarea');el.value='https://www.sattvaapp.com';document.body.appendChild(el);el.select();document.execCommand('copy');document.body.removeChild(el);alert('Link copied!');}}
 
+
+function startStripeCheckout(plan) {
+  var btn = document.getElementById('btn5');
+  if (btn) { btn.textContent = 'Redirecting...'; btn.disabled = true; }
+  localStorage.setItem('sattva_name', S.name);
+  localStorage.setItem('sattva_plan', plan);
+  fetch(API_URL + '/api/payments/checkout', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ plan: plan, user_name: S.name })
+  })
+  .then(function(r) { return r.json(); })
+  .then(function(data) {
+    if (data.url) {
+      window.location.href = data.url;
+    } else {
+      if (btn) { btn.textContent = 'Start My Journey →'; btn.disabled = false; }
+      alert('Payment setup failed. Please try again.');
+    }
+  })
+  .catch(function() {
+    if (btn) { btn.textContent = 'Start My Journey →'; btn.disabled = false; }
+    alert('Connection error. Please try again.');
+  });
+}
+
+// Handle Stripe payment success return
+(function() {
+  var params = new URLSearchParams(window.location.search);
+  if (params.get('payment') === 'success') {
+    var plan = localStorage.getItem('sattva_plan') || 'mid_weekly';
+    var name = localStorage.getItem('sattva_name') || 'Seeker';
+    S.name = name;
+    S.tier = plan.indexOf('pro') > -1 ? 'pro' : 'mid';
+    localStorage.removeItem('sattva_plan');
+    localStorage.removeItem('sattva_name');
+    buildHabitDots(); updateProfileUI(); loadDailyVerse(); refreshGuruUI();
+    navTo('v-home', 0);
+  }
+})();
+
 </script>
 
 <div id="settings-modal" style="display:none;position:fixed;inset:0;z-index:500;background:rgba(10,8,14,.97);overflow-y:auto;">
