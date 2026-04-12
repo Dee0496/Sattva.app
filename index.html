@@ -614,17 +614,6 @@ input{font-family:'DM Sans',sans-serif}
 }
 .upg-card::-webkit-scrollbar{display:none}
 .upg-close{position:absolute;top:14px;right:14px;background:none;border:none;color:var(--mu);font-size:20px}
-
-.agb{display:flex;align-items:center;gap:12px;background:rgba(110,158,120,.12);border:1px solid rgba(110,158,120,.3);border-radius:50px;padding:10px 16px;margin:10px 20px 0;touch-action:manipulation;-webkit-tap-highlight-color:rgba(110,158,120,.2);}
-.agb *{pointer-events:none;}
-.agb-icon{font-size:18px;flex-shrink:0;}
-.agb-text{flex:1;}
-.agb-title{font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;color:#6E9E78;text-transform:uppercase;}
-.agb-sub{font-size:11px;color:rgba(245,239,228,.9);margin-top:2px;}
-.agb-btn{width:32px;height:32px;border-radius:50%;background:#6E9E78;display:flex;align-items:center;justify-content:center;font-size:13px;color:#0A080E;flex-shrink:0;}
-.agb-prog{height:3px;background:rgba(110,158,120,.2);border-radius:2px;margin:6px 20px 0;display:none;}
-.agb-fill{height:100%;background:#6E9E78;border-radius:2px;width:0%;transition:width .5s linear;}
-.agb.playing{background:rgba(110,158,120,.22);border-color:rgba(110,158,120,.6);}
 </style>
 </head>
 <body>
@@ -981,16 +970,7 @@ input{font-family:'DM Sans',sans-serif}
       <button class="ctrl-sm" onclick="skipSess()">⟩⟩</button>
     </div>
   </div>
-  <div id="agb" class="agb" style="display:none;" onclick="toggleGuideAudio()">
-  <div class="agb-icon">&#127908;</div>
-  <div class="agb-text">
-    <div class="agb-title">Voice Guide</div>
-    <div class="agb-sub" id="agb-sub">Tap to play</div>
-  </div>
-  <div class="agb-btn" id="agb-btn">&#9654;</div>
-</div>
-<div class="agb-prog" id="agb-prog"><div class="agb-fill" id="agb-fill"></div></div>
-<div class="pl-bot">
+  <div class="pl-bot">
     <div class="sec" style="margin-bottom:8px;">All Sessions</div>
     <div class="slist" id="pl-slist"></div>
   </div>
@@ -1245,10 +1225,10 @@ function setBilling(mode) {
   var pa = document.getElementById('pro-amt'), pp = document.getElementById('pro-per'), pt = document.getElementById('pro-trial');
   if (ma) ma.textContent = mode === 'weekly' ? (USER_CURRENCY==='INR'?'39':'1.99') : (USER_CURRENCY==='INR'?'1,499':'49');
   if (mp) mp.innerHTML = mode === 'weekly' ? '&nbsp;/ week' : '&nbsp;/ year';
-  var sym=USER_CURRENCY==='INR'?'₹':'$'; if (mt) mt.textContent = mode === 'weekly' ? '7 days free, then '+sym+(USER_CURRENCY==='INR'?'39':'1.99')+' per week' : '7 days free, then '+sym+(USER_CURRENCY==='INR'?'1,499':'49')+' per year — save 53%';
+  var _s=USER_CURRENCY==='INR'?'₹':'$'; if (mt) mt.textContent = mode === 'weekly' ? '7 days free, then '+_s+(USER_CURRENCY==='INR'?'39':'1.99')+' per week' : '7 days free, then '+_s+(USER_CURRENCY==='INR'?'1,499':'49')+' per year — save 53%';
   if (pa) pa.textContent = mode === 'weekly' ? (USER_CURRENCY==='INR'?'69':'3.99') : (USER_CURRENCY==='INR'?'2,999':'89');
   if (pp) pp.innerHTML = mode === 'weekly' ? '&nbsp;/ week' : '&nbsp;/ year';
-  if (pt) pt.textContent = mode === 'weekly' ? '7 days free, then '+sym+(USER_CURRENCY==='INR'?'69':'3.99')+' per week' : '7 days free, then '+sym+(USER_CURRENCY==='INR'?'2,999':'89')+' per year — save 57%';
+  if (pt) pt.textContent = mode === 'weekly' ? '7 days free, then '+_s+(USER_CURRENCY==='INR'?'69':'3.99')+' per week' : '7 days free, then '+_s+(USER_CURRENCY==='INR'?'2,999':'89')+' per year — save 57%';
 }
 
 /* ── PRICING ── */
@@ -1586,7 +1566,12 @@ function loadAndPlay(id) {
 function loadSession(s) {
   stopAll();
   S.session = s; S.playing = false; S.phase = 0;
-  initGuideAudio(s.id);
+  if (_guideAudio) { _guideAudio.pause(); _guideAudio = null; }
+  var btn = document.getElementById('audio-btn');
+  var dot = document.getElementById('audio-dot');
+  var hasGuide = s.id && GUIDE_AUDIO_URLS[s.id];
+  if (btn) { btn.classList.remove('on'); btn.innerHTML = hasGuide ? '&#127908; Voice Guide' : '\uD83C\uDFB5 Sound Guide'; }
+  if (dot) dot.style.display = 'none';
   S.secs = s.mins * 60; S.totalSecs = s.mins * 60;
   var ic = document.getElementById('pl-ic'); if (ic) ic.textContent = s.ic;
   var ti = document.getElementById('pl-title'); if (ti) ti.textContent = s.title;
@@ -1783,17 +1768,50 @@ function playSoundFor(t) {
 }
 
 function toggleAudio() {
-  if ((TIER[S.tier] || 0) < 1) { showUpgrade(); return; }
-  S.audioOn = !S.audioOn;
+  var sessId = S.session ? S.session.id : null;
+  var url = sessId ? GUIDE_AUDIO_URLS[sessId] : null;
   var btn = document.getElementById('audio-btn');
   var dot = document.getElementById('audio-dot');
-  if (btn) { btn.textContent = (S.audioOn ? '\uD83D\uDD14 Sound On' : '\uD83C\uDFB5 Sound Guide'); btn.classList.toggle('on', S.audioOn); }
-  if (dot) dot.style.display = S.audioOn ? 'block' : 'none';
-  if (S.audioOn) {
-    playSingingBowl(432, 3, 0.14);
-    setTimeout(function() { playSingingBowl(528, 2.5, 0.11); }, 1100);
-    setTimeout(function() { playSingingBowl(396, 3, 0.09); }, 2000);
+
+  // No guide audio for this session - use original sound behaviour
+  if (!url) {
+    if ((TIER[S.tier] || 0) < 1) { showUpgrade(); return; }
+    S.audioOn = !S.audioOn;
+    if (btn) { btn.textContent = (S.audioOn ? '\uD83D\uDD14 Sound On' : '\uD83C\uDFB5 Sound Guide'); btn.classList.toggle('on', S.audioOn); }
+    if (dot) dot.style.display = S.audioOn ? 'block' : 'none';
+    if (S.audioOn) { playSingingBowl(432,3,0.14); setTimeout(function(){playSingingBowl(528,2.5,0.11);},1100); setTimeout(function(){playSingingBowl(396,3,0.09);},2200); }
+    else if (_guideAudio) { _guideAudio.pause(); _guideAudio=null; }
+    return;
   }
+
+  // Has voice guide - toggle MP3 playback
+  if (_guideAudio && !_guideAudio.paused) {
+    _guideAudio.pause();
+    if (btn) { btn.innerHTML = '&#127925; Voice Guide'; btn.classList.remove('on'); }
+    if (dot) dot.style.display = 'none';
+    return;
+  }
+
+  // Play - create Audio directly in user gesture
+  if (!_guideAudio || _guideAudio.dataset.sessId !== sessId) {
+    if (_guideAudio) { _guideAudio.pause(); _guideAudio = null; }
+    _guideAudio = new Audio(url);
+    _guideAudio.dataset = _guideAudio.dataset || {};
+    _guideAudio.sessId = sessId;
+    _guideAudio.onended = function() {
+      if (btn) { btn.innerHTML = '&#127925; Voice Guide'; btn.classList.remove('on'); }
+      if (dot) dot.style.display = 'none';
+    };
+  }
+
+  if (btn) { btn.innerHTML = '&#9646;&#9646; Playing...'; btn.classList.add('on'); }
+  if (dot) dot.style.display = 'block';
+
+  _guideAudio.play().catch(function() {
+    if (btn) { btn.innerHTML = '&#127925; Voice Guide'; btn.classList.remove('on'); }
+    if (dot) dot.style.display = 'none';
+    _guideAudio = null;
+  });
 }
 
 /* ── AI GURU ── */
@@ -2734,21 +2752,7 @@ refreshGuruUI();
   }
 })();
 
-// ── CURRENCY ──
-var USER_CURRENCY = 'USD';
-function detectCurrency() {
-  try {
-    var tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
-    var lang = navigator.language || '';
-    if (tz.indexOf('Kolkata') > -1 || tz.indexOf('Calcutta') > -1 || lang === 'hi' || lang.indexOf('en-IN') > -1) {
-      USER_CURRENCY = 'INR';
-      setBilling(S.billing || 'weekly');
-    }
-  } catch(e) {}
-}
-document.addEventListener('DOMContentLoaded', detectCurrency);
-
-// ── AUDIO GUIDE ──
+// ── VOICE GUIDE ──
 var GUIDE_AUDIO_URLS = {
   'surya':       'https://dee0496.github.io/Sattva.app/Surya_Namaskar.mp3',
   'nadi':        'https://dee0496.github.io/Sattva.app/Nadi_Shodhana.mp3',
@@ -2758,77 +2762,21 @@ var GUIDE_AUDIO_URLS = {
   'box':         'https://dee0496.github.io/Sattva.app/Box_breathing.mp3',
   'trataka':     'https://dee0496.github.io/Sattva.app/Trataka.mp3'
 };
-var _ga = null, _gaPlaying = false, _gaProg = null, _gaSessId = null;
+var _guideAudio = null;
 
-function initGuideAudio(sessId) {
-  // Always stop and reset previous audio cleanly
-  if (_ga) { try { _ga.pause(); } catch(e){} _ga = null; }
-  _gaPlaying = false;
-  _gaSessId = sessId;
-  clearInterval(_gaProg);
-  var fill = document.getElementById('agb-fill');
-  if (fill) fill.style.width = '0%';
-  var bar = document.getElementById('agb');
-  var prog = document.getElementById('agb-prog');
-  var sub = document.getElementById('agb-sub');
-  var btn = document.getElementById('agb-btn');
-  if (!bar) return;
-  if (GUIDE_AUDIO_URLS[sessId]) {
-    bar.style.display = 'flex';
-    if (prog) prog.style.display = 'block';
-    bar.classList.remove('playing');
-    if (btn) btn.innerHTML = '&#9654;';
-    if (sub) sub.textContent = 'Tap to play guided instructions';
-  } else {
-    bar.style.display = 'none';
-    if (prog) prog.style.display = 'none';
-  }
+// ── CURRENCY ──
+var USER_CURRENCY = 'USD';
+function detectCurrency() {
+  try {
+    var tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+    var lang = navigator.language || '';
+    if (tz.indexOf('Kolkata')>-1||tz.indexOf('Calcutta')>-1||lang==='hi'||lang.indexOf('en-IN')>-1) {
+      USER_CURRENCY = 'INR';
+      setBilling(S.billing || 'weekly');
+    }
+  } catch(e) {}
 }
-
-function toggleGuideAudio() {
-  if (!_gaSessId || !GUIDE_AUDIO_URLS[_gaSessId]) return;
-  var bar = document.getElementById('agb');
-  var sub = document.getElementById('agb-sub');
-  var btn = document.getElementById('agb-btn');
-  // Pause
-  if (_gaPlaying && _ga) {
-    _ga.pause();
-    _gaPlaying = false;
-    clearInterval(_gaProg);
-    if (bar) bar.classList.remove('playing');
-    if (btn) btn.innerHTML = '&#9654;';
-    if (sub) sub.textContent = 'Paused - tap to resume';
-    return;
-  }
-  // Create fresh Audio on each tap if needed
-  if (!_ga) {
-    _ga = new Audio(GUIDE_AUDIO_URLS[_gaSessId]);
-    _ga.onended = function() {
-      _gaPlaying = false; clearInterval(_gaProg);
-      if (bar) bar.classList.remove('playing');
-      if (btn) btn.innerHTML = '&#9654;';
-      if (sub) sub.textContent = 'Tap to replay';
-    };
-  }
-  if (sub) sub.textContent = 'Loading...';
-  var p = _ga.play();
-  if (p !== undefined) {
-    p.then(function() {
-      _gaPlaying = true;
-      if (bar) bar.classList.add('playing');
-      if (btn) btn.innerHTML = '&#9646;&#9646;';
-      if (sub) sub.textContent = 'Playing...';
-      clearInterval(_gaProg);
-      _gaProg = setInterval(function() {
-        var fill = document.getElementById('agb-fill');
-        if (_ga && _ga.duration && fill) fill.style.width = (_ga.currentTime / _ga.duration * 100) + '%';
-      }, 500);
-    }).catch(function() {
-      _ga = null;
-      if (sub) sub.textContent = 'Tap to try again';
-    });
-  }
-}
+document.addEventListener('DOMContentLoaded', detectCurrency);
 
 // ── SETTINGS ──
 function showSettings(){var m=document.getElementById('settings-modal');if(m){m.style.display='block';document.body.style.overflow='hidden';}}
