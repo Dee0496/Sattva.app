@@ -853,7 +853,9 @@ input{font-family:'DM Sans',sans-serif}
     <div class="ob-h">What shall we<br><em>call you?</em></div>
     <p class="ob-p">Your Dharma Guru will know you personally.</p>
     <div class="sec" style="margin-bottom:10px;display:block;">Your Name</div>
-    <input class="ob-input" id="inp-name" type="text" placeholder="e.g. Priya, Arjun, Dee…" autocomplete="off" oninput="document.getElementById('btn1').disabled=this.value.trim().length<2">
+    <input class="ob-input" id="inp-name" type="text" placeholder="e.g. Priya, Arjun, Dee…" autocomplete="off" oninput="checkStep1()">
+    <div class="sec" style="margin-bottom:10px;margin-top:16px;display:block;">Your Email</div>
+    <input class="ob-input" id="inp-email" type="email" placeholder="your@email.com" autocomplete="email" oninput="checkStep1()">
     <div class="ob-grow"></div>
     <button class="btn btn-p" id="btn1" onclick="obNext(2)" disabled>Continue →</button>
   </div>
@@ -1254,6 +1256,7 @@ var API_URL = 'https://sattva-backend-production.up.railway.app';
 
 /* ── STATE ── */
 var S = {
+  email: '',
   name: '',
   tier: 'free',  // demo default — set by chooseTier() during onboarding
   playing: false,
@@ -1443,6 +1446,24 @@ function fmtCard(i) { var v = i.value.replace(/\D/g, '').slice(0, 16); i.value =
 function fmtExp(i) { var v = i.value.replace(/\D/g, '').slice(0, 4); if (v.length >= 2) v = v.slice(0, 2) + ' / ' + v.slice(2); i.value = v; }
 
 function obComplete() {
+  // Validate payment if paid tier selected
+  if (S.selectedTier && S.selectedTier !== 'free') {
+    var paySection = document.getElementById('pay-section');
+    if (paySection && paySection.style.display !== 'none') {
+      var inputs = paySection.querySelectorAll('input');
+      var allFilled = true;
+      for (var i = 0; i < inputs.length; i++) {
+        if (!inputs[i].value.trim()) { allFilled = false; break; }
+      }
+      if (!allFilled) {
+        alert('Please complete your payment details to continue.');
+        return;
+      }
+      // Payment details entered - set tier
+      // In production this would verify with Stripe first
+      S.tier = S.selectedTier;
+    }
+  }
   var nm = document.getElementById('inp-name');
   S.name = (nm && nm.value.trim()) || 'Seeker';
   var dn = document.getElementById('done-name');
@@ -1463,14 +1484,7 @@ function obComplete() {
       wrap.appendChild(d);
     }
   }
- var tier = S.selectedTier || S.tier;
-  if (tier && tier !== 'free') {
-    var planMap = {'mid': S.billing==='annual'?'mid_annual':'mid_weekly','pro': S.billing==='annual'?'pro_annual':'pro_weekly','mid-lifetime':'mid_lifetime','pro-lifetime':'pro_lifetime'};
-    startStripeCheckout(planMap[tier] || 'mid_weekly');
-    return;
-  }
-  S.tier = 'free';
-   obGoTo('done');
+  obGoTo('done');
   var bk = document.getElementById('ob-back');
   if (bk) bk.style.display = 'none';
 }
@@ -2915,10 +2929,11 @@ function startStripeCheckout(plan) {
   if (btn) { btn.textContent = 'Redirecting...'; btn.disabled = true; }
   localStorage.setItem('sattva_name', S.name);
   localStorage.setItem('sattva_plan', plan);
+  localStorage.setItem('sattva_email', S.email || '');
   fetch(API_URL + '/api/payments/checkout', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ plan: plan, user_name: S.name })
+    body: JSON.stringify({ plan: plan, user_name: S.name, email: S.email || 'guest@sattvaapp.com' })
   })
   .then(function(r) { return r.json(); })
   .then(function(data) {
@@ -2937,18 +2952,38 @@ function startStripeCheckout(plan) {
 
 // Handle Stripe payment success return
 (function() {
+  // Handle Stripe success return
   var params = new URLSearchParams(window.location.search);
-  if (params.get('payment') === 'success') {
+  var sessionId = params.get('session_id');
+  var isSuccess = params.get('payment-success') === '1';
+  if (sessionId && isSuccess) {
     var plan = localStorage.getItem('sattva_plan') || 'mid_weekly';
     var name = localStorage.getItem('sattva_name') || 'Seeker';
     S.name = name;
     S.tier = plan.indexOf('pro') > -1 ? 'pro' : 'mid';
+    S.email = localStorage.getItem('sattva_email') || '';
     localStorage.removeItem('sattva_plan');
     localStorage.removeItem('sattva_name');
-    buildHabitDots(); updateProfileUI(); loadDailyVerse(); refreshGuruUI();
-    navTo('v-home', 0);
+    localStorage.removeItem('sattva_email');
+    // Clean URL
+    window.history.replaceState({}, document.title, window.location.pathname);
+    setTimeout(function() {
+      buildHabitDots(); updateProfileUI(); loadDailyVerse(); refreshGuruUI();
+      navTo('v-home', 0);
+    }, 100);
   }
 })();
+
+
+function checkStep1() {
+  var name = document.getElementById('inp-name');
+  var email = document.getElementById('inp-email');
+  var btn = document.getElementById('btn1');
+  if (!name || !email || !btn) return;
+  var validEmail = /^[^@]+@[^@]+\.[^@]+$/.test(email.value.trim());
+  btn.disabled = !(name.value.trim().length >= 2 && validEmail);
+  if (email.value.trim()) S.email = email.value.trim();
+}
 
 </script>
 
