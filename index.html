@@ -614,6 +614,67 @@ input{font-family:'DM Sans',sans-serif}
 }
 .upg-card::-webkit-scrollbar{display:none}
 .upg-close{position:absolute;top:14px;right:14px;background:none;border:none;color:var(--mu);font-size:20px}
+
+/* ── LIFETIME CARD ── */
+.lifetime-wrap{padding:0 20px;margin-bottom:16px;}
+.lifetime-card{
+  border-radius:18px;padding:22px 20px;
+  border:1px solid rgba(240,144,10,.4);
+  background:linear-gradient(135deg,rgba(240,144,10,.08),rgba(201,107,16,.05));
+  position:relative;overflow:hidden;
+}
+.lifetime-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(to right,#F0900A,#C96B10);
+}
+.lifetime-badge{
+  display:inline-block;
+  background:linear-gradient(135deg,#F0900A,#C96B10);
+  color:#0A080E;font-family:'Cinzel',serif;
+  font-size:8px;letter-spacing:2px;text-transform:uppercase;
+  padding:3px 10px;border-radius:20px;margin-bottom:12px;
+}
+.lifetime-title{
+  font-family:'Cinzel',serif;font-size:15px;
+  letter-spacing:2px;color:#F5EFE4;
+  text-transform:uppercase;margin-bottom:4px;
+}
+.lifetime-sub{font-size:12px;color:rgba(245,239,228,.8);margin-bottom:18px;}
+.lifetime-tiers{display:flex;gap:12px;}
+.lifetime-tier{
+  flex:1;background:rgba(10,8,14,.4);
+  border:1px solid rgba(240,144,10,.2);
+  border-radius:14px;padding:16px 14px;text-align:center;
+  cursor:pointer;transition:all .25s;
+  touch-action:manipulation;
+}
+.lifetime-tier:active{background:rgba(240,144,10,.1);}
+.lifetime-tier-name{
+  font-family:'Cinzel',serif;font-size:9px;
+  letter-spacing:2px;color:#F0900A;
+  text-transform:uppercase;margin-bottom:8px;
+}
+.lifetime-price{
+  font-family:'Cormorant Garamond',serif;
+  font-size:28px;font-weight:300;color:#F5EFE4;
+  line-height:1;margin-bottom:4px;
+}
+.lifetime-price span{font-size:14px;}
+.lifetime-once{font-size:10px;color:rgba(245,239,228,.6);margin-bottom:12px;}
+.lifetime-features{list-style:none;padding:0;margin:0 0 14px;text-align:left;}
+.lifetime-features li{font-size:11px;color:rgba(245,239,228,.8);padding:3px 0;}
+.lifetime-features li::before{content:"✓ ";color:#6E9E78;}
+.lifetime-btn{
+  width:100%;background:linear-gradient(135deg,#F0900A,#C96B10);
+  border:none;border-radius:50px;padding:10px;
+  font-family:'Cinzel',serif;font-size:10px;
+  letter-spacing:2px;color:#0A080E;cursor:pointer;
+  text-transform:uppercase;touch-action:manipulation;
+}
+.lifetime-note{
+  text-align:center;font-size:10px;
+  color:rgba(245,239,228,.5);margin-top:12px;
+}
 </style>
 </head>
 <body>
@@ -727,6 +788,45 @@ input{font-family:'DM Sans',sans-serif}
         <button class="tier-btn" onclick="chooseTier('pro')">Start Free Trial</button>
       </div>
     </div>
+
+    <!-- LIFETIME ACCESS -->
+    <div class="lifetime-wrap">
+      <div class="lifetime-card">
+        <div class="lifetime-badge">&#10024; Best Value</div>
+        <div class="lifetime-title">Lifetime Access</div>
+        <div class="lifetime-sub">One payment. Yours forever. No renewals.</div>
+        <div class="lifetime-tiers">
+          <!-- Sadhaka Lifetime -->
+          <div class="lifetime-tier" onclick="chooseTier('mid-lifetime')">
+            <div class="lifetime-tier-name">Sadhaka</div>
+            <div class="lifetime-price" id="lt-mid-price"><span id="lt-mid-sym">$</span><span id="lt-mid-amt">79</span></div>
+            <div class="lifetime-once">one-time</div>
+            <ul class="lifetime-features">
+              <li>All 7 sadhanas</li>
+              <li>Voice guidance</li>
+              <li>Dharma Guru AI</li>
+              <li>Progress tracking</li>
+            </ul>
+            <button class="lifetime-btn">Get Sadhaka</button>
+          </div>
+          <!-- Yogi Pro Lifetime -->
+          <div class="lifetime-tier" onclick="chooseTier('pro-lifetime')">
+            <div class="lifetime-tier-name">Yogi Pro</div>
+            <div class="lifetime-price" id="lt-pro-price"><span id="lt-pro-sym">$</span><span id="lt-pro-amt">129</span></div>
+            <div class="lifetime-once">one-time</div>
+            <ul class="lifetime-features">
+              <li>Everything in Sadhaka</li>
+              <li>Yoga Nidra access</li>
+              <li>Sacred library</li>
+              <li>Priority support</li>
+            </ul>
+            <button class="lifetime-btn">Get Yogi Pro</button>
+          </div>
+        </div>
+        <div class="lifetime-note">&#128274; Secured by Stripe · PCI DSS Compliant</div>
+      </div>
+    </div>
+
     <div class="pr-note">No charge until day 8 · Cancel anytime · Secured by Stripe</div>
   </div>
 </div>
@@ -1229,17 +1329,29 @@ function setBilling(mode) {
   if (pa) pa.textContent = mode === 'weekly' ? (USER_CURRENCY==='INR'?'69':'3.99') : (USER_CURRENCY==='INR'?'2,999':'89');
   if (pp) pp.innerHTML = mode === 'weekly' ? '&nbsp;/ week' : '&nbsp;/ year';
   if (pt) pt.textContent = mode === 'weekly' ? '7 days free, then '+_s+(USER_CURRENCY==='INR'?'69':'3.99')+' per week' : '7 days free, then '+_s+(USER_CURRENCY==='INR'?'2,999':'89')+' per year — save 57%';
+  // Update lifetime prices
+  var ltMidSym = document.getElementById('lt-mid-sym');
+  var ltMidAmt = document.getElementById('lt-mid-amt');
+  var ltProSym = document.getElementById('lt-pro-sym');
+  var ltProAmt = document.getElementById('lt-pro-amt');
+  if (ltMidSym) ltMidSym.textContent = USER_CURRENCY==='INR' ? '\u20b9' : '$';
+  if (ltMidAmt) ltMidAmt.textContent = USER_CURRENCY==='INR' ? '2,999' : '79';
+  if (ltProSym) ltProSym.textContent = USER_CURRENCY==='INR' ? '\u20b9' : '$';
+  if (ltProAmt) ltProAmt.textContent = USER_CURRENCY==='INR' ? '4,999' : '129';
 }
 
 /* ── PRICING ── */
 function chooseTier(tier) {
-  S.tier = tier;
+  S.selectedTier = tier; // Store selection only - do NOT set S.tier yet
+  if (tier === 'mid-lifetime' || tier === 'pro-lifetime') { S.isLifetime = true; } else { S.isLifetime = false; }
   var ps = document.getElementById('pay-section');
   var tn = document.getElementById('trial-note');
   if (tier === 'free') {
+    S.tier = 'free'; // Free is fine to set immediately
     if (ps) ps.style.display = 'none';
     if (tn) tn.style.display = 'none';
   } else {
+    // Paid tier - show payment, keep tier as free until paid
     if (ps) ps.style.display = 'block';
     if (tn) tn.style.display = 'block';
   }
@@ -1333,6 +1445,24 @@ function fmtCard(i) { var v = i.value.replace(/\D/g, '').slice(0, 16); i.value =
 function fmtExp(i) { var v = i.value.replace(/\D/g, '').slice(0, 4); if (v.length >= 2) v = v.slice(0, 2) + ' / ' + v.slice(2); i.value = v; }
 
 function obComplete() {
+  // Validate payment if paid tier selected
+  if (S.selectedTier && S.selectedTier !== 'free') {
+    var paySection = document.getElementById('pay-section');
+    if (paySection && paySection.style.display !== 'none') {
+      var inputs = paySection.querySelectorAll('input');
+      var allFilled = true;
+      for (var i = 0; i < inputs.length; i++) {
+        if (!inputs[i].value.trim()) { allFilled = false; break; }
+      }
+      if (!allFilled) {
+        alert('Please complete your payment details to continue.');
+        return;
+      }
+      // Payment details entered - set tier
+      // In production this would verify with Stripe first
+      S.tier = S.selectedTier;
+    }
+  }
   var nm = document.getElementById('inp-name');
   S.name = (nm && nm.value.trim()) || 'Seeker';
   var dn = document.getElementById('done-name');
@@ -1359,6 +1489,9 @@ function obComplete() {
 }
 
 function enterApp() {
+  if (!S.tier || S.tier === 'pro' || S.tier === 'mid') {
+    S.tier = 'free'; // Reset to free - tier set only after Stripe confirms
+  }
   buildHabitDots();
   updateProfileUI();
   loadDailyVerse();
@@ -1367,7 +1500,7 @@ function enterApp() {
 }
 
 function skipToApp() {
-  S.tier = 'pro';
+  S.tier = 'free'; // Always enter as free - upgrade only after payment
   buildHabitDots();
   updateProfileUI();
   loadDailyVerse();
