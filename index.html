@@ -1446,33 +1446,13 @@ function fmtCard(i) { var v = i.value.replace(/\D/g, '').slice(0, 16); i.value =
 function fmtExp(i) { var v = i.value.replace(/\D/g, '').slice(0, 4); if (v.length >= 2) v = v.slice(0, 2) + ' / ' + v.slice(2); i.value = v; }
 
 function obComplete() {
-  // Validate payment if paid tier selected
-  if (S.selectedTier && S.selectedTier !== 'free') {
-    var paySection = document.getElementById('pay-section');
-    if (paySection && paySection.style.display !== 'none') {
-      var inputs = paySection.querySelectorAll('input');
-      var allFilled = true;
-      for (var i = 0; i < inputs.length; i++) {
-        if (!inputs[i].value.trim()) { allFilled = false; break; }
-      }
-      if (!allFilled) {
-        alert('Please complete your payment details to continue.');
-        return;
-      }
-      // Payment details entered - set tier
-      // In production this would verify with Stripe first
-      S.tier = S.selectedTier;
-    }
-  }
   var nm = document.getElementById('inp-name');
+  var em = document.getElementById('inp-email');
   S.name = (nm && nm.value.trim()) || 'Seeker';
-  var dn = document.getElementById('done-name');
-  if (dn) dn.textContent = S.name;
-  var hn = document.getElementById('h-name');
-  if (hn) hn.textContent = S.name + ' \uD83D\uDE4F';
-  var pn = document.getElementById('pro-name');
-  if (pn) pn.textContent = S.name;
-  // Chips
+  S.email = (em && em.value.trim()) || '';
+  var dn = document.getElementById('done-name'); if (dn) dn.textContent = S.name;
+  var hn = document.getElementById('h-name'); if (hn) hn.textContent = S.name + ' 🙏';
+  var pn = document.getElementById('pro-name'); if (pn) pn.textContent = S.name;
   var wrap = document.getElementById('done-chips');
   if (wrap) {
     wrap.innerHTML = '';
@@ -1484,6 +1464,18 @@ function obComplete() {
       wrap.appendChild(d);
     }
   }
+  var tier = S.selectedTier || S.tier;
+  if (tier && tier !== 'free') {
+    var planMap = {
+      'mid': S.billing === 'annual' ? 'mid_annual' : 'mid_weekly',
+      'pro': S.billing === 'annual' ? 'pro_annual' : 'pro_weekly',
+      'mid-lifetime': 'mid_lifetime',
+      'pro-lifetime': 'pro_lifetime'
+    };
+    startStripeCheckout(planMap[tier] || 'mid_weekly');
+    return;
+  }
+  S.tier = 'free';
   obGoTo('done');
   var bk = document.getElementById('ob-back');
   if (bk) bk.style.display = 'none';
