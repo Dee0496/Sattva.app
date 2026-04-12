@@ -937,15 +937,13 @@ input{font-family:'DM Sans',sans-serif}
     <div class="tog" onclick="flipSw(this)"><div class="tog-info"><div class="tog-nm">Streak Reminders</div><div class="tog-ds">Keep your Tapas streak alive</div></div><div class="sw on"></div></div>
     <!-- Payment (hidden for free) -->
     <div id="pay-section" style="display:none;margin-top:18px;">
-      <div class="sec" style="margin-bottom:10px;display:block;">Payment Details</div>
-      <div class="pay-field"><span style="font-size:15px;opacity:.5">💳</span><input type="text" placeholder="Card number" maxlength="19" oninput="fmtCard(this)"></div>
-      <div class="pay-row">
-        <div class="pay-field"><input type="text" placeholder="MM / YY" maxlength="7" oninput="fmtExp(this)"></div>
-        <div class="pay-field"><input type="text" placeholder="CVV" maxlength="3" inputmode="numeric"></div>
-      </div>
-      <div class="pay-field"><span style="font-size:15px;opacity:.5">👤</span><input type="text" placeholder="Name on card"></div>
-      <div class="secure">🔒 Secured by Stripe · PCI DSS Compliant</div>
-    </div>
+  <div style="background:rgba(240,144,10,.06);border:1px solid rgba(240,144,10,.2);border-radius:14px;padding:20px;text-align:center;">
+    <div style="font-size:36px;margin-bottom:10px;">🔐</div>
+    <div style="font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;color:#F5EFE4;text-transform:uppercase;margin-bottom:8px;">Secure Payment via Stripe</div>
+    <div style="font-size:13px;color:rgba(245,239,228,.85);line-height:1.7;margin-bottom:12px;">You will be redirected to Stripe's secure checkout. Your 7-day free trial starts immediately.</div>
+    <div style="font-size:11px;color:rgba(245,239,228,.5);">&#128274; 256-bit SSL · PCI DSS Compliant · Cancel anytime</div>
+  </div>
+</div>
     <div class="ob-grow"></div>
     <button class="btn btn-p" id="btn5" onclick="obComplete()">Start My Journey →</button>
     <div style="text-align:center;font-size:10px;color:var(--mu);opacity:.4;margin-top:10px;letter-spacing:.5px;" id="trial-note">No charge until day 8 · Cancel anytime</div>
