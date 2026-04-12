@@ -615,30 +615,16 @@ input{font-family:'DM Sans',sans-serif}
 .upg-card::-webkit-scrollbar{display:none}
 .upg-close{position:absolute;top:14px;right:14px;background:none;border:none;color:var(--mu);font-size:20px}
 
-/* ── AUDIO GUIDE PLAYER ── */
-.audio-guide-bar {
-  display:flex;align-items:center;gap:12px;
-  background:rgba(110,158,120,0.12);
-  border:1px solid rgba(110,158,120,0.3);
-  border-radius:50px;
-  padding:10px 16px;
-  margin:12px 22px 0;
-  flex-shrink:0;
-  cursor:pointer;
-  transition:all .25s;
-}
-.audio-guide-bar:active { background:rgba(110,158,120,0.2); }
-.audio-guide-bar.playing {
-  background:rgba(110,158,120,0.2);
-  border-color:rgba(110,158,120,0.6);
-}
-.agb-icon { font-size:18px; flex-shrink:0; }
-.agb-text { flex:1; }
-.agb-title { font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;color:#6E9E78;text-transform:uppercase; }
-.agb-sub { font-size:11px;color:rgba(245,239,228,.7);margin-top:2px; }
-.agb-btn { width:32px;height:32px;border-radius:50%;background:#6E9E78;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:13px;color:#0A080E;flex-shrink:0; }
-.agb-progress { height:2px;background:rgba(110,158,120,0.2);border-radius:1px;margin:6px 22px 0;flex-shrink:0;overflow:hidden; }
-.agb-progress-fill { height:100%;background:#6E9E78;border-radius:1px;width:0%;transition:width .5s linear; }
+.agb{display:flex;align-items:center;gap:12px;background:rgba(110,158,120,.12);border:1px solid rgba(110,158,120,.3);border-radius:50px;padding:10px 16px;margin:10px 20px 0;touch-action:manipulation;-webkit-tap-highlight-color:rgba(110,158,120,.2);}
+.agb *{pointer-events:none;}
+.agb-icon{font-size:18px;flex-shrink:0;}
+.agb-text{flex:1;}
+.agb-title{font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;color:#6E9E78;text-transform:uppercase;}
+.agb-sub{font-size:11px;color:rgba(245,239,228,.9);margin-top:2px;}
+.agb-btn{width:32px;height:32px;border-radius:50%;background:#6E9E78;display:flex;align-items:center;justify-content:center;font-size:13px;color:#0A080E;flex-shrink:0;}
+.agb-prog{height:3px;background:rgba(110,158,120,.2);border-radius:2px;margin:6px 20px 0;display:none;}
+.agb-fill{height:100%;background:#6E9E78;border-radius:2px;width:0%;transition:width .5s linear;}
+.agb.playing{background:rgba(110,158,120,.22);border-color:rgba(110,158,120,.6);}
 </style>
 </head>
 <body>
@@ -970,20 +956,6 @@ input{font-family:'DM Sans',sans-serif}
       <span style="width:60px;"></span>
     </div>
   </div>
-  
-  <!-- AUDIO GUIDE BAR -->
-  <div class="audio-guide-bar" id="audio-guide-bar" style="display:none;" onclick="toggleGuideAudio()">
-    <div class="agb-icon">🎙️</div>
-    <div class="agb-text">
-      <div class="agb-title">Voice Guide</div>
-      <div class="agb-sub" id="agb-sub">Guided instructions</div>
-    </div>
-    <div class="agb-btn" id="agb-btn">▶</div>
-  </div>
-  <div class="agb-progress" id="agb-progress" style="display:none;">
-    <div class="agb-progress-fill" id="agb-fill"></div>
-  </div>
-
   <div class="pl-body">
     <div class="pl-ic" id="pl-ic">🧘</div>
     <div class="pl-title" id="pl-title">Select a Session</div>
@@ -1009,7 +981,16 @@ input{font-family:'DM Sans',sans-serif}
       <button class="ctrl-sm" onclick="skipSess()">⟩⟩</button>
     </div>
   </div>
-  <div class="pl-bot">
+  <div id="agb" class="agb" style="display:none;" onclick="toggleGuideAudio()">
+  <div class="agb-icon">&#127908;</div>
+  <div class="agb-text">
+    <div class="agb-title">Voice Guide</div>
+    <div class="agb-sub" id="agb-sub">Tap to play</div>
+  </div>
+  <div class="agb-btn" id="agb-btn">&#9654;</div>
+</div>
+<div class="agb-prog" id="agb-prog"><div class="agb-fill" id="agb-fill"></div></div>
+<div class="pl-bot">
     <div class="sec" style="margin-bottom:8px;">All Sessions</div>
     <div class="slist" id="pl-slist"></div>
   </div>
@@ -1095,7 +1076,7 @@ input{font-family:'DM Sans',sans-serif}
     <div class="pro-hero">
       <div class="pro-av">🧘</div>
       <div><div class="pro-name" id="pro-name">Seeker</div><div class="pro-mem">Sattva Member</div></div>
-      <div class="pro-plan-badge pb-pro" id="pro-badge"><div class="pb-nm" id="pb-nm">Pro</div><div class="pb-pr" id="pb-pr"><span id="price-pro-weekly">$3.99</span></div></div>
+      <div class="pro-plan-badge pb-pro" id="pro-badge"><div class="pb-nm" id="pb-nm">Pro</div><div class="pb-pr" id="pb-pr">$3.99</div></div>
     </div>
     <div class="upg-banner" id="upg-banner" onclick="showUpgrade()">
       <span style="font-size:26px;">✨</span>
@@ -1166,8 +1147,8 @@ input{font-family:'DM Sans',sans-serif}
     <!-- Sadhaka -->
     <div style="background:rgba(200,123,142,.08);border:1px solid rgba(200,123,142,.3);border-radius:16px;padding:18px;margin-bottom:12px;cursor:pointer;" onclick="doUpgrade('mid')">
       <div style="font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;color:var(--lotus);text-transform:uppercase;margin-bottom:6px;">Sadhaka</div>
-      <div style="font-family:'DM Sans',sans-serif;font-size:32px;font-weight:700;color:var(--iv);letter-spacing:-1px;margin-bottom:3px;"><span id="price-mid-weekly">$1.99</span><span style="font-size:14px;font-weight:400;color:var(--mu);"> / week</span></div>
-      <div style="font-size:11px;color:var(--sage);margin-bottom:10px;">7 days free · or $49 / ₹1,499 per year</div>
+      <div style="font-family:'DM Sans',sans-serif;font-size:32px;font-weight:700;color:var(--iv);letter-spacing:-1px;margin-bottom:3px;">$1.99<span style="font-size:14px;font-weight:400;color:var(--mu);"> / week</span></div>
+      <div style="font-size:11px;color:var(--sage);margin-bottom:10px;">7 days free · or $49 per year</div>
       <div style="font-size:12px;color:var(--mu);">◆ All sessions · Audio guide · 15 AI messages/month · Habit tracker</div>
     </div>
     <!-- Pro -->
@@ -1175,7 +1156,7 @@ input{font-family:'DM Sans',sans-serif}
       <div style="position:absolute;top:12px;right:12px;background:var(--sf);color:var(--bg);font-family:'Cinzel',serif;font-size:8px;letter-spacing:2px;padding:3px 8px;border-radius:20px;">BEST VALUE</div>
       <div style="font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;color:var(--sf);text-transform:uppercase;margin-bottom:6px;">Yogi Pro</div>
       <div style="font-family:'DM Sans',sans-serif;font-size:32px;font-weight:700;color:var(--iv);letter-spacing:-1px;margin-bottom:3px;">$3.99<span style="font-size:14px;font-weight:400;color:var(--mu);"> / week</span></div>
-      <div style="font-size:11px;color:var(--sage);margin-bottom:10px;">7 days free · or $89 / ₹2,999 per year</div>
+      <div style="font-size:11px;color:var(--sage);margin-bottom:10px;">7 days free · or $89 per year</div>
       <div style="font-size:12px;color:var(--mu);">◆ Unlimited everything · Full library · Unlimited AI Guru · Offline</div>
     </div>
     <button onclick="closeUpgrade()" style="width:100%;background:transparent;border:1px solid var(--bdr2);border-radius:50px;padding:13px;font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;color:var(--mu);cursor:pointer;text-transform:uppercase;">Maybe later</button>
@@ -1262,12 +1243,12 @@ function setBilling(mode) {
   if (ba) { ba.style.background = mode === 'annual' ? ON : 'transparent'; ba.style.color = mode === 'annual' ? '#0C0A0F' : 'var(--mu)'; }
   var ma = document.getElementById('mid-amt'), mp = document.getElementById('mid-per'), mt = document.getElementById('mid-trial');
   var pa = document.getElementById('pro-amt'), pp = document.getElementById('pro-per'), pt = document.getElementById('pro-trial');
-  if (ma) ma.textContent = mode === 'weekly' ? '1.99' : '49';
+  if (ma) ma.textContent = mode === 'weekly' ? (USER_CURRENCY==='INR'?'39':'1.99') : (USER_CURRENCY==='INR'?'1,499':'49');
   if (mp) mp.innerHTML = mode === 'weekly' ? '&nbsp;/ week' : '&nbsp;/ year';
-  if (mt) mt.textContent = mode === 'weekly' ? '7 days free, then $1.99 per week' : '7 days free, then $49 per year — save 53%';
-  if (pa) pa.textContent = mode === 'weekly' ? '3.99' : '89';
+  var sym=USER_CURRENCY==='INR'?'₹':'$'; if (mt) mt.textContent = mode === 'weekly' ? '7 days free, then '+sym+(USER_CURRENCY==='INR'?'39':'1.99')+' per week' : '7 days free, then '+sym+(USER_CURRENCY==='INR'?'1,499':'49')+' per year — save 53%';
+  if (pa) pa.textContent = mode === 'weekly' ? (USER_CURRENCY==='INR'?'69':'3.99') : (USER_CURRENCY==='INR'?'2,999':'89');
   if (pp) pp.innerHTML = mode === 'weekly' ? '&nbsp;/ week' : '&nbsp;/ year';
-  if (pt) pt.textContent = mode === 'weekly' ? '7 days free, then $3.99 per week' : '7 days free, then $89 per year — save 57%';
+  if (pt) pt.textContent = mode === 'weekly' ? '7 days free, then '+sym+(USER_CURRENCY==='INR'?'69':'3.99')+' per week' : '7 days free, then '+sym+(USER_CURRENCY==='INR'?'2,999':'89')+' per year — save 57%';
 }
 
 /* ── PRICING ── */
@@ -2753,67 +2734,51 @@ refreshGuruUI();
   }
 })();
 
-// ── SETTINGS & REFER ──
-function showSettings(){var m=document.getElementById('settings-modal');if(m){m.style.display='block';document.body.style.overflow='hidden';}}
-function closeSettings(){var m=document.getElementById('settings-modal');if(m){m.style.display='none';document.body.style.overflow='';}}
-function showRefer(){var m=document.getElementById('refer-modal');if(m){m.style.display='flex';document.body.style.overflow='hidden';}}
-function closeRefer(){var m=document.getElementById('refer-modal');if(m){m.style.display='none';document.body.style.overflow='';}}
-function toggleNotif(){var t=document.getElementById('notif-toggle'),k=document.getElementById('notif-knob');if(!t||!k)return;var on=k.style.left==='24px';k.style.left=on?'2px':'24px';t.style.background=on?'rgba(240,144,10,.3)':'rgba(240,144,10,.8)';}
-function toggleSound(){var t=document.getElementById('sound-toggle'),k=document.getElementById('sound-knob');if(!t||!k)return;var on=k.style.left==='24px';k.style.left=on?'2px':'24px';t.style.background=on?'rgba(240,144,10,.3)':'rgba(240,144,10,.8)';}
-function shareApp(){if(navigator.share){navigator.share({title:'Sattva',text:'Try this incredible Vedic yoga app free!',url:'https://www.sattvaapp.com'}).catch(function(){});}else{var el=document.createElement('textarea');el.value='https://www.sattvaapp.com';document.body.appendChild(el);el.select();document.execCommand('copy');document.body.removeChild(el);alert('Link copied! Share sattvaapp.com with friends');}}
+// ── CURRENCY ──
+var USER_CURRENCY = 'USD';
+function detectCurrency() {
+  try {
+    var tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+    var lang = navigator.language || '';
+    if (tz.indexOf('Kolkata') > -1 || tz.indexOf('Calcutta') > -1 || lang === 'hi' || lang.indexOf('en-IN') > -1) {
+      USER_CURRENCY = 'INR';
+      setBilling(S.billing || 'weekly');
+    }
+  } catch(e) {}
+}
+document.addEventListener('DOMContentLoaded', detectCurrency);
 
-
-// ── GUIDED AUDIO PLAYER ──
+// ── AUDIO GUIDE ──
 var GUIDE_AUDIO_URLS = {
-  'surya': 'https://dee0496.github.io/Sattva.app/Surya_Namaskar.mp3',
-  'nadi': 'https://dee0496.github.io/Sattva.app/Nadi_Shodhana.mp3',
-  'nidra': 'https://dee0496.github.io/Sattva.app/Yoga_Nidra.mp3',
-  'kapal': 'https://dee0496.github.io/Sattva.app/Kapalbharti.mp3',
-  'bhram': 'https://dee0496.github.io/Sattva.app/Bharamari.mp3'
+  'surya':       'https://dee0496.github.io/Sattva.app/Surya_Namaskar.mp3',
+  'nadi':        'https://dee0496.github.io/Sattva.app/Nadi_Shodhana.mp3',
+  'nidra':       'https://dee0496.github.io/Sattva.app/Yoga_Nidra.mp3',
+  'kapalabhati': 'https://dee0496.github.io/Sattva.app/Kapalbharti.mp3',
+  'bhramari':    'https://dee0496.github.io/Sattva.app/Bharamari.mp3',
+  'box':         'https://dee0496.github.io/Sattva.app/Box_breathing.mp3',
+  'trataka':     'https://dee0496.github.io/Sattva.app/Trataka.mp3'
 };
-
-var guideAudio = null;
-var guideAudioPlaying = false;
-var guideProgressTimer = null;
+var _ga = null, _gaPlaying = false, _gaProg = null, _gaSessId = null;
 
 function initGuideAudio(sessId) {
-  // Show or hide the audio bar based on whether audio exists
-  var bar = document.getElementById('audio-guide-bar');
-  var prog = document.getElementById('agb-progress');
+  // Always stop and reset previous audio cleanly
+  if (_ga) { try { _ga.pause(); } catch(e){} _ga = null; }
+  _gaPlaying = false;
+  _gaSessId = sessId;
+  clearInterval(_gaProg);
+  var fill = document.getElementById('agb-fill');
+  if (fill) fill.style.width = '0%';
+  var bar = document.getElementById('agb');
+  var prog = document.getElementById('agb-prog');
   var sub = document.getElementById('agb-sub');
-  
+  var btn = document.getElementById('agb-btn');
   if (!bar) return;
-  
   if (GUIDE_AUDIO_URLS[sessId]) {
     bar.style.display = 'flex';
     if (prog) prog.style.display = 'block';
-    if (sub) sub.textContent = 'Tap to play guided instructions';
     bar.classList.remove('playing');
-    document.getElementById('agb-btn').textContent = '▶';
-    
-    // Stop any existing audio
-    if (guideAudio) {
-      guideAudio.pause();
-      guideAudio = null;
-    }
-    clearInterval(guideProgressTimer);
-    
-    // Pre-load audio
-    // Audio created on first tap for iOS compatibility
-    guideAudioPlaying = false;
-    
-    // Reset progress
-    var fill = document.getElementById('agb-fill');
-    if (fill) fill.style.width = '0%';
-    
-    // On ended
-    guideAudio.onended = function() {
-      guideAudioPlaying = false;
-      bar.classList.remove('playing');
-      document.getElementById('agb-btn').textContent = '▶';
-      if (sub) sub.textContent = 'Tap to replay';
-      clearInterval(guideProgressTimer);
-    };
+    if (btn) btn.innerHTML = '&#9654;';
+    if (sub) sub.textContent = 'Tap to play guided instructions';
   } else {
     bar.style.display = 'none';
     if (prog) prog.style.display = 'none';
@@ -2821,97 +2786,60 @@ function initGuideAudio(sessId) {
 }
 
 function toggleGuideAudio() {
-  var bar = document.getElementById('audio-guide-bar');
-  var btn = document.getElementById('agb-btn');
+  if (!_gaSessId || !GUIDE_AUDIO_URLS[_gaSessId]) return;
+  var bar = document.getElementById('agb');
   var sub = document.getElementById('agb-sub');
-  var sessId = S.session ? S.session.id : null;
-  
-  if (!sessId || !GUIDE_AUDIO_URLS[sessId]) return;
-  
-  // iOS fix: create Audio object on first user tap (not before)
-  if (!guideAudio) {
-    guideAudio = new Audio(GUIDE_AUDIO_URLS[sessId]);
-    guideAudio.onended = function() {
-      guideAudioPlaying = false;
-      if (bar) bar.classList.remove('playing');
-      if (btn) btn.textContent = '▶';
-      if (sub) sub.textContent = 'Tap to replay';
-      clearInterval(guideProgressTimer);
-    };
-    guideAudio.onerror = function() {
-      if (sub) sub.textContent = 'Audio unavailable';
-    };
-  }
-  
-  if (guideAudioPlaying) {
-    guideAudio.pause();
-    guideAudioPlaying = false;
+  var btn = document.getElementById('agb-btn');
+  // Pause
+  if (_gaPlaying && _ga) {
+    _ga.pause();
+    _gaPlaying = false;
+    clearInterval(_gaProg);
     if (bar) bar.classList.remove('playing');
-    if (btn) btn.textContent = '▶';
-    if (sub) sub.textContent = 'Paused — tap to resume';
-    clearInterval(guideProgressTimer);
-  } else {
-    var playPromise = guideAudio.play();
-    if (playPromise !== undefined) {
-      playPromise.then(function() {
-        guideAudioPlaying = true;
-        if (bar) bar.classList.add('playing');
-        if (btn) btn.textContent = '⏸';
-        if (sub) sub.textContent = 'Playing...';
-        guideProgressTimer = setInterval(function() {
-          if (guideAudio && guideAudio.duration) {
-            var pct = (guideAudio.currentTime / guideAudio.duration) * 100;
-            var fill = document.getElementById('agb-fill');
-            if (fill) fill.style.width = pct + '%';
-          }
-        }, 500);
-      }).catch(function(e) {
-        if (sub) sub.textContent = 'Tap play button to start';
-        console.log('Audio error:', e.message);
-      });
-    }
+    if (btn) btn.innerHTML = '&#9654;';
+    if (sub) sub.textContent = 'Paused - tap to resume';
+    return;
+  }
+  // Create fresh Audio on each tap if needed
+  if (!_ga) {
+    _ga = new Audio(GUIDE_AUDIO_URLS[_gaSessId]);
+    _ga.onended = function() {
+      _gaPlaying = false; clearInterval(_gaProg);
+      if (bar) bar.classList.remove('playing');
+      if (btn) btn.innerHTML = '&#9654;';
+      if (sub) sub.textContent = 'Tap to replay';
+    };
+  }
+  if (sub) sub.textContent = 'Loading...';
+  var p = _ga.play();
+  if (p !== undefined) {
+    p.then(function() {
+      _gaPlaying = true;
+      if (bar) bar.classList.add('playing');
+      if (btn) btn.innerHTML = '&#9646;&#9646;';
+      if (sub) sub.textContent = 'Playing...';
+      clearInterval(_gaProg);
+      _gaProg = setInterval(function() {
+        var fill = document.getElementById('agb-fill');
+        if (_ga && _ga.duration && fill) fill.style.width = (_ga.currentTime / _ga.duration * 100) + '%';
+      }, 500);
+    }).catch(function() {
+      _ga = null;
+      if (sub) sub.textContent = 'Tap to try again';
+    });
   }
 }
 
-function stopGuideAudio() {
-  if (guideAudio) {
-    guideAudio.pause();
-    guideAudio.currentTime = 0;
-    guideAudio = null;
-  }
-  guideAudioPlaying = false;
-  clearInterval(guideProgressTimer);
-  var bar = document.getElementById('audio-guide-bar');
-  if (bar) { bar.style.display = 'none'; bar.classList.remove('playing'); }
-}
+// ── SETTINGS ──
+function showSettings(){var m=document.getElementById('settings-modal');if(m){m.style.display='block';document.body.style.overflow='hidden';}}
+function closeSettings(){var m=document.getElementById('settings-modal');if(m){m.style.display='none';document.body.style.overflow='';}}
+function toggleNotif(){var t=document.getElementById('notif-toggle'),k=document.getElementById('notif-knob');if(!t||!k)return;var on=k.style.left==='24px';k.style.left=on?'2px':'24px';t.style.background=on?'rgba(240,144,10,.3)':'rgba(240,144,10,.8)';}
+function toggleSound(){var t=document.getElementById('sound-toggle'),k=document.getElementById('sound-knob');if(!t||!k)return;var on=k.style.left==='24px';k.style.left=on?'2px':'24px';t.style.background=on?'rgba(240,144,10,.3)':'rgba(240,144,10,.8)';}
 
-
-// ── CURRENCY DETECTION ──
-var USER_CURRENCY = 'USD';
-var PRICES = {
-  USD: { mid_weekly: '$1.99', mid_annual: '$49', pro_weekly: '$3.99', pro_annual: '$89',
-         mid_weekly_val: '1.99', mid_annual_val: '49', pro_weekly_val: '3.99', pro_annual_val: '89' },
-  INR: { mid_weekly: '₹39', mid_annual: '₹1,499', pro_weekly: '₹69', pro_annual: '₹2,999',
-         mid_weekly_val: '39', mid_annual_val: '1499', pro_weekly_val: '69', pro_annual_val: '2999' }
-};
-
-function detectCurrency() {
-  try {
-    var tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
-    var lang = navigator.language || navigator.userLanguage || '';
-    if (tz.indexOf('Asia/Kolkata') > -1 || tz.indexOf('Asia/Calcutta') > -1 || 
-        lang.indexOf('hi') > -1 || lang.indexOf('en-IN') > -1) {
-      USER_CURRENCY = 'INR';
-    }
-  } catch(e) {}
-  applyPricing();
-}
-
-function applyPricing() {
-  setBilling(S.billing || 'weekly');
-}
-
-document.addEventListener('DOMContentLoaded', detectCurrency);
+// ── REFER ──
+function showRefer(){var m=document.getElementById('refer-modal');if(m){m.style.display='flex';document.body.style.overflow='hidden';}}
+function closeRefer(){var m=document.getElementById('refer-modal');if(m){m.style.display='none';document.body.style.overflow='';}}
+function shareApp(){if(navigator.share){navigator.share({title:'Sattva',text:'Try this Vedic yoga app free!',url:'https://www.sattvaapp.com'}).catch(function(){});}else{var el=document.createElement('textarea');el.value='https://www.sattvaapp.com';document.body.appendChild(el);el.select();document.execCommand('copy');document.body.removeChild(el);alert('Link copied!');}}
 
 </script>
 
@@ -2943,23 +2871,16 @@ document.addEventListener('DOMContentLoaded', detectCurrency);
         <div onclick="window.open('https://www.sattvaapp.com')" style="font-size:15px;color:#F5EFE4;cursor:pointer;margin-bottom:16px;display:flex;justify-content:space-between;"><span>Privacy policy</span><span style="color:#F0900A;">&#8250;</span></div>
         <div onclick="window.open('https://www.sattvaapp.com')" style="font-size:15px;color:#F5EFE4;cursor:pointer;display:flex;justify-content:space-between;"><span>Terms of service</span><span style="color:#F0900A;">&#8250;</span></div>
       </div>
-      <div style="padding:20px;">
-        <div style="font-size:13px;color:rgba(245,239,228,.7);display:flex;justify-content:space-between;"><span>Version</span><span>1.0.0</span></div>
-      </div>
+      <div style="padding:20px;"><div style="font-size:13px;color:rgba(245,239,228,.7);display:flex;justify-content:space-between;"><span>Version</span><span>1.0.0</span></div></div>
     </div>
     <button onclick="if(confirm('Sign out?')){S.name='';S.tier='free';navTo('v-splash',null);closeSettings();}" style="width:100%;background:none;border:1px solid rgba(255,255,255,.15);border-radius:50px;padding:16px;font-family:'Cinzel',serif;font-size:11px;letter-spacing:3px;color:rgba(245,239,228,.8);cursor:pointer;text-transform:uppercase;">Sign Out</button>
   </div>
 </div>
 <div id="refer-modal" style="display:none;position:fixed;inset:0;z-index:500;background:rgba(10,8,14,.95);backdrop-filter:blur(12px);align-items:center;justify-content:center;padding:24px;">
   <div style="background:#110E18;border:1px solid rgba(240,144,10,.25);border-radius:24px;padding:36px 28px;max-width:380px;width:100%;text-align:center;">
-    <div style="font-size:52px;margin-bottom:16px;">&#129306;</div>
+    <div style="font-size:48px;margin-bottom:16px;">&#129306;</div>
     <div style="font-family:'Cinzel',serif;font-size:13px;letter-spacing:3px;color:#F5EFE4;text-transform:uppercase;margin-bottom:10px;">Refer a Friend</div>
-    <div style="font-family:'Cormorant Garamond',serif;font-size:18px;font-style:italic;color:#F5EFE4;line-height:1.7;margin-bottom:8px;">Share Sattva. Earn together.</div>
-    <div style="font-size:14px;color:rgba(245,239,228,.9);line-height:1.7;margin-bottom:24px;">When a friend subscribes through your link, you both receive one week of Yogi Pro free.</div>
-    <div style="background:rgba(240,144,10,.08);border:1px solid rgba(240,144,10,.2);border-radius:12px;padding:14px;margin-bottom:20px;">
-      <div style="font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;color:rgba(240,144,10,.8);text-transform:uppercase;margin-bottom:6px;">Your link</div>
-      <div style="font-size:14px;color:#F5EFE4;">sattvaapp.com</div>
-    </div>
+    <div style="font-family:'Cormorant Garamond',serif;font-size:18px;font-style:italic;color:#F5EFE4;line-height:1.7;margin-bottom:20px;">Share Sattva. Earn together.<br><span style="font-size:14px;font-style:normal;color:rgba(245,239,228,.85);">When a friend subscribes, you both get one week of Yogi Pro free.</span></div>
     <button onclick="shareApp()" style="width:100%;background:linear-gradient(135deg,#F0900A,#C96B10);border:none;border-radius:50px;padding:16px;font-family:'Cinzel',serif;font-size:12px;letter-spacing:3px;color:#0A080E;cursor:pointer;text-transform:uppercase;margin-bottom:12px;">Share Sattva &#128591;</button>
     <button onclick="closeRefer()" style="width:100%;background:none;border:1px solid rgba(255,255,255,.12);border-radius:50px;padding:14px;font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;color:rgba(245,239,228,.8);cursor:pointer;text-transform:uppercase;">Close</button>
   </div>
