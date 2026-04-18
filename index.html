@@ -3,6 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<meta name="version" content="BUILD-05:43-20260418-054032">
 <title>Sattva — Ancient Wisdom · Modern Mind</title>
 <meta name="description" content="AI-powered yoga and wellness rooted in the Bhagavad Gita, four Vedas and Yoga Sutras. Guided breathwork, meditation and your personal Dharma Guru.">
 <meta property="og:title" content="Sattva — Ancient Wisdom · Modern Mind">
@@ -12,15 +16,15 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Cinzel:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?v=20260418-054032&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 /* ───────────────
 /* ────────────────────────────────────────
    TOKENS
 ──────────────────────────────────────── */
 :root {
-  --bg:      #0C0A0F;
-  --s1:      #13101A;
+  --bg:      #0E0B16;
+  --s1:      #1A1625;
   --s2:      #1A1526;
   --s3:      #221C32;
   --bdr:     rgba(255,255,255,.08);
@@ -40,9 +44,9 @@
 ──────────────────────────────────────── */
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,html{height:100%;overflow:hidden}html,body{height:100%;overflow:hidden;background:#000;margin:0;padding:0}
-body{font-family:'DM Sans',sans-serif;font-weight:300;display:flex;justify-content:center;align-items:center}
-button{font-family:'DM Sans',sans-serif;cursor:pointer}
-input{font-family:'DM Sans',sans-serif}
+body{font-family:'Manrope',sans-serif;font-weight:300;display:flex;justify-content:center;align-items:center}
+button{font-family:'Manrope',sans-serif;cursor:pointer}
+input{font-family:'Manrope',sans-serif}
 /* ────────────────────────────────────────
    PHONE SHELL
 ──────────────────────────────────────── */
@@ -55,18 +59,6 @@ input{font-family:'DM Sans',sans-serif}
 .a2{position:absolute;width:320px;height:320px;background:radial-gradient(circle,rgba(200,123,142,.07) 0%,transparent 68%);bottom:40px;right:-80px;animation:a2 13s ease-in-out infinite alternate}
 @keyframes a1{from{opacity:.6;transform:translateX(-50%) scale(1)}to{opacity:1;transform:translateX(-50%) scale(1.2)}}
 @keyframes a2{from{opacity:.4;transform:scale(1)}to{opacity:.9;transform:scale(1.3)}}
-/* ────────────────────────────────────────
-   STATUS BAR
-──────────────────────────────────────── */
-#statusbar{
-  position:absolute;top:0;left:0;right:0;z-index:80;
-  display:flex;justify-content:space-between;align-items:center;
-  padding:14px 24px 0;
-  background:rgba(12,10,15,.8);backdrop-filter:blur(12px);
-  flex-shrink:0;
-}
-#statusbar .time{font-weight:500;font-size:15px}
-#statusbar .icons{display:flex;gap:5px;align-items:center;opacity:.6;font-size:12px}
 /* ────────────────────────────────────────
    VIEW SYSTEM — each view is absolute, only .show is visible
 ──────────────────────────────────────── */
@@ -87,11 +79,11 @@ input{font-family:'DM Sans',sans-serif}
 /* ────────────────────────────────────────
    BOTTOM NAV
 ──────────────────────────────────────── */
-.bnav{background:rgba(12,10,15,.96);border-top:1px solid var(--bdr);display:flex;flex-shrink:0;padding:6px 0 10px;z-index:60;position:relative;}
+.bnav{background:var(--bg);border-top:1px solid var(--bdr);display:flex;flex-shrink:0;padding:6px 0 max(10px,env(safe-area-inset-bottom,10px));z-index:60;position:relative;}
 .bn{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;padding:4px 0;transition:all .2s}
 .bn:active{transform:scale(.88)}
 .bn-ic{font-size:20px;transition:transform .2s}
-.bn-lb{font-family:'Cinzel',serif;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--mu);transition:color .2s}
+.bn-lb{font-family:'Playfair Display',serif;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--mu);transition:color .2s}
 .bn-dot{width:4px;height:4px;border-radius:50%;background:var(--sf);opacity:0;margin-top:1px}
 .bn.on .bn-lb{color:var(--sf)}
 .bn.on .bn-dot{opacity:1}
@@ -101,7 +93,7 @@ input{font-family:'DM Sans',sans-serif}
 ──────────────────────────────────────── */
 .btn{
   border:none;border-radius:50px;
-  font-family:'Cinzel',serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;
+  font-family:'Playfair Display',serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;
   cursor:pointer;transition:all .3s;
   display:flex;align-items:center;justify-content:center;
   width:100%;
@@ -115,11 +107,11 @@ input{font-family:'DM Sans',sans-serif}
 /* ────────────────────────────────────────
    TYPOGRAPHY
 ──────────────────────────────────────── */
-.lbl{font-family:'Cinzel',serif;font-size:10px;letter-spacing:4px;color:var(--sf);text-transform:uppercase;opacity:.78}
+.lbl{font-family:'Playfair Display',serif;font-size:10px;letter-spacing:4px;color:var(--sf);text-transform:uppercase;opacity:.78}
 .h1{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:300;line-height:1.15;color:var(--iv)}
 .h1 em{font-style:italic;color:var(--sf)}
 .sub{font-size:14px;color:var(--mu);line-height:1.7}
-.sec{font-family:'Cinzel',serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--mu)}
+.sec{font-family:'Playfair Display',serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--mu)}
 
 /* ════════════════════════════════════════
    VIEW: SPLASH
@@ -132,10 +124,10 @@ input{font-family:'DM Sans',sans-serif}
 }
 .sp-om{font-size:88px;color:var(--sf);animation:om 4s ease-in-out infinite;filter:drop-shadow(0 0 36px rgba(240,144,10,.45));margin-bottom:24px;line-height:1}
 @keyframes om{0%,100%{transform:scale(1);opacity:.7}50%{transform:scale(1.09);opacity:1}}
-.sp-logo{font-family:'Cinzel',serif;font-size:46px;letter-spacing:10px;color:var(--iv);margin-bottom:6px}
+.sp-logo{font-family:'Playfair Display',serif;font-size:46px;letter-spacing:10px;color:var(--iv);margin-bottom:6px}
 .sp-tag{font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic;color:var(--mu);letter-spacing:2px;margin-bottom:40px}
 .sp-verse{font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;color:var(--fa);line-height:1.75;max-width:268px;margin:0 auto 48px}
-.sp-verse cite{display:block;font-style:normal;font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;color:var(--sf);opacity:.5;margin-top:10px}
+.sp-verse cite{display:block;font-style:normal;font-family:'Playfair Display',serif;font-size:9px;letter-spacing:2px;color:var(--sf);opacity:.5;margin-top:10px}
 .sp-btns{width:100%;max-width:300px;display:flex;flex-direction:column}
 
 /* ════════════════════════════════════════
@@ -151,7 +143,7 @@ input{font-family:'DM Sans',sans-serif}
 }
 .bill-btn{
   flex:1;border:none;border-radius:50px;padding:11px 0;
-  font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;
+  font-family:'Playfair Display',serif;font-size:10px;letter-spacing:2px;
   text-transform:uppercase;cursor:pointer;transition:all .3s;
   color:var(--mu);background:transparent;position:relative;
 }
@@ -159,7 +151,7 @@ input{font-family:'DM Sans',sans-serif}
 .bill-save{
   position:absolute;top:-10px;right:8px;
   background:var(--sage);color:#0C0A0F;
-  font-family:'DM Sans',sans-serif;font-size:9px;font-weight:700;
+  font-family:'Manrope',sans-serif;font-size:9px;font-weight:700;
   padding:2px 7px;border-radius:10px;
 }
 /* Tier cards */
@@ -180,21 +172,21 @@ input{font-family:'DM Sans',sans-serif}
 .tier-free.sel{box-shadow:0 0 0 2px var(--sage)}
 .tier-badge{
   position:absolute;top:14px;right:14px;
-  font-family:'Cinzel',serif;font-size:8px;letter-spacing:2px;
+  font-family:'Playfair Display',serif;font-size:8px;letter-spacing:2px;
   padding:3px 9px;border-radius:20px;text-transform:uppercase;
 }
 .badge-pop{background:var(--sf);color:#0C0A0F}
 .badge-val{background:var(--sage);color:#0C0A0F}
-.tier-name{font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px}
+.tier-name{font-family:'Playfair Display',serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px}
 .tier-free .tier-name{color:var(--sage)}
 .tier-mid .tier-name{color:var(--lotus)}
 .tier-pro .tier-name{color:var(--sf)}
 .tier-price-row{display:flex;align-items:baseline;gap:4px;margin-bottom:4px}
-.tier-cur{font-family:'DM Sans',sans-serif;font-size:18px;font-weight:600}
+.tier-cur{font-family:'Manrope',sans-serif;font-size:18px;font-weight:600}
 .tier-free .tier-cur{color:var(--sage)}
 .tier-mid .tier-cur{color:var(--lotus)}
 .tier-pro .tier-cur{color:var(--sf)}
-.tier-amt{font-family:'DM Sans',sans-serif;font-size:42px;font-weight:700;color:var(--iv);letter-spacing:-1px;line-height:1}
+.tier-amt{font-family:'Manrope',sans-serif;font-size:42px;font-weight:700;color:var(--iv);letter-spacing:-1px;line-height:1}
 .tier-per{font-size:13px;color:var(--mu)}
 .tier-trial{font-size:11px;color:var(--sage);margin-bottom:16px}
 .tier-feats{list-style:none;display:flex;flex-direction:column;gap:7px}
@@ -208,7 +200,7 @@ input{font-family:'DM Sans',sans-serif}
 .tier-feats li.no::before{content:'◇';font-size:7px;flex-shrink:0;color:var(--mu)}
 .tier-btn{
   margin-top:18px;width:100%;border:none;border-radius:50px;
-  padding:14px;font-family:'Cinzel',serif;font-size:11px;
+  padding:14px;font-family:'Playfair Display',serif;font-size:11px;
   letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:all .3s;
 }
 .tier-free .tier-btn{background:rgba(110,158,120,.18);color:var(--sage);border:1px solid rgba(110,158,120,.35)}
@@ -242,7 +234,7 @@ input{font-family:'DM Sans',sans-serif}
 }
 .ob-step::-webkit-scrollbar{display:none}
 .ob-step.ob-on{display:flex;}
-.ob-lbl{font-family:'Cinzel',serif;font-size:9px;letter-spacing:4px;color:var(--sf);opacity:.75;text-transform:uppercase;margin-bottom:10px}
+.ob-lbl{font-family:'Playfair Display',serif;font-size:9px;letter-spacing:4px;color:var(--sf);opacity:.75;text-transform:uppercase;margin-bottom:10px}
 .ob-h{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;line-height:1.15;color:var(--iv);margin-bottom:8px}
 .ob-h em{font-style:italic;color:var(--sf)}
 .ob-p{font-size:13px;color:var(--mu);line-height:1.7;margin-bottom:24px}
@@ -270,7 +262,7 @@ input{font-family:'DM Sans',sans-serif}
 .opt:active{transform:scale(.97)}
 .opt-ic{font-size:24px;flex-shrink:0;position:relative;z-index:1}
 .opt-tx{flex:1;position:relative;z-index:1}
-.opt-nm{font-family:'Cinzel',serif;font-size:11px;letter-spacing:1px;color:var(--iv);margin-bottom:2px;text-transform:uppercase}
+.opt-nm{font-family:'Playfair Display',serif;font-size:11px;letter-spacing:1px;color:var(--iv);margin-bottom:2px;text-transform:uppercase}
 .opt-ds{font-size:12px;color:var(--mu);line-height:1.4}
 .opt-ck{
   position:absolute;top:10px;right:10px;
@@ -298,7 +290,7 @@ input{font-family:'DM Sans',sans-serif}
 .tc.sel{border-color:rgba(240,144,10,.5);background:var(--sfg)}
 .tc:active{transform:scale(.96)}
 .tc-ic{font-size:24px;margin-bottom:7px;display:block}
-.tc-nm{font-family:'Cinzel',serif;font-size:10px;letter-spacing:1px;color:var(--iv);margin-bottom:3px;text-transform:uppercase}
+.tc-nm{font-family:'Playfair Display',serif;font-size:10px;letter-spacing:1px;color:var(--iv);margin-bottom:3px;text-transform:uppercase}
 .tc-t{font-size:11px;color:var(--mu)}
 /* duration grid */
 .dur-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:18px}
@@ -308,7 +300,7 @@ input{font-family:'DM Sans',sans-serif}
   background:var(--s1);border:1px solid var(--bdr);border-radius:14px;
   padding:15px 16px;margin-bottom:9px;cursor:pointer;
 }
-.tog-info .tog-nm{font-family:'Cinzel',serif;font-size:11px;letter-spacing:1px;color:var(--iv);margin-bottom:2px;text-transform:uppercase}
+.tog-info .tog-nm{font-family:'Playfair Display',serif;font-size:11px;letter-spacing:1px;color:var(--iv);margin-bottom:2px;text-transform:uppercase}
 .tog-info .tog-ds{font-size:11px;color:var(--mu)}
 .sw{
   width:42px;height:23px;background:var(--bdr2);border-radius:12px;
@@ -350,7 +342,7 @@ input{font-family:'DM Sans',sans-serif}
 ════════════════════════════════════════ */
 #v-home .scroll{padding-top:64px}
 .topbar{display:flex;justify-content:space-between;align-items:center;padding:14px 22px 16px;position:relative;z-index:1}
-.tb-greet{font-family:'Cinzel',serif;font-size:10px;letter-spacing:3px;color:var(--mu);text-transform:uppercase}
+.tb-greet{font-family:'Playfair Display',serif;font-size:10px;letter-spacing:3px;color:var(--mu);text-transform:uppercase}
 .tb-name{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300;color:var(--iv)}
 .avatar{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--sf),var(--lotus));display:flex;align-items:center;justify-content:center;font-size:18px;position:relative;cursor:pointer;flex-shrink:0}
 .avatar::after{content:'';position:absolute;inset:-2px;border-radius:50%;border:1px solid rgba(240,144,10,.4)}
@@ -364,11 +356,11 @@ input{font-family:'DM Sans',sans-serif}
 }
 .vc:active{transform:scale(.98)}
 .vc::before{content:'"';position:absolute;top:-14px;right:14px;font-family:'Cormorant Garamond',serif;font-size:110px;color:var(--sf);opacity:.09;line-height:1}
-.vc-lbl{font-family:'Cinzel',serif;font-size:9px;letter-spacing:3px;color:var(--sf);text-transform:uppercase;margin-bottom:9px;opacity:.8;display:flex;align-items:center;gap:8px}
+.vc-lbl{font-family:'Playfair Display',serif;font-size:9px;letter-spacing:3px;color:var(--sf);text-transform:uppercase;margin-bottom:9px;opacity:.8;display:flex;align-items:center;gap:8px}
 .vc-lbl::before{content:'';width:14px;height:1px;background:var(--sf);opacity:.6}
 .vc-txt{font-family:'Cormorant Garamond',serif;font-size:16px;font-style:italic;line-height:1.6;color:var(--iv);margin-bottom:9px}
 .vc-src{font-size:11px;color:var(--gold);opacity:.6}
-.vc-hint{position:absolute;bottom:14px;right:16px;font-size:9px;letter-spacing:2px;color:var(--sf);opacity:.4;font-family:'Cinzel',serif;text-transform:uppercase}
+.vc-hint{position:absolute;bottom:14px;right:16px;font-size:9px;letter-spacing:2px;color:var(--sf);opacity:.4;font-family:'Playfair Display',serif;text-transform:uppercase}
 /* stats */
 .stats-row{display:flex;gap:9px;margin:0 20px 18px;position:relative;z-index:1}
 .sc{flex:1;background:var(--s1);border:1px solid var(--bdr);border-radius:16px;padding:14px 11px}
@@ -376,9 +368,9 @@ input{font-family:'DM Sans',sans-serif}
 .sc.mind{border-color:rgba(110,158,120,.22)}
 .sc.breath{border-color:rgba(200,123,142,.22)}
 .sc-ic{font-size:16px;margin-bottom:4px}
-.sc-num{font-family:'DM Sans',sans-serif;font-size:28px;font-weight:600;line-height:1}
+.sc-num{font-family:'Manrope',sans-serif;font-size:28px;font-weight:600;line-height:1}
 .fire .sc-num{color:var(--sf)}.mind .sc-num{color:var(--sage)}.breath .sc-num{color:var(--lotus)}
-.sc-lb{font-family:'Cinzel',serif;font-size:8px;letter-spacing:1px;color:var(--mu);text-transform:uppercase;margin-top:2px}
+.sc-lb{font-family:'Playfair Display',serif;font-size:8px;letter-spacing:1px;color:var(--mu);text-transform:uppercase;margin-top:2px}
 /* section header */
 .sh{display:flex;justify-content:space-between;align-items:center;padding:0 22px;margin-bottom:12px;position:relative;z-index:1}
 .sh-lnk{font-size:12px;color:var(--sf);opacity:.7;cursor:pointer}
@@ -393,7 +385,7 @@ input{font-family:'DM Sans',sans-serif}
 .pc-done{position:absolute;top:10px;right:10px;width:19px;height:19px;border-radius:50%;background:var(--sage);display:flex;align-items:center;justify-content:center;font-size:9px;opacity:0;transition:opacity .3s}
 .pc.done .pc-done{opacity:1}.pc.done{border-color:rgba(110,158,120,.32)}
 .pc-ic{font-size:26px;margin-bottom:10px;display:block}
-.pc-nm{font-family:'Cinzel',serif;font-size:10px;letter-spacing:.5px;color:var(--iv);margin-bottom:3px;text-transform:uppercase}
+.pc-nm{font-family:'Playfair Display',serif;font-size:10px;letter-spacing:.5px;color:var(--iv);margin-bottom:3px;text-transform:uppercase}
 .pc-ds{font-size:11px;color:var(--mu);line-height:1.4}
 .pc-t{margin-top:10px;font-size:10px;letter-spacing:1.5px;text-transform:uppercase}
 .ph .pc-t{color:var(--sf)}.pp .pc-t{color:var(--lotus)}.pd .pc-t{color:var(--sage)}.pn .pc-t{color:var(--gold)}
@@ -401,12 +393,12 @@ input{font-family:'DM Sans',sans-serif}
 .feat{margin:0 20px 18px;background:var(--s2);border:1px solid var(--bdr);border-radius:18px;padding:20px;cursor:pointer;transition:transform .3s;position:relative;overflow:hidden;z-index:1}
 .feat::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:linear-gradient(to bottom,var(--sf),var(--lotus))}
 .feat:active{transform:scale(.98)}
-.feat-tag{font-family:'Cinzel',serif;font-size:9px;letter-spacing:2.5px;color:var(--sf);text-transform:uppercase;margin-bottom:8px;opacity:.8}
+.feat-tag{font-family:'Playfair Display',serif;font-size:9px;letter-spacing:2.5px;color:var(--sf);text-transform:uppercase;margin-bottom:8px;opacity:.8}
 .feat-title{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;color:var(--iv);margin-bottom:5px;line-height:1.2}
 .feat-ds{font-size:12px;color:var(--mu);line-height:1.6;margin-bottom:16px}
 .feat-meta{display:flex;gap:9px;align-items:center}
 .mpill{background:rgba(255,255,255,.06);border-radius:20px;padding:5px 10px;font-size:11px;color:var(--mu)}
-.feat-btn{margin-left:auto;background:linear-gradient(135deg,var(--sf),var(--sf2));border:none;border-radius:50px;padding:9px 17px;font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;color:var(--bg);cursor:pointer;transition:all .3s;text-transform:uppercase}
+.feat-btn{margin-left:auto;background:linear-gradient(135deg,var(--sf),var(--sf2));border:none;border-radius:50px;padding:9px 17px;font-family:'Playfair Display',serif;font-size:10px;letter-spacing:2px;color:var(--bg);cursor:pointer;transition:all .3s;text-transform:uppercase}
 /* pranayama chips */
 .prana-row{display:flex;gap:7px;padding:0 20px;margin-bottom:18px;flex-wrap:wrap;position:relative;z-index:1}
 .pchip{background:var(--s1);border:1px solid var(--bdr);border-radius:50px;padding:8px 13px;display:flex;align-items:center;gap:6px;cursor:pointer;transition:all .3s;flex-shrink:0}
@@ -416,10 +408,14 @@ input{font-family:'DM Sans',sans-serif}
 .habit-wrap{margin:0 20px 18px;position:relative;z-index:1}
 .habit-box{background:var(--s1);border:1px solid var(--bdr);border-radius:18px;padding:18px}
 .hb-hdr{display:flex;justify-content:space-between;align-items:center;margin-bottom:13px}
-.hb-badge{background:var(--sfg);border:1px solid rgba(240,144,10,.3);border-radius:20px;padding:3px 11px;font-family:'Cinzel',serif;font-size:9px;color:var(--sf);letter-spacing:1px}
+.hb-badge{background:var(--sfg);border:1px solid rgba(240,144,10,.3);border-radius:20px;padding:3px 11px;font-family:'Playfair Display',serif;font-size:9px;color:var(--sf);letter-spacing:1px}
 .hd-wrap{display:flex;gap:5px;flex-wrap:wrap}
-.hd{width:28px;height:28px;border-radius:7px;border:1px solid var(--bdr);display:flex;align-items:center;justify-content:center;font-size:9px;color:var(--mu);cursor:pointer;transition:all .22s}
-.hd.done{background:rgba(240,144,10,.18);border-color:rgba(240,144,10,.5);color:var(--sf);font-weight:500}
+.hd{flex:1;min-height:52px;border-radius:10px;border:1px solid var(--bdr2);background:var(--s1);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:var(--iv);cursor:pointer;transition:all .22s;padding:8px 2px;}
+.hd-day{font-family:'Playfair Display',serif;font-size:11px;font-weight:500;line-height:1;letter-spacing:0.5px;}
+.hd-date{font-family:'Manrope',sans-serif;font-size:10px;font-weight:400;line-height:1;opacity:0.6;}
+.hd.future{opacity:0.5;}
+.hd.future .hd-date{opacity:0.4;}
+.hd.done{background:var(--sf);border-color:var(--sf);color:#0E0B16;font-weight:600}
 .hd.today{border-color:var(--gold);color:var(--gold)}
 .hd.done.today{background:linear-gradient(135deg,rgba(240,144,10,.28),rgba(200,123,142,.18));box-shadow:0 0 10px rgba(240,144,10,.2)}
 /* guru CTA */
@@ -427,7 +423,7 @@ input{font-family:'DM Sans',sans-serif}
 .gcta:active{transform:scale(.97)}
 .g-orb{width:48px;height:48px;border-radius:50%;background:radial-gradient(circle,rgba(200,123,142,.28),rgba(200,123,142,.04));border:1px solid rgba(200,123,142,.4);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;animation:gp 3s ease-in-out infinite}
 @keyframes gp{0%,100%{box-shadow:0 0 0 0 rgba(200,123,142,.2)}50%{box-shadow:0 0 0 7px rgba(200,123,142,0)}}
-.g-ctitle{font-family:'Cinzel',serif;font-size:11px;letter-spacing:1px;color:var(--iv);margin-bottom:3px;text-transform:uppercase}
+.g-ctitle{font-family:'Playfair Display',serif;font-size:11px;letter-spacing:1px;color:var(--iv);margin-bottom:3px;text-transform:uppercase}
 .g-cds{font-size:12px;color:var(--mu)}
 
 /* ════════════════════════════════════════
@@ -437,7 +433,7 @@ input{font-family:'DM Sans',sans-serif}
 .pl-top{display:flex;justify-content:space-between;align-items:center;padding:14px 22px 10px;flex-shrink:0;position:relative;z-index:1}
 .pl-back{background:none;border:none;color:var(--mu);font-size:20px}
 .pl-back:hover{color:var(--iv)}
-.pl-mode-lbl{font-family:'Cinzel',serif;font-size:9px;letter-spacing:3px;color:var(--sf);opacity:.7;text-transform:uppercase}
+.pl-mode-lbl{font-family:'Playfair Display',serif;font-size:9px;letter-spacing:3px;color:var(--sf);opacity:.7;text-transform:uppercase}
 .pl-body{display:flex;flex-direction:column;align-items:center;padding:8px 28px 0;text-align:center;position:relative;z-index:1;flex-shrink:0;}
 .pl-ic{font-size:40px;margin-bottom:8px;animation:pfloat 4s ease-in-out infinite;flex-shrink:0;}
 @keyframes pfloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
@@ -447,10 +443,10 @@ input{font-family:'DM Sans',sans-serif}
 .ring-wrap{position:relative;width:150px;height:150px;margin:0 auto 10px;flex-shrink:0;}
 .ring-svg{position:absolute;inset:0;transform:rotate(-90deg);}
 .ring-tr{fill:none;stroke:var(--bdr2);stroke-width:3}
-.ring-pr{fill:none;stroke:var(--sf);stroke-width:3;stroke-linecap:round;stroke-dasharray:534;stroke-dashoffset:534;transition:stroke-dashoffset .6s linear}
-.ring-in{position:absolute;inset:22px;border-radius:50%;background:radial-gradient(circle,rgba(240,144,10,.09),transparent);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px}
-.ring-time{font-family:'DM Sans',sans-serif;font-size:34px;font-weight:600;color:var(--iv);line-height:1;}
-.ring-phase{font-family:'Cinzel',serif;font-size:9px;letter-spacing:3px;color:var(--sf);opacity:.7;text-transform:uppercase}
+.ring-pr{fill:none;stroke:var(--sf);stroke-width:3.5;stroke-linecap:round;stroke-dasharray:534;stroke-dashoffset:534;transition:stroke-dashoffset .6s linear,stroke .5s ease;}
+.ring-in{position:absolute;inset:22px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;transition:background .6s ease;}
+.ring-time{font-family:'Manrope',sans-serif;font-size:34px;font-weight:600;color:var(--iv);line-height:1;}
+.ring-phase{font-family:'Playfair Display',serif;font-size:9px;letter-spacing:3px;color:var(--sf);opacity:.7;text-transform:uppercase}
 .pl-instr{font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;color:var(--iv);opacity:.85;min-height:36px;margin-bottom:10px;line-height:1.4;flex-shrink:0;}
 /* audio btn */
 .audio-btn{background:var(--s1);border:1px solid var(--bdr);border-radius:50px;padding:7px 14px;display:flex;align-items:center;gap:7px;font-size:11px;color:var(--mu);cursor:pointer;margin-bottom:10px;flex-shrink:0;}
@@ -464,7 +460,9 @@ input{font-family:'DM Sans',sans-serif}
 .ctrl-sm{width:44px;height:44px;border-radius:50%;background:var(--s1);border:1px solid var(--bdr);font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--mu);}
 .ctrl-sm:hover{border-color:rgba(240,144,10,.4);color:var(--sf)}
 .ctrl-sm:active{transform:scale(.92)}
-.ctrl-play{width:58px;height:58px;background:linear-gradient(135deg,var(--sf),var(--sf2));border:none;border-radius:50%;font-size:22px;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+.ctrl-play{width:62px;height:62px;background:var(--sf);border:none;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 6px rgba(240,144,10,.12),0 4px 20px rgba(0,0,0,.3);transition:background .4s ease,box-shadow .4s ease,transform .15s ease;position:relative;flex-shrink:0;}
+.ctrl-play:active{transform:scale(.93);opacity:1;}
+.ctrl-play svg{width:20px;height:20px;fill:#0E0B16;display:block;pointer-events:none;}
 .ctrl-play:hover{box-shadow:0 10px 36px rgba(240,144,10,.45);transform:scale(1.04)}
 .ctrl-play:active{transform:scale(.94)}
 .ctrl-play:disabled{opacity:.32;cursor:not-allowed;transform:none}
@@ -483,12 +481,12 @@ input{font-family:'DM Sans',sans-serif}
 .gh-wrap{padding:14px 22px 10px}
 .gh-inner{display:flex;align-items:center;gap:13px}
 .gh-orb{width:44px;height:44px;border-radius:50%;background:radial-gradient(circle,rgba(200,123,142,.25),rgba(200,123,142,.04));border:1px solid rgba(200,123,142,.4);display:flex;align-items:center;justify-content:center;font-size:19px;animation:gp 3s ease-in-out infinite;flex-shrink:0}
-.gh-nm{font-family:'Cinzel',serif;font-size:12px;letter-spacing:2px;color:var(--iv);margin-bottom:2px;text-transform:uppercase}
+.gh-nm{font-family:'Playfair Display',serif;font-size:12px;letter-spacing:2px;color:var(--iv);margin-bottom:2px;text-transform:uppercase}
 .gh-st{font-size:11px;color:var(--sage);display:flex;align-items:center;gap:5px}
 .gh-st::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--sage);display:inline-block}
 .gcats{display:flex;gap:7px;padding:0 22px 12px;overflow-x:auto;scrollbar-width:none}
 .gcats::-webkit-scrollbar{display:none}
-.gcat{background:var(--s1);border:1px solid var(--bdr);border-radius:50px;padding:7px 13px;font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;color:var(--mu);cursor:pointer;transition:all .22s;white-space:nowrap;flex-shrink:0;text-transform:uppercase}
+.gcat{background:var(--s1);border:1px solid var(--bdr);border-radius:50px;padding:7px 13px;font-family:'Playfair Display',serif;font-size:9px;letter-spacing:2px;color:var(--mu);cursor:pointer;transition:all .22s;white-space:nowrap;flex-shrink:0;text-transform:uppercase}
 .gcat.on{background:var(--sfg);border-color:rgba(240,144,10,.45);color:var(--sf)}
 .gcat:active{transform:scale(.94)}
 /* lock banner */
@@ -505,7 +503,7 @@ input{font-family:'DM Sans',sans-serif}
 .msg.user .msg-av{background:rgba(110,158,120,.18);border:1px solid rgba(110,158,120,.28)}
 .msg-bub{flex:1}
 .msg.user .msg-bub{text-align:right}
-.msg-nm{font-family:'Cinzel',serif;font-size:8px;letter-spacing:2px;text-transform:uppercase;margin-bottom:4px}
+.msg-nm{font-family:'Playfair Display',serif;font-size:8px;letter-spacing:2px;text-transform:uppercase;margin-bottom:4px}
 .msg.ai .msg-nm{color:var(--sf)}.msg.user .msg-nm{color:var(--sage)}
 .msg-tx{font-size:13px;line-height:1.72;color:var(--iv);opacity:.88}
 .msg.ai .msg-tx{font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;opacity:.92}
@@ -538,21 +536,21 @@ input{font-family:'DM Sans',sans-serif}
 .pro-av{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--sf),var(--lotus));display:flex;align-items:center;justify-content:center;font-size:26px;position:relative;flex-shrink:0}
 .pro-av::after{content:'';position:absolute;inset:-3px;border-radius:50%;border:1px solid rgba(240,144,10,.35)}
 .pro-name{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:300;color:var(--iv)}
-.pro-mem{font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;color:var(--sf);opacity:.6;text-transform:uppercase;margin-top:2px}
+.pro-mem{font-family:'Playfair Display',serif;font-size:9px;letter-spacing:2px;color:var(--sf);opacity:.6;text-transform:uppercase;margin-top:2px}
 .pro-plan-badge{margin-left:auto;border-radius:12px;padding:10px 14px;text-align:center;flex-shrink:0}
 .pb-free{background:rgba(110,158,120,.1);border:1px solid rgba(110,158,120,.25)}
 .pb-mid{background:rgba(200,123,142,.1);border:1px solid rgba(200,123,142,.25)}
 .pb-pro{background:var(--sfg);border:1px solid rgba(240,144,10,.25)}
-.pb-nm{font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;margin-bottom:2px}
+.pb-nm{font-family:'Playfair Display',serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;margin-bottom:2px}
 .pb-free .pb-nm{color:var(--sage)}.pb-mid .pb-nm{color:var(--lotus)}.pb-pro .pb-nm{color:var(--sf)}
-.pb-pr{font-family:'DM Sans',sans-serif;font-size:18px;font-weight:600;color:var(--iv)}
+.pb-pr{font-family:'Manrope',sans-serif;font-size:18px;font-weight:600;color:var(--iv)}
 .upg-banner{margin:0 20px 14px;background:linear-gradient(135deg,rgba(240,144,10,.11),rgba(200,123,142,.07));border:1px solid rgba(240,144,10,.2);border-radius:16px;padding:14px 16px;display:none;align-items:center;gap:12px;cursor:pointer;transition:transform .3s;position:relative;z-index:1}
 .upg-banner.show{display:flex}
 .upg-banner:active{transform:scale(.98)}
 .big-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:9px;margin:0 20px 16px;position:relative;z-index:1}
 .bstat{background:var(--s1);border:1px solid var(--bdr);border-radius:14px;padding:15px 11px;text-align:center}
-.bstat-num{font-family:'DM Sans',sans-serif;font-size:30px;font-weight:700;color:var(--sf);line-height:1;letter-spacing:-1px}
-.bstat-lb{font-family:'Cinzel',serif;font-size:8px;letter-spacing:1.5px;color:var(--mu);text-transform:uppercase;margin-top:4px}
+.bstat-num{font-family:'Manrope',sans-serif;font-size:30px;font-weight:700;color:var(--sf);line-height:1;letter-spacing:-1px}
+.bstat-lb{font-family:'Playfair Display',serif;font-size:8px;letter-spacing:1.5px;color:var(--mu);text-transform:uppercase;margin-top:4px}
 /* badges */
 .badge-sec{margin:0 20px 16px;position:relative;z-index:1}
 .bg-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-top:11px}
@@ -560,13 +558,13 @@ input{font-family:'DM Sans',sans-serif}
 .bdg.earned{border-color:rgba(240,144,10,.3);background:var(--sfg)}
 .bdg:active{transform:scale(.93)}
 .bdg-ic{font-size:22px}
-.bdg-nm{font-family:'Cinzel',serif;font-size:8px;letter-spacing:1px;color:var(--mu);text-align:center;text-transform:uppercase;line-height:1.3}
+.bdg-nm{font-family:'Playfair Display',serif;font-size:8px;letter-spacing:1px;color:var(--mu);text-align:center;text-transform:uppercase;line-height:1.3}
 .bdg.earned .bdg-nm{color:var(--sf)}
 /* progress bars */
 .prog-sec{margin:0 20px 16px;position:relative;z-index:1}
 .pb-item{margin-bottom:12px}
 .pb-hdr{display:flex;justify-content:space-between;margin-bottom:5px}
-.pb-name{font-family:'Cinzel',serif;font-size:10px;letter-spacing:1.5px;color:var(--iv);text-transform:uppercase}
+.pb-name{font-family:'Playfair Display',serif;font-size:10px;letter-spacing:1.5px;color:var(--iv);text-transform:uppercase}
 .pb-pct{font-size:12px;color:var(--sf)}
 .pb-track{height:4px;background:var(--bdr2);border-radius:2px;overflow:hidden}
 .pb-fill{height:100%;border-radius:2px;transition:width 1.2s cubic-bezier(.16,1,.3,1)}
@@ -576,7 +574,7 @@ input{font-family:'DM Sans',sans-serif}
 .mi:hover{border-color:rgba(240,144,10,.25)}
 .mi:active{transform:scale(.98)}
 .mi-ic{font-size:19px;width:34px;text-align:center}
-.mi-nm{font-family:'Cinzel',serif;font-size:11px;letter-spacing:1px;color:var(--iv);margin-bottom:2px;text-transform:uppercase}
+.mi-nm{font-family:'Playfair Display',serif;font-size:11px;letter-spacing:1px;color:var(--iv);margin-bottom:2px;text-transform:uppercase}
 .mi-ds{font-size:11px;color:var(--mu)}
 .mi-arr{color:var(--mu);opacity:.4;font-size:16px;margin-left:auto}
 
@@ -630,12 +628,12 @@ input{font-family:'DM Sans',sans-serif}
 .lifetime-badge{
   display:inline-block;
   background:linear-gradient(135deg,#F0900A,#C96B10);
-  color:#0A080E;font-family:'Cinzel',serif;
+  color:#0A080E;font-family:'Playfair Display',serif;
   font-size:8px;letter-spacing:2px;text-transform:uppercase;
   padding:3px 10px;border-radius:20px;margin-bottom:12px;
 }
 .lifetime-title{
-  font-family:'Cinzel',serif;font-size:15px;
+  font-family:'Playfair Display',serif;font-size:15px;
   letter-spacing:2px;color:#F5EFE4;
   text-transform:uppercase;margin-bottom:4px;
 }
@@ -650,7 +648,7 @@ input{font-family:'DM Sans',sans-serif}
 }
 .lifetime-tier:active{background:rgba(240,144,10,.1);}
 .lifetime-tier-name{
-  font-family:'Cinzel',serif;font-size:9px;
+  font-family:'Playfair Display',serif;font-size:9px;
   letter-spacing:2px;color:#F0900A;
   text-transform:uppercase;margin-bottom:8px;
 }
@@ -667,7 +665,7 @@ input{font-family:'DM Sans',sans-serif}
 .lifetime-btn{
   width:100%;background:linear-gradient(135deg,#F0900A,#C96B10);
   border:none;border-radius:50px;padding:10px;
-  font-family:'Cinzel',serif;font-size:10px;
+  font-family:'Playfair Display',serif;font-size:10px;
   letter-spacing:2px;color:#0A080E;cursor:pointer;
   text-transform:uppercase;touch-action:manipulation;
 }
@@ -675,24 +673,117 @@ input{font-family:'DM Sans',sans-serif}
   text-align:center;font-size:10px;
   color:rgba(245,239,228,.5);margin-top:12px;
 }
+
+/* HAMBURGER */
+.ham{width:36px;height:36px;display:flex;flex-direction:column;justify-content:center;gap:5px;cursor:pointer;padding:4px;flex-shrink:0;}
+.ham span{display:block;width:20px;height:1.5px;background:var(--iv);border-radius:1px;}
+/* DRAWER */
+.drawer-ov{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:100;opacity:0;pointer-events:none;transition:opacity .3s;}
+.drawer-ov.open{opacity:1;pointer-events:all;}
+.drawer{position:fixed;top:0;left:0;bottom:0;width:272px;background:var(--s1);border-right:1px solid var(--bdr);z-index:101;transform:translateX(-100%);transition:transform .32s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;overflow-y:auto;}
+.drawer.open{transform:translateX(0);}
+.drawer-hd{padding:max(56px,env(safe-area-inset-top,56px)) 24px 22px;border-bottom:1px solid var(--bdr);flex-shrink:0;position:relative;}
+.drawer-close{position:absolute;top:max(52px,env(safe-area-inset-top,52px));right:16px;background:none;border:none;color:var(--fa);font-size:20px;cursor:pointer;}
+.drawer-appname{font-family:'Playfair Display',serif;font-size:14px;letter-spacing:4px;color:var(--sf);margin-bottom:6px;}
+.drawer-greet{font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;color:var(--mu);}
+.drawer-nav{padding:12px 0;flex:1;}
+.dnav-item{display:flex;align-items:center;padding:14px 24px;cursor:pointer;border-left:2px solid transparent;transition:all .2s;}
+.dnav-item:active{background:rgba(240,144,10,.05);}
+.dnav-item.active{border-left-color:var(--sf);}
+.dnav-label{font-family:'Manrope',sans-serif;font-size:14px;color:var(--iv);}
+.dnav-item.active .dnav-label{color:var(--sf);}
+.drawer-div{height:1px;background:var(--bdr);margin:8px 24px;}
+.drawer-ft{padding:18px 24px;border-top:1px solid var(--bdr);font-family:'Playfair Display',serif;font-size:8px;letter-spacing:3px;color:var(--fa);}
+/* MOOD CHIPS */
+.mood-chip-sel{border-color:var(--sf)!important;color:var(--sf)!important;background:rgba(240,144,10,.06)!important;}
+/* CHAKRA VIEW */
+.ck-card{display:flex;align-items:center;border:1px solid var(--bdr);border-radius:14px;background:var(--s1);margin-bottom:10px;cursor:pointer;overflow:hidden;transition:background .2s;}
+.ck-card:active{opacity:.85;}
+.ck-stripe{width:3px;align-self:stretch;flex-shrink:0;}
+.ck-num{font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--fa);width:40px;text-align:center;flex-shrink:0;padding:18px 0;}
+.ck-body{flex:1;padding:16px 0;}
+.ck-skt{font-family:'Playfair Display',serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;margin-bottom:3px;}
+.ck-eng{font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--iv);margin-bottom:3px;}
+.ck-attrs{font-size:11px;color:var(--mu);}
+.ck-arr{color:var(--fa);font-size:18px;padding:0 14px;flex-shrink:0;}
+/* CHAKRA DETAIL */
+.ck-detail{position:fixed;inset:0;z-index:60;background:var(--bg);display:none;flex-direction:column;}
+.ck-detail.open{display:flex;}
+.ck-detail-hd{padding:max(56px,env(safe-area-inset-top,56px)) 22px 18px;flex-shrink:0;display:flex;align-items:center;gap:14px;border-bottom:1px solid var(--bdr);}
+.ck-detail-scroll{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:24px 22px 40px;}
+/* QUIZ */
+.quiz-ov{position:fixed;inset:0;z-index:80;background:rgba(10,8,14,.92);display:none;align-items:flex-end;justify-content:center;}
+.quiz-ov.open{display:flex;}
+.quiz-sheet{width:100%;max-width:430px;background:var(--s1);border-radius:22px 22px 0 0;border-top:1px solid var(--bdr);padding:22px 22px max(36px,env(safe-area-inset-bottom,36px));max-height:85vh;overflow-y:auto;}
+.quiz-handle{width:32px;height:3px;background:var(--bdr);border-radius:2px;margin:0 auto 22px;}
+.quiz-step{display:none;}
+.quiz-step.on{display:block;}
+.quiz-q{font-family:'Cormorant Garamond',serif;font-size:20px;font-style:italic;color:var(--iv);line-height:1.6;margin-bottom:20px;}
+.quiz-opt{padding:13px 16px;border:1px solid var(--bdr);border-radius:12px;background:none;color:var(--mu);cursor:pointer;text-align:left;font-size:14px;width:100%;margin-bottom:10px;transition:all .2s;}
+.quiz-opt:active{border-color:var(--sf);color:var(--sf);}
+/* SOUND BOWL */
+.bowl-card{border:1px solid var(--bdr);border-radius:14px;background:var(--s1);margin-bottom:10px;overflow:hidden;}
+.bowl-play-btn{width:28px;height:28px;border:none;background:none;cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;opacity:.55;transition:opacity .2s;padding:0;}.bowl-play-btn:active,.bowl-play-btn.playing{opacity:1;}.bowl-play-btn svg{width:16px;height:16px;fill:var(--iv);}.bowl-play-btn.playing svg{fill:var(--sf);}
+.bowl-play-btn.playing{background:var(--sf);color:var(--bg);}
+.bowl-playing{border-color:rgba(240,144,10,.4)!important;}
+
+/* ── THEMES ── */
+[data-theme="dark"] {
+  --bg:   #0E0B16; --s1: #1A1625; --s2: #1A1526; --s3: #221C32;
+  --bdr:  rgba(255,255,255,.08); --bdr2: rgba(255,255,255,.14);
+  --iv:   #F5EFE4; --mu: rgba(245,239,228,.92); --fa: rgba(245,239,228,.75);
+  --sf:   #F0900A; --sf2: #C96B10; --sfg: rgba(240,144,10,.12);
+  --gold: #C9963A; --lotus: #C87B8E; --sage: #6E9E78;
+}
+
+[data-theme="sand"] {
+  --bg:   #F7F1E8; --s1: #FFFFFF; --s2: #F4EDE0; --s3: #EBE0CE;
+  --bdr:  rgba(100,70,30,.15); --bdr2: rgba(100,70,30,.45);
+  --iv:   #2C1A06; --mu: rgba(44,26,6,.85); --fa: rgba(44,26,6,.55);
+  --sf:   #B5620A; --sf2: #8C4A07; --sfg: rgba(181,98,10,.1);
+  --gold: #B5620A; --lotus: #A04060; --sage: #3D6B40;
+}
+
+.theme-swatch.active{border-color:var(--sf)!important;}
+
+[data-theme="sand"] .hd{
+  background:#FFFFFF;
+  border:1.5px solid rgba(100,70,30,.4);
+  box-shadow:0 1px 3px rgba(100,70,30,.1);
+  color:#2C1A06;
+}
+[data-theme="sand"] .hd-day{color:#2C1A06;}
+[data-theme="sand"] .hd-date{color:#8C4A07;opacity:0.8;}
+[data-theme="sand"] .hd.done{background:#B5620A;border-color:#B5620A;}
+[data-theme="sand"] .hd.done .hd-day,[data-theme="sand"] .hd.done .hd-date{color:#FFFFFF;opacity:1;}
+[data-theme="sand"] .hd.today{border:2px solid #B5620A;}
+[data-theme="sand"] .hd.today .hd-day{color:#B5620A;font-weight:600;}
+[data-theme="sand"] .hd.done{
+  background:#B5620A;
+  border-color:#B5620A;
+  color:#FFFFFF;
+}
+[data-theme="sand"] .hd.today{
+  border-color:#B5620A;
+  color:#B5620A;
+  border-width:2px;
+}
 </style>
 </head>
 <body>
-<div id="app">
+<div id="app" data-theme="dark">
 <div class="amb"><div class="a1"></div><div class="a2"></div></div>
 
 <!-- STATUS BAR -->
-<div id="statusbar">
-  <span class="time" id="s-time">9:41</span>
-  <div class="icons"><span>●●●</span><span>WiFi</span><span>🔋</span></div>
-</div>
+
 
 <!-- ══════════════════════════════════
      SPLASH
 ══════════════════════════════════ -->
-<div class="view show" id="v-splash">
+<div class="view show" id="v-splash"><div style="position:absolute;top:max(14px,env(safe-area-inset-top,14px));right:14px;font-family:monospace;font-size:9px;color:rgba(240,144,10,.4);z-index:50;letter-spacing:1px;">build 05:47</div>
   <div class="inner">
     <div class="sp-om">ॐ</div>
+
     <div class="sp-logo">SATTVA</div>
     <div class="sp-tag">Ancient Wisdom · Modern Mind</div>
     <div class="sp-verse">
@@ -786,6 +877,34 @@ input{font-family:'DM Sans',sans-serif}
           <li class="yes">Priority support</li>
         </ul>
         <button class="tier-btn" onclick="chooseTier('pro')">Start Free Trial</button>
+      </div>
+    </div>
+
+        <!-- FOUNDER MEMBER OFFER -->
+    <div style="padding:0 20px;margin-bottom:16px;">
+      <div style="position:relative;border-radius:18px;padding:24px 22px;background:linear-gradient(135deg,rgba(240,144,10,.15),rgba(201,107,16,.08));border:1.5px solid rgba(240,144,10,.55);overflow:hidden;">
+        <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(to right,#F0900A,#C96B10,#F0900A);"></div>
+        <div style="display:inline-block;background:#F0900A;color:#0E0B16;font-family:'Playfair Display',serif;font-size:8px;letter-spacing:2.5px;padding:5px 12px;border-radius:50px;text-transform:uppercase;margin-bottom:12px;font-weight:600;">&#10024; Founding Member</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:400;color:var(--iv);line-height:1.2;margin-bottom:6px;">Limited Time Offer</div>
+        <div style="font-size:13px;color:var(--mu);margin-bottom:16px;line-height:1.5;">Lifetime access to everything Sattva offers — all future features included. Only for the first 100 founders.</div>
+
+        <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:4px;">
+          <div id="founder-price" style="font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:300;color:var(--sf);line-height:1;"><span id="founder-sym">$</span><span id="founder-amt">159</span></div>
+          <div id="founder-strike" style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:300;color:var(--fa);text-decoration:line-through;opacity:.6;">$399</div>
+        </div>
+        <div style="font-size:11px;color:var(--fa);margin-bottom:18px;">One payment · Yours forever · No renewals</div>
+
+        <ul style="list-style:none;padding:0;margin:0 0 20px;">
+          <li style="font-size:12px;color:var(--mu);padding:4px 0;"><span style="color:#6E9E78;">&#10003;</span> All sessions, sound bowls, and Yoga Nidra library</li>
+          <li style="font-size:12px;color:var(--mu);padding:4px 0;"><span style="color:#6E9E78;">&#10003;</span> Unlimited Dharma Guru AI conversations</li>
+          <li style="font-size:12px;color:var(--mu);padding:4px 0;"><span style="color:#6E9E78;">&#10003;</span> Complete Vedic text library</li>
+          <li style="font-size:12px;color:var(--mu);padding:4px 0;"><span style="color:#6E9E78;">&#10003;</span> Every future feature — forever</li>
+          <li style="font-size:12px;color:var(--mu);padding:4px 0;"><span style="color:#6E9E78;">&#10003;</span> Founding member recognition</li>
+        </ul>
+
+        <button onclick="chooseTier('founder-lifetime')" style="width:100%;background:linear-gradient(135deg,#F0900A,#C96B10);border:none;border-radius:50px;padding:14px;font-family:'Playfair Display',serif;font-size:11px;letter-spacing:2.5px;color:#0E0B16;cursor:pointer;text-transform:uppercase;font-weight:600;box-shadow:0 4px 20px rgba(240,144,10,.35);">Claim Founder Access</button>
+
+        <div style="text-align:center;font-size:10px;color:var(--fa);margin-top:12px;">&#128274; Secured by Stripe</div>
       </div>
     </div>
 
@@ -941,7 +1060,7 @@ input{font-family:'DM Sans',sans-serif}
     <div id="pay-section" style="display:none;margin-top:18px;">
   <div style="background:rgba(240,144,10,.06);border:1px solid rgba(240,144,10,.2);border-radius:14px;padding:20px;text-align:center;">
     <div style="font-size:36px;margin-bottom:10px;">🔐</div>
-    <div style="font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;color:#F5EFE4;text-transform:uppercase;margin-bottom:8px;">Secure Payment via Stripe</div>
+    <div style="font-family:'Playfair Display',serif;font-size:11px;letter-spacing:2px;color:#F5EFE4;text-transform:uppercase;margin-bottom:8px;">Secure Payment via Stripe</div>
     <div style="font-size:13px;color:rgba(245,239,228,.85);line-height:1.7;margin-bottom:12px;">You will be redirected to Stripe's secure checkout. Your 7-day free trial starts immediately.</div>
     <div style="font-size:11px;color:rgba(245,239,228,.5);">&#128274; 256-bit SSL · PCI DSS Compliant · Cancel anytime</div>
   </div>
@@ -965,78 +1084,60 @@ input{font-family:'DM Sans',sans-serif}
      HOME
 ══════════════════════════════════ -->
 <div class="view" id="v-home">
+  <div class="topbar" style="padding-top:max(52px,env(safe-area-inset-top,52px));padding-bottom:4px;">
+    <div class="ham" onclick="openDrawer()"><span></span><span></span><span></span></div>
+    <div style="font-family:'Playfair Display',serif;font-size:18px;letter-spacing:6px;color:var(--sf);font-weight:500;">SATTVA</div>
+    <div style="width:36px;"></div>
+  </div>
   <div class="scroll" style="position:relative;z-index:1;">
-    <div class="topbar">
-      <div><div class="tb-greet" id="h-greet">Good Morning</div><div class="tb-name" id="h-name">Seeker 🙏</div></div>
-      <div class="avatar" onclick="navTo('v-profile',4)">🧘</div>
-    </div>
     <!-- Verse -->
-    <div class="vc" onclick="openVersePanel()">
-      <div class="vc-lbl" id="vc-lbl">Verse of the Day · Gita 2.47</div>
-      <div class="vc-txt" id="vc-txt">"You have a right to perform your duties, but not to the fruits thereof."</div>
-      <div class="vc-src" id="vc-src">Bhagavad Gita · Chapter 2, Verse 47</div>
-      <div class="vc-hint">Explore ↗</div>
+    <div style="padding:8px 26px 16px;text-align:center;">
+      <div style="font-family:'Cormorant Garamond',serif;font-size:52px;color:var(--sf);line-height:1;margin-bottom:6px;filter:drop-shadow(0 0 14px rgba(240,144,10,.4));">&#2384;</div>
+      <div style="font-family:'Playfair Display',serif;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--sf);margin-bottom:14px;">Daily Wisdom</div>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-style:italic;line-height:1.75;color:var(--iv);margin-bottom:12px;" id="h-verse-text">"You have a right to perform your prescribed duties, but you are not entitled to the fruits of your actions."</div>
+      <div style="font-family:'Playfair Display',serif;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--fa);" id="h-verse-attr">Bhagavad Gita · Chapter 2, Verse 47</div>
+      <div style="width:36px;height:1px;background:rgba(240,144,10,.3);margin:16px auto;"></div>
     </div>
-    <!-- Stats -->
-    <div class="stats-row">
-      <div class="sc fire"><div class="sc-ic">🔥</div><div class="sc-num">0</div><div class="sc-lb">Day Streak</div></div>
-      <div class="sc mind"><div class="sc-ic">🧠</div><div class="sc-num" id="home-sessions">0</div><div class="sc-lb">Sessions</div></div>
-      <div class="sc breath"><div class="sc-ic">💨</div><div class="sc-num" id="home-mins">0</div><div class="sc-lb">Prana Min</div></div>
+    <!-- Streak -->
+    <div style="margin:0 20px 18px;padding:15px 18px;border:1px solid var(--bdr2);border-radius:14px;background:var(--s1);display:flex;align-items:center;gap:18px;">
+      <div><div style="font-family:'Cormorant Garamond',serif;font-size:36px;color:var(--sf);line-height:1;" id="h-streak">0</div><div style="font-family:'Playfair Display',serif;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--fa);margin-top:2px;">Day Streak</div></div>
+      <div style="width:1px;height:36px;background:var(--bdr);flex-shrink:0;"></div>
+      <div><div style="font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--iv);" id="h-name">Seeker</div><div style="font-family:'Playfair Display',serif;font-size:8px;letter-spacing:1px;color:var(--fa);margin-top:2px;">NAMASTE</div></div>
     </div>
-    <!-- Today -->
-    <div class="sh"><span class="sec">Today's Sadhana</span><span class="sh-lnk" onclick="navTo('v-player',1)">See all →</span></div>
-    <div class="hscr">
-      <div class="pc ph" onclick="loadAndPlay('surya')"><div class="pc-done">✓</div><span class="pc-ic">🌅</span><div class="pc-nm">Surya Namaskar</div><div class="pc-ds">Sun Salutation</div><div class="pc-t">20 min</div></div>
-      <div class="pc pp done" onclick="loadAndPlay('nadi')"><div class="pc-done">✓</div><span class="pc-ic">🌬️</span><div class="pc-nm">Nadi Shodhana</div><div class="pc-ds">Alternate nostril</div><div class="pc-t">Done ✓</div></div>
-      <div class="pc pd" onclick="loadAndPlay('trataka')"><div class="pc-done">✓</div><span class="pc-ic">🕯️</span><div class="pc-nm">Trataka</div><div class="pc-ds">Candle gazing</div><div class="pc-t">15 min</div></div>
-      <div class="pc pn" onclick="loadAndPlay('nidra')"><div class="pc-done">✓</div><span class="pc-ic">🌙</span><div class="pc-nm">Yoga Nidra</div><div class="pc-ds">Deep sleep prep</div><div class="pc-t">30 min</div></div>
-    </div>
-    <!-- Featured -->
-    <div class="sh"><span class="sec">Featured Session</span></div>
-    <div class="feat" onclick="loadAndPlay('kapalabhati')">
-      <div class="feat-tag">◆ Recommended for you</div>
-      <div class="feat-title">Kapalabhati for<br>Mental Clarity</div>
-      <div class="feat-ds">Skull-shining breath. 3 rounds of 60 pumps — detoxifies, energises, sharpens the mind.</div>
-      <div class="feat-meta">
-        <div class="mpill">🔥 Energising</div>
-        <div class="mpill">⏱ 8 min</div>
-        <button class="feat-btn" onclick="event.stopPropagation();loadAndPlay('kapalabhati')">Begin →</button>
+    <!-- Mood -->
+    <div style="padding:0 20px 18px;">
+      <div style="font-family:'Playfair Display',serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--mu);text-align:center;margin-bottom:14px;">How are you feeling right now?</div>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;">
+        <button style="padding:9px 18px;border-radius:50px;border:1px solid rgba(240,144,10,.35);background:none;color:var(--mu);cursor:pointer;font-size:13px;transition:all .2s;" onclick="selectMood('Anxious',this)">Anxious</button>
+        <button style="padding:9px 18px;border-radius:50px;border:1px solid rgba(240,144,10,.35);background:none;color:var(--mu);cursor:pointer;font-size:13px;transition:all .2s;" onclick="selectMood('Low',this)">Low</button>
+        <button style="padding:9px 18px;border-radius:50px;border:1px solid rgba(240,144,10,.35);background:none;color:var(--mu);cursor:pointer;font-size:13px;transition:all .2s;" onclick="selectMood('Sad',this)">Sad</button>
+        <button style="padding:9px 18px;border-radius:50px;border:1px solid rgba(240,144,10,.35);background:none;color:var(--mu);cursor:pointer;font-size:13px;transition:all .2s;" onclick="selectMood('Energetic',this)">Energetic</button>
+        <button style="padding:9px 18px;border-radius:50px;border:1px solid rgba(240,144,10,.35);background:none;color:var(--mu);cursor:pointer;font-size:13px;transition:all .2s;" onclick="selectMood('Content',this)">Content</button>
+        <button style="padding:9px 18px;border-radius:50px;border:1px solid rgba(240,144,10,.35);background:none;color:var(--mu);cursor:pointer;font-size:13px;transition:all .2s;" onclick="selectMood('Stressed',this)">Stressed</button>
+        <button style="padding:9px 18px;border-radius:50px;border:1px solid rgba(240,144,10,.35);background:none;color:var(--mu);cursor:pointer;font-size:13px;transition:all .2s;" onclick="selectMood('Happy',this)">Happy</button>
       </div>
     </div>
-    <!-- Pranayama -->
-    <div class="sh"><span class="sec">Quick Pranayama</span></div>
-    <div class="prana-row">
-      <div class="pchip hi" onclick="loadAndPlay('box')"><span class="pchip-ic">📦</span><span class="pchip-nm">Box</span><span class="pchip-t">4m</span></div>
-      <div class="pchip" onclick="loadAndPlay('nadi')"><span class="pchip-ic">🌀</span><span class="pchip-nm">Nadi Shodhana</span><span class="pchip-t">10m</span></div>
-      <div class="pchip" onclick="loadAndPlay('kapalabhati')"><span class="pchip-ic">⚡</span><span class="pchip-nm">Kapalabhati</span><span class="pchip-t">5m</span></div>
-      <div class="pchip" onclick="loadAndPlay('bhramari')"><span class="pchip-ic">🐝</span><span class="pchip-nm">Bhramari</span><span class="pchip-t">8m</span></div>
+    <!-- Quick sessions -->
+    <div style="font-family:'Playfair Display',serif;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--fa);padding:0 20px;margin-bottom:12px;">Today's Sadhana</div>
+    <div style="display:flex;gap:10px;padding:0 20px;margin-bottom:18px;overflow-x:auto;scrollbar-width:none;">
+      <div style="flex-shrink:0;width:116px;padding:14px;border:1px solid var(--bdr);border-radius:14px;background:var(--s1);cursor:pointer;" onclick="loadAndPlay('surya');navTo('v-player',1);"><div style="font-family:'Playfair Display',serif;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--iv);margin-bottom:4px;">Surya</div><div style="font-size:11px;color:var(--fa);">20 min</div></div>
+      <div style="flex-shrink:0;width:116px;padding:14px;border:1px solid var(--bdr);border-radius:14px;background:var(--s1);cursor:pointer;" onclick="loadAndPlay('nadi');navTo('v-player',1);"><div style="font-family:'Playfair Display',serif;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--iv);margin-bottom:4px;">Nadi Shodhana</div><div style="font-size:11px;color:var(--fa);">10 min</div></div>
+      <div style="flex-shrink:0;width:116px;padding:14px;border:1px solid var(--bdr);border-radius:14px;background:var(--s1);cursor:pointer;" onclick="loadAndPlay('box');navTo('v-player',1);"><div style="font-family:'Playfair Display',serif;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--iv);margin-bottom:4px;">Box Breathing</div><div style="font-size:11px;color:var(--fa);">5 min</div></div>
+      <div style="flex-shrink:0;width:116px;padding:14px;border:1px solid var(--bdr);border-radius:14px;background:var(--s1);cursor:pointer;" onclick="loadAndPlay('nidra');navTo('v-player',1);"><div style="font-family:'Playfair Display',serif;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--iv);margin-bottom:4px;">Yoga Nidra</div><div style="font-size:11px;color:var(--fa);">30 min</div></div>
     </div>
-    <!-- Habit tracker -->
-    <div class="habit-wrap" id="habit-wrap">
-      <div class="habit-box">
-        <div class="hb-hdr"><span class="sec">Tapas · This Month</span><span class="hb-badge" id="streak-badge">🔥 12 days</span></div>
-        <div class="hd-wrap" id="h-dots"></div>
-      </div>
-    </div>
-    <!-- Guru CTA -->
-    <div class="gcta" onclick="navTo('v-guru',3)">
-      <div class="g-orb">ॐ</div>
-      <div><div class="g-ctitle">Ask your Dharma Guru</div><div class="g-cds">AI wisdom from the Vedas, personalised</div></div>
-      <div style="color:var(--lotus);font-size:18px;opacity:.55;">›</div>
-    </div>
+    <!-- Habit dots -->
+    <div style="font-family:'Playfair Display',serif;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--fa);padding:0 20px;margin-bottom:12px;">This Week</div>
+    <div id="h-habit-dots" style="display:flex;flex-direction:row;gap:8px;padding:0 22px;margin-bottom:32px;min-height:54px;"></div>
   </div>
   <div class="bnav">
-    <div class="bn on" onclick="navTo('v-home',0)"><div class="bn-ic">🏠</div><div class="bn-lb">Home</div><div class="bn-dot"></div></div>
-    <div class="bn" onclick="navTo('v-player',1)"><div class="bn-ic">🧘</div><div class="bn-lb">Practice</div><div class="bn-dot"></div></div>
-    <div class="bn" onclick="loadAndPlay('box')"><div class="bn-ic">🌬️</div><div class="bn-lb">Breathe</div><div class="bn-dot"></div></div>
-    <div class="bn" onclick="navTo('v-guru',3)"><div class="bn-ic">ॐ</div><div class="bn-lb">Guru</div><div class="bn-dot"></div></div>
-    <div class="bn" onclick="navTo('v-profile',4)"><div class="bn-ic">👤</div><div class="bn-lb">Profile</div><div class="bn-dot"></div></div>
+    <div class="bn on" onclick="navTo('v-home',0)"><div class="bn-lb">Home</div><div class="bn-dot"></div></div>
+    <div class="bn" onclick="navTo('v-player',1)"><div class="bn-lb">Practice</div><div class="bn-dot"></div></div>
+    <div class="bn" onclick="navTo('v-chakra',2)"><div class="bn-lb">Chakras</div><div class="bn-dot"></div></div>
+    <div class="bn" onclick="navTo('v-guru',3)"><div class="bn-lb">Guru</div><div class="bn-dot"></div></div>
+    <div class="bn" onclick="navTo('v-profile',4)"><div class="bn-lb">Profile</div><div class="bn-dot"></div></div>
   </div>
 </div>
 
-<!-- ══════════════════════════════════
-     PLAYER
-══════════════════════════════════ -->
 <div class="view" id="v-player" style="overflow-y:auto;-webkit-overflow-scrolling:touch;">
   <div style="padding-top:56px;flex-shrink:0;position:relative;z-index:1;">
     <div class="pl-top">
@@ -1051,6 +1152,12 @@ input{font-family:'DM Sans',sans-serif}
     <div class="pl-sub" id="pl-sub">Choose from the list below</div>
     <div class="ring-wrap">
       <svg class="ring-svg" viewBox="0 0 190 190">
+        <defs>
+          <filter id="ring-glow" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="3" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
         <circle class="ring-tr" cx="95" cy="95" r="85"/>
         <circle class="ring-pr" id="ring-pr" cx="95" cy="95" r="85"/>
       </svg>
@@ -1066,7 +1173,7 @@ input{font-family:'DM Sans',sans-serif}
     </button>
     <div class="pl-ctrls">
       <button class="ctrl-sm" onclick="restartSess()">↺</button>
-      <button class="ctrl-play" id="ctrl-play" onclick="togglePlay()">▶</button>
+      <button class="ctrl-play" id="ctrl-play" onclick="togglePlay()"><svg id="ctrl-play-icon" viewBox="0 0 24 24" width="22" height="22" style="fill:#0E0B16;display:block;"><path d="M8 5v14l11-7z"/></svg></button>
       <button class="ctrl-sm" onclick="skipSess()">⟩⟩</button>
     </div>
   </div>
@@ -1075,11 +1182,11 @@ input{font-family:'DM Sans',sans-serif}
     <div class="slist" id="pl-slist"></div>
   </div>
   <div class="bnav">
-    <div class="bn" onclick="navTo('v-home',0)"><div class="bn-ic">🏠</div><div class="bn-lb">Home</div><div class="bn-dot"></div></div>
-    <div class="bn on"><div class="bn-ic">🧘</div><div class="bn-lb">Practice</div><div class="bn-dot"></div></div>
-    <div class="bn" onclick="loadAndPlay('box')"><div class="bn-ic">🌬️</div><div class="bn-lb">Breathe</div><div class="bn-dot"></div></div>
-    <div class="bn" onclick="navTo('v-guru',3)"><div class="bn-ic">ॐ</div><div class="bn-lb">Guru</div><div class="bn-dot"></div></div>
-    <div class="bn" onclick="navTo('v-profile',4)"><div class="bn-ic">👤</div><div class="bn-lb">Profile</div><div class="bn-dot"></div></div>
+    <div class="bn" onclick="navTo('v-home',0)"><div class="bn-lb">Home</div><div class="bn-dot"></div></div>
+    <div class="bn on"><div class="bn-lb">Practice</div><div class="bn-dot"></div></div>
+    <div class="bn" onclick="navTo('v-chakra',2)"><div class="bn-lb">Chakras</div><div class="bn-dot"></div></div>
+    <div class="bn" onclick="navTo('v-guru',3)"><div class="bn-lb">Guru</div><div class="bn-dot"></div></div>
+    <div class="bn" onclick="navTo('v-profile',4)"><div class="bn-lb">Profile</div><div class="bn-dot"></div></div>
   </div>
 </div>
 
@@ -1107,7 +1214,7 @@ input{font-family:'DM Sans',sans-serif}
     <div class="guru-lock" id="guru-lock" onclick="showUpgrade()">
       <span style="font-size:28px;">🔒</span>
       <div style="flex:1;">
-        <div style="font-family:'Cinzel',serif;font-size:10px;letter-spacing:1px;color:var(--lotus);text-transform:uppercase;margin-bottom:3px;">Upgrade to Access</div>
+        <div style="font-family:'Playfair Display',serif;font-size:10px;letter-spacing:1px;color:var(--lotus);text-transform:uppercase;margin-bottom:3px;">Upgrade to Access</div>
         <div style="font-size:12px;color:var(--mu);">Dharma Guru available from Sadhaka $1.99/week</div>
       </div>
       <span style="color:var(--lotus);font-size:16px;">›</span>
@@ -1140,11 +1247,11 @@ input{font-family:'DM Sans',sans-serif}
     <button class="chat-send" id="guru-send" onclick="sendGuru()">→</button>
   </div>
   <div class="bnav">
-    <div class="bn" onclick="navTo('v-home',0)"><div class="bn-ic">🏠</div><div class="bn-lb">Home</div><div class="bn-dot"></div></div>
-    <div class="bn" onclick="navTo('v-player',1)"><div class="bn-ic">🧘</div><div class="bn-lb">Practice</div><div class="bn-dot"></div></div>
-    <div class="bn" onclick="loadAndPlay('box')"><div class="bn-ic">🌬️</div><div class="bn-lb">Breathe</div><div class="bn-dot"></div></div>
-    <div class="bn on"><div class="bn-ic">ॐ</div><div class="bn-lb">Guru</div><div class="bn-dot"></div></div>
-    <div class="bn" onclick="navTo('v-profile',4)"><div class="bn-ic">👤</div><div class="bn-lb">Profile</div><div class="bn-dot"></div></div>
+    <div class="bn" onclick="navTo('v-home',0)"><div class="bn-lb">Home</div><div class="bn-dot"></div></div>
+    <div class="bn" onclick="navTo('v-player',1)"><div class="bn-lb">Practice</div><div class="bn-dot"></div></div>
+    <div class="bn" onclick="navTo('v-chakra',2)"><div class="bn-lb">Chakras</div><div class="bn-dot"></div></div>
+    <div class="bn on"><div class="bn-lb">Guru</div><div class="bn-dot"></div></div>
+    <div class="bn" onclick="navTo('v-profile',4)"><div class="bn-lb">Profile</div><div class="bn-dot"></div></div>
   </div>
 </div>
 
@@ -1160,7 +1267,7 @@ input{font-family:'DM Sans',sans-serif}
     </div>
     <div class="upg-banner" id="upg-banner" onclick="showUpgrade()">
       <span style="font-size:26px;">✨</span>
-      <div style="flex:1;"><div style="font-family:'Cinzel',serif;font-size:11px;letter-spacing:1px;color:var(--sf);margin-bottom:2px;text-transform:uppercase;">Upgrade Plan</div><div style="font-size:12px;color:var(--mu);">Unlock full AI Guru, audio and library</div></div>
+      <div style="flex:1;"><div style="font-family:'Playfair Display',serif;font-size:11px;letter-spacing:1px;color:var(--sf);margin-bottom:2px;text-transform:uppercase;">Upgrade Plan</div><div style="font-size:12px;color:var(--mu);">Unlock full AI Guru, audio and library</div></div>
       <span style="color:var(--sf);font-size:18px;">›</span>
     </div>
     <div class="big-stats">
@@ -1171,14 +1278,14 @@ input{font-family:'DM Sans',sans-serif}
     <div class="badge-sec">
       <div class="sh" style="padding:0;margin-bottom:11px;"><span class="sec">Achievements</span></div>
       <div class="bg-grid">
-        <div class="bdg"><div class="bdg-ic">🔥</div><div class="bdg-nm">7 Day Streak</div></div>
-        <div class="bdg"><div class="bdg-ic">🌅</div><div class="bdg-nm">Dawn Yogi</div></div>
-        <div class="bdg"><div class="bdg-ic">🌬️</div><div class="bdg-nm">Prana Master</div></div>
-        <div class="bdg"><div class="bdg-ic">📿</div><div class="bdg-nm">108 Sessions</div></div>
-        <div class="bdg"><div class="bdg-ic">🪷</div><div class="bdg-nm">21 Day Tapas</div></div>
-        <div class="bdg"><div class="bdg-ic">⭐</div><div class="bdg-nm">Vedic Scholar</div></div>
-        <div class="bdg"><div class="bdg-ic">🌙</div><div class="bdg-nm">Nidra Nights</div></div>
-        <div class="bdg"><div class="bdg-ic">🧘</div><div class="bdg-nm">Asana 50</div></div>
+        <div class="bdg"><div class="bdg-ic"><svg viewBox="0 0 36 36" width="28" height="28" fill="none" stroke="var(--sf)" stroke-width="1.3"><polygon points="18,3 33,30 3,30"/><polygon points="18,33 33,6 3,6"/><circle cx="18" cy="18" r="2.5" fill="var(--sf)" stroke="none"/></svg></div><div class="bdg-nm">7 Day Streak</div></div>
+        <div class="bdg"><div class="bdg-ic"><svg viewBox="0 0 36 36" width="28" height="28" fill="none" stroke="var(--sf)" stroke-width="1.3"><polygon points="18,4 34,31 2,31"/><polygon points="18,12 29,29 7,29"/><circle cx="18" cy="20" r="2.5" fill="var(--sf)" stroke="none"/></svg></div><div class="bdg-nm">Dawn Yogi</div></div>
+        <div class="bdg"><div class="bdg-ic"><svg viewBox="0 0 36 36" width="28" height="28" fill="none" stroke="var(--sf)" stroke-width="1.3"><circle cx="18" cy="18" r="14"/><circle cx="18" cy="18" r="8"/><circle cx="18" cy="18" r="3" fill="var(--sf)" stroke="none"/></svg></div><div class="bdg-nm">Prana Master</div></div>
+        <div class="bdg"><div class="bdg-ic"><svg viewBox="0 0 36 36" width="28" height="28" fill="none" stroke="var(--sf)" stroke-width="1.1"><circle cx="18" cy="18" r="7"/><circle cx="18" cy="11" r="7"/><circle cx="18" cy="25" r="7"/><circle cx="12" cy="14.5" r="7"/><circle cx="24" cy="14.5" r="7"/><circle cx="12" cy="21.5" r="7"/><circle cx="24" cy="21.5" r="7"/></svg></div><div class="bdg-nm">108 Sessions</div></div>
+        <div class="bdg"><div class="bdg-ic"><svg viewBox="0 0 36 36" width="28" height="28" fill="none" stroke="var(--sf)" stroke-width="1.3"><polygon points="18,3 33,30 3,30"/><polygon points="18,33 3,6 33,6"/><circle cx="18" cy="18" r="2.5" fill="var(--sf)" stroke="none"/></svg></div><div class="bdg-nm">21 Day Tapas</div></div>
+        <div class="bdg"><div class="bdg-ic"><svg viewBox="0 0 36 36" width="28" height="28" fill="none" stroke="var(--sf)" stroke-width="1.3"><circle cx="18" cy="18" r="14"/><polygon points="18,7 27,24 9,24"/><polygon points="18,29 27,12 9,12"/></svg></div><div class="bdg-nm">Vedic Scholar</div></div>
+        <div class="bdg"><div class="bdg-ic"><svg viewBox="0 0 36 36" width="28" height="28" fill="none" stroke="var(--sf)" stroke-width="1.3"><ellipse cx="18" cy="22" rx="4" ry="9"/><ellipse cx="11" cy="22" rx="4" ry="7.5" transform="rotate(-20 11 22)"/><ellipse cx="25" cy="22" rx="4" ry="7.5" transform="rotate(20 25 22)"/><ellipse cx="6" cy="24" rx="3" ry="5.5" transform="rotate(-42 6 24)"/><ellipse cx="30" cy="24" rx="3" ry="5.5" transform="rotate(42 30 24)"/><circle cx="18" cy="24" r="2.5" fill="var(--sf)" stroke="none"/></svg></div><div class="bdg-nm">Nidra Nights</div></div>
+        <div class="bdg"><div class="bdg-ic"><svg viewBox="0 0 36 36" width="28" height="28" fill="none" stroke="var(--sf)" stroke-width="1.3"><circle cx="18" cy="18" r="14"/><circle cx="18" cy="18" r="8"/><line x1="18" y1="4" x2="18" y2="32"/><line x1="4" y1="18" x2="32" y2="18"/><line x1="8.1" y1="8.1" x2="27.9" y2="27.9"/><line x1="27.9" y1="8.1" x2="8.1" y2="27.9"/></svg></div><div class="bdg-nm">Asana 50</div></div>
       </div>
     </div>
     <div class="prog-sec">
@@ -1189,19 +1296,19 @@ input{font-family:'DM Sans',sans-serif}
       <div class="pb-item"><div class="pb-hdr"><span class="pb-name">Vedic Knowledge</span><span class="pb-pct">31%</span></div><div class="pb-track"><div class="pb-fill" style="width:31%;background:var(--gold);"></div></div></div>
     </div>
     <div class="menu-list">
-      <div class="mi" onclick="openLibrary()" style="cursor:pointer;"><div class="mi-ic">📖</div><div><div class="mi-nm">Sacred Library</div><div class="mi-ds">Vedas, Gita, Yoga Sutras</div></div><div class="mi-arr">›</div></div>
-      <div class="mi" onclick="navTo('v-pricing',null)"><div class="mi-ic">💳</div><div><div class="mi-nm">Subscription</div><div class="mi-ds" id="sub-ds">Yogi Pro · $3.99/week</div></div><div class="mi-arr">›</div></div>
-      <div class="mi" onclick="showSettings()"><div class="mi-ic">⚙️</div><div><div class="mi-nm">Settings</div><div class="mi-ds">Notifications and account</div></div><div class="mi-arr">›</div></div>
-      <div class="mi" onclick="showRefer()"><div class="mi-ic">🤝</div><div><div class="mi-nm">Refer a Friend</div><div class="mi-ds">Share Sattva, earn 1 free week</div></div><div class="mi-arr">›</div></div>
-      <div class="mi" onclick="navTo('v-splash',null)"><div class="mi-ic">🚪</div><div><div class="mi-nm">Sign Out</div><div class="mi-ds">Return to welcome screen</div></div><div class="mi-arr">›</div></div>
+      <div class="mi" onclick="openLibrary()" style="cursor:pointer;"><div class="mi-ic" style="display:none;"></div><div><div class="mi-nm">Sacred Library</div><div class="mi-ds">Vedas, Gita, Yoga Sutras</div></div><div class="mi-arr">›</div></div>
+      <div class="mi" onclick="navTo('v-pricing',null)"><div class="mi-ic" style="display:none;"></div><div><div class="mi-nm">Subscription</div><div class="mi-ds" id="sub-ds">Yogi Pro · $3.99/week</div></div><div class="mi-arr">›</div></div>
+      <div class="mi" onclick="showSettings()"><div class="mi-ic" style="display:none;"></div><div><div class="mi-nm">Settings</div><div class="mi-ds">Notifications and account</div></div><div class="mi-arr">›</div></div>
+      <div class="mi" onclick="showRefer()"><div class="mi-ic" style="display:none;"></div><div><div class="mi-nm">Refer a Friend</div><div class="mi-ds">Share Sattva, earn 1 free week</div></div><div class="mi-arr">›</div></div>
+      <div class="mi" onclick="navTo('v-splash',null)"><div class="mi-ic" style="display:none;"></div><div><div class="mi-nm">Sign Out</div><div class="mi-ds">Return to welcome screen</div></div><div class="mi-arr">›</div></div>
     </div>
   </div>
   <div class="bnav">
-    <div class="bn" onclick="navTo('v-home',0)"><div class="bn-ic">🏠</div><div class="bn-lb">Home</div><div class="bn-dot"></div></div>
-    <div class="bn" onclick="navTo('v-player',1)"><div class="bn-ic">🧘</div><div class="bn-lb">Practice</div><div class="bn-dot"></div></div>
-    <div class="bn" onclick="loadAndPlay('box')"><div class="bn-ic">🌬️</div><div class="bn-lb">Breathe</div><div class="bn-dot"></div></div>
-    <div class="bn" onclick="navTo('v-guru',3)"><div class="bn-ic">ॐ</div><div class="bn-lb">Guru</div><div class="bn-dot"></div></div>
-    <div class="bn on"><div class="bn-ic">👤</div><div class="bn-lb">Profile</div><div class="bn-dot"></div></div>
+    <div class="bn" onclick="navTo('v-home',0)"><div class="bn-lb">Home</div><div class="bn-dot"></div></div>
+    <div class="bn" onclick="navTo('v-player',1)"><div class="bn-lb">Practice</div><div class="bn-dot"></div></div>
+    <div class="bn" onclick="navTo('v-chakra',2)"><div class="bn-lb">Chakras</div><div class="bn-dot"></div></div>
+    <div class="bn" onclick="navTo('v-guru',3)"><div class="bn-lb">Guru</div><div class="bn-dot"></div></div>
+    <div class="bn on"><div class="bn-lb">Profile</div><div class="bn-dot"></div></div>
   </div>
 </div>
 
@@ -1226,26 +1333,135 @@ input{font-family:'DM Sans',sans-serif}
     <p style="font-size:13px;color:var(--mu);margin-bottom:20px;line-height:1.6;text-align:center;">Unlock AI Guru, audio guidance and the full sacred library.</p>
     <!-- Sadhaka -->
     <div style="background:rgba(200,123,142,.08);border:1px solid rgba(200,123,142,.3);border-radius:16px;padding:18px;margin-bottom:12px;cursor:pointer;" onclick="doUpgrade('mid')">
-      <div style="font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;color:var(--lotus);text-transform:uppercase;margin-bottom:6px;">Sadhaka</div>
-      <div style="font-family:'DM Sans',sans-serif;font-size:32px;font-weight:700;color:var(--iv);letter-spacing:-1px;margin-bottom:3px;">$1.99<span style="font-size:14px;font-weight:400;color:var(--mu);"> / week</span></div>
+      <div style="font-family:'Playfair Display',serif;font-size:10px;letter-spacing:2px;color:var(--lotus);text-transform:uppercase;margin-bottom:6px;">Sadhaka</div>
+      <div style="font-family:'Manrope',sans-serif;font-size:32px;font-weight:700;color:var(--iv);letter-spacing:-1px;margin-bottom:3px;">$1.99<span style="font-size:14px;font-weight:400;color:var(--mu);"> / week</span></div>
       <div style="font-size:11px;color:var(--sage);margin-bottom:10px;">7 days free · or $49 per year</div>
       <div style="font-size:12px;color:var(--mu);">◆ All sessions · Audio guide · 15 AI messages/month · Habit tracker</div>
     </div>
     <!-- Pro -->
     <div style="background:rgba(240,144,10,.08);border:2px solid rgba(240,144,10,.35);border-radius:16px;padding:18px;margin-bottom:16px;cursor:pointer;position:relative;" onclick="doUpgrade('pro')">
-      <div style="position:absolute;top:12px;right:12px;background:var(--sf);color:var(--bg);font-family:'Cinzel',serif;font-size:8px;letter-spacing:2px;padding:3px 8px;border-radius:20px;">BEST VALUE</div>
-      <div style="font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;color:var(--sf);text-transform:uppercase;margin-bottom:6px;">Yogi Pro</div>
-      <div style="font-family:'DM Sans',sans-serif;font-size:32px;font-weight:700;color:var(--iv);letter-spacing:-1px;margin-bottom:3px;">$3.99<span style="font-size:14px;font-weight:400;color:var(--mu);"> / week</span></div>
+      <div style="position:absolute;top:12px;right:12px;background:var(--sf);color:var(--bg);font-family:'Playfair Display',serif;font-size:8px;letter-spacing:2px;padding:3px 8px;border-radius:20px;">BEST VALUE</div>
+      <div style="font-family:'Playfair Display',serif;font-size:10px;letter-spacing:2px;color:var(--sf);text-transform:uppercase;margin-bottom:6px;">Yogi Pro</div>
+      <div style="font-family:'Manrope',sans-serif;font-size:32px;font-weight:700;color:var(--iv);letter-spacing:-1px;margin-bottom:3px;">$3.99<span style="font-size:14px;font-weight:400;color:var(--mu);"> / week</span></div>
       <div style="font-size:11px;color:var(--sage);margin-bottom:10px;">7 days free · or $89 per year</div>
       <div style="font-size:12px;color:var(--mu);">◆ Unlimited everything · Full library · Unlimited AI Guru · Offline</div>
     </div>
-    <button onclick="closeUpgrade()" style="width:100%;background:transparent;border:1px solid var(--bdr2);border-radius:50px;padding:13px;font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;color:var(--mu);cursor:pointer;text-transform:uppercase;">Maybe later</button>
+    <button onclick="closeUpgrade()" style="width:100%;background:transparent;border:1px solid var(--bdr2);border-radius:50px;padding:13px;font-family:'Playfair Display',serif;font-size:11px;letter-spacing:2px;color:var(--mu);cursor:pointer;text-transform:uppercase;">Maybe later</button>
   </div>
 </div>
 
+
+<!-- CHAKRA VIEW -->
+<div class="view" id="v-chakra">
+  <div class="topbar" style="padding-top:max(52px,env(safe-area-inset-top,52px));flex-shrink:0;">
+    <div class="ham" onclick="openDrawer()"><span></span><span></span><span></span></div>
+    <div style="font-family:'Playfair Display',serif;font-size:12px;letter-spacing:4px;color:var(--sf);">SEVEN CHAKRAS</div>
+    <div style="width:36px;"></div>
+  </div>
+  <div style="flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:0 20px 40px;" id="chakra-list"></div>
+  <div class="bnav">
+    <div class="bn" onclick="navTo('v-home',0)"><div class="bn-lb">Home</div><div class="bn-dot"></div></div>
+    <div class="bn" onclick="navTo('v-player',1)"><div class="bn-lb">Practice</div><div class="bn-dot"></div></div>
+    <div class="bn on"><div class="bn-lb">Chakras</div><div class="bn-dot"></div></div>
+    <div class="bn" onclick="navTo('v-guru',3)"><div class="bn-lb">Guru</div><div class="bn-dot"></div></div>
+    <div class="bn" onclick="navTo('v-profile',4)"><div class="bn-lb">Profile</div><div class="bn-dot"></div></div>
+  </div>
+</div>
+
+<!-- CHAKRA DETAIL -->
+<div class="ck-detail" id="ck-detail">
+  <div class="ck-detail-hd">
+    <button style="background:none;border:none;color:var(--mu);font-size:22px;cursor:pointer;width:36px;" onclick="closeCkDetail()">&#8249;</button>
+    <div>
+      <div style="font-family:'Playfair Display',serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;margin-bottom:3px;" id="ck-lbl">Chakra 1 of 7</div>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:17px;color:var(--iv);" id="ck-ttl">Muladhara</div>
+    </div>
+  </div>
+  <div class="ck-detail-scroll" id="ck-body"></div>
+</div>
+
+<!-- QUIZ OVERLAY -->
+<div class="quiz-ov" id="quiz-overlay">
+  <div class="quiz-sheet">
+    <div class="quiz-handle"></div>
+    <div class="quiz-step on" id="quiz-step-0">
+      <div class="quiz-q">Where do you feel tension in your body right now?</div>
+      <div id="quiz-opts-0"></div>
+    </div>
+    <div class="quiz-step" id="quiz-step-1">
+      <div class="quiz-q">What feels most blocked for you right now?</div>
+      <div id="quiz-opts-1"></div>
+    </div>
+    <div class="quiz-step" id="quiz-step-2">
+      <div style="text-align:center;padding:8px 0;">
+        <div style="width:52px;height:52px;border-radius:50%;margin:0 auto 16px;" id="quiz-dot"></div>
+        <div style="font-family:'Playfair Display',serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--fa);margin-bottom:8px;">Your energy may be centred in</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:26px;color:var(--iv);margin-bottom:4px;" id="quiz-name"></div>
+        <div style="font-family:'Playfair Display',serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;margin-bottom:12px;" id="quiz-skt"></div>
+        <div style="font-size:14px;color:var(--mu);line-height:1.6;margin-bottom:24px;" id="quiz-desc"></div>
+        <button class="btn btn-p" onclick="quizGoChakra()" style="margin-bottom:10px;">Explore This Chakra</button>
+        <button class="btn btn-s" onclick="closeQuiz()" style="font-size:10px;padding:12px;">Continue to Practice</button>
+      </div>
+    </div>
+    <button onclick="closeQuiz()" style="width:100%;background:none;border:none;font-family:'Playfair Display',serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--fa);cursor:pointer;padding:16px;margin-top:8px;">Skip</button>
+  </div>
+</div>
+
+<!-- SOUND BOWL VIEW -->
+<div class="view" id="v-bowl">
+  <div class="topbar" style="padding-top:max(52px,env(safe-area-inset-top,52px));flex-shrink:0;">
+    <div class="ham" onclick="openDrawer()"><span></span><span></span><span></span></div>
+    <div style="font-family:'Playfair Display',serif;font-size:12px;letter-spacing:4px;color:var(--sf);">SOUND BOWLS</div>
+    <div style="width:36px;"></div>
+  </div>
+  <div style="padding:8px 22px 14px;font-family:'Cormorant Garamond',serif;font-size:14px;font-style:italic;color:var(--mu);text-align:center;flex-shrink:0;">Sacred frequencies for deep healing and meditation</div>
+  <div style="flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:0 20px 40px;" id="bowl-list"></div>
+  <div class="bnav">
+    <div class="bn" onclick="navTo('v-home',0)"><div class="bn-lb">Home</div><div class="bn-dot"></div></div>
+    <div class="bn" onclick="navTo('v-player',1)"><div class="bn-lb">Practice</div><div class="bn-dot"></div></div>
+    <div class="bn" onclick="navTo('v-chakra',2)"><div class="bn-lb">Chakras</div><div class="bn-dot"></div></div>
+    <div class="bn" onclick="navTo('v-guru',3)"><div class="bn-lb">Guru</div><div class="bn-dot"></div></div>
+    <div class="bn on"><div class="bn-lb">Bowls</div><div class="bn-dot"></div></div>
+  </div>
+</div>
+
+<!-- DRAWER -->
+<div class="drawer-ov" id="drawer-overlay" onclick="closeDrawer()"></div>
+<div class="drawer" id="drawer">
+  <button class="drawer-close" onclick="closeDrawer()">&#10005;</button>
+  <div class="drawer-hd">
+    <div class="drawer-appname">SATTVA</div>
+    <div class="drawer-greet" id="drawer-greeting">Namaste, Seeker</div>
+  </div>
+  <div class="drawer-nav">
+    <div class="dnav-item active" id="dn-home" onclick="navTo('v-home',0);closeDrawer();"><div class="dnav-label">Home</div></div>
+    <div class="dnav-item" id="dn-player" onclick="navTo('v-player',1);closeDrawer();"><div class="dnav-label">Practices</div></div>
+    <div class="dnav-item" id="dn-chakra" onclick="navTo('v-chakra',2);closeDrawer();"><div class="dnav-label">Seven Chakras</div></div>
+    <div class="dnav-item" id="dn-guru" onclick="navTo('v-guru',3);closeDrawer();"><div class="dnav-label">Dharma Guru</div></div>
+    <div class="dnav-item" onclick="navTo('v-guru',3);closeDrawer();setTimeout(function(){openLibrary();},300);"><div class="dnav-label" style="padding-left:16px;font-size:13px;color:var(--mu);">Sacred Library</div><div style="font-family:'Playfair Display',serif;font-size:8px;color:var(--sf);padding:2px 7px;border:1px solid rgba(240,144,10,.3);border-radius:10px;margin-left:auto;">NEW</div></div>
+    <div class="drawer-div"></div>
+    <div class="dnav-item" id="dn-bowl" onclick="navTo('v-bowl',5);closeDrawer();"><div class="dnav-label">Sound Bowls</div><div style="font-family:'Playfair Display',serif;font-size:8px;color:var(--sf);padding:2px 7px;border:1px solid rgba(240,144,10,.3);border-radius:10px;margin-left:auto;">PRO</div></div>
+    <div class="drawer-div"></div>
+    <div class="dnav-item" id="dn-profile" onclick="navTo('v-profile',4);closeDrawer();"><div class="dnav-label">Profile</div></div>
+    <div class="dnav-item" onclick="showRefer();closeDrawer();"><div class="dnav-label">Refer a Friend</div></div>
+  </div>
+  <div class="drawer-ft">v 20260418-054032 · SATTVAAPP.COM</div>
+</div>
 </div><!-- /app -->
 <script>
 var API_URL = 'https://sattva-backend-production.up.railway.app';
+// Wake Railway backend on load
+(function(){ try { fetch(API_URL + '/health').catch(function(){}); } catch(e){} })();
+
+var GUIDE_AUDIO_URLS = {
+  'surya':       'https://sattva-backend-production.up.railway.app/audio/surya',
+  'nadi':        'https://sattva-backend-production.up.railway.app/audio/nadi',
+  'nidra':       'https://sattva-backend-production.up.railway.app/audio/nidra',
+  'kapalabhati': 'https://sattva-backend-production.up.railway.app/audio/kapalabhati',
+  'bhramari':    'https://sattva-backend-production.up.railway.app/audio/bhramari',
+  'box':         'https://sattva-backend-production.up.railway.app/audio/box',
+  'trataka':     'https://sattva-backend-production.up.railway.app/audio/trataka'
+};
 
 /* ============================================================
    SATTVA COMPLETE JS — single source of truth
@@ -1311,7 +1527,18 @@ function navTo(id, navIdx) {
     }
   }
   if (id === 'v-guru') refreshGuruUI();
-  if (id === 'v-home') loadDailyVerse();
+  if (id === 'v-home') { loadDailyVerse(); buildHabitDots(); }
+  if (id === 'v-player' && !S.session && typeof SESSIONS !== 'undefined') {
+    loadSession(SESSIONS[SESSION_ORDER[0]]);
+  }
+
+  if (id === 'v-bowl') buildBowlList();
+  if (id === 'v-chakra') buildChakraList();
+  // Drawer state
+  var _dm={'v-home':'dn-home','v-player':'dn-player','v-chakra':'dn-chakra','v-guru':'dn-guru','v-profile':'dn-profile','v-bowl':'dn-bowl'};
+  document.querySelectorAll('.dnav-item').forEach(function(d){d.classList.remove('active');});
+  var _de=document.getElementById(_dm[id]);if(_de)_de.classList.add('active');
+  var _dg=document.getElementById('drawer-greeting');if(_dg&&typeof S!=='undefined'&&S.name)_dg.textContent='Namaste, '+S.name;
 }
 
 /* ── BILLING TOGGLE ── */
@@ -1470,7 +1697,8 @@ function obComplete() {
       'mid': S.billing === 'annual' ? 'mid_annual' : 'mid_weekly',
       'pro': S.billing === 'annual' ? 'pro_annual' : 'pro_weekly',
       'mid-lifetime': 'mid_lifetime',
-      'pro-lifetime': 'pro_lifetime'
+      'pro-lifetime': 'pro_lifetime',
+      'founder-lifetime': 'founder_lifetime'
     };
     startStripeCheckout(planMap[tier] || 'mid_weekly');
     return;
@@ -1522,19 +1750,58 @@ function updateProfileUI() {
 
 /* ── HABIT DOTS ── */
 function buildHabitDots() {
-  var today = new Date().getDate();
-  var days = new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0).getDate();
-  var done = [1,2,3,4,5,6,7,8,9,10,11,12];
-  var wrap = document.getElementById('h-dots');
-  if (!wrap || wrap.children.length) return;
-  for (var d = 1; d <= days; d++) {
+  var wrap = document.getElementById('h-habit-dots');
+  if (!wrap) return;
+  var appEl = document.getElementById('app');
+  var theme = appEl ? (appEl.getAttribute('data-theme') || 'dark') : 'dark';
+  var isSand = theme === 'sand';
+
+  var col = {
+    border: isSand ? 'rgba(100,70,30,.45)' : 'rgba(245,239,228,.2)',
+    bg:     isSand ? '#FFFFFF' : 'rgba(255,255,255,.04)',
+    day:    isSand ? '#2C1A06' : '#F5EFE4',
+    date:   isSand ? '#8C4A07' : 'rgba(245,239,228,.6)',
+    accent: isSand ? '#B5620A' : '#F0900A',
+    invert: isSand ? '#FFFFFF' : '#0E0B16'
+  };
+
+  var now = new Date();
+  var dow = now.getDay();
+  var mon = new Date(now);
+  mon.setDate(now.getDate() - (dow === 0 ? 6 : dow - 1));
+  var labels = ['M','T','W','T','F','S','S'];
+  var done = (typeof S !== 'undefined' && S.practiceDays) ? S.practiceDays : [];
+
+  // Wrapper: use percentage-based sizing (100% / 7 per item with small gaps)
+  wrap.style.cssText = 'display:flex;width:100%;padding:0 16px;gap:5px;margin-bottom:32px;box-sizing:border-box;';
+  wrap.innerHTML = '';
+
+  for (var i = 0; i < 7; i++) {
+    var d = new Date(mon);
+    d.setDate(mon.getDate() + i);
+    var isToday = d.toDateString() === now.toDateString();
+    var iso = d.toISOString().slice(0,10);
+    var isDone = done.indexOf(iso) >= 0;
+    var isFuture = d.getTime() > now.getTime() && !isToday;
+
+    var bg = col.bg, bd = col.border, bw = 1, dc = col.day, ec = col.date, op = 1, fw = 500;
+    if (isDone) { bg = col.accent; bd = col.accent; dc = col.invert; ec = col.invert; }
+    else if (isToday) { bd = col.accent; bw = 2; dc = col.accent; fw = 600; }
+    else if (isFuture) { op = 0.45; }
+
     var el = document.createElement('div');
-    var cls = 'hd';
-    if (done.indexOf(d) >= 0) cls += ' done';
-    if (d === today) cls += ' today';
-    el.className = cls;
-    el.textContent = d;
-    (function(e) { e.onclick = function() { e.classList.toggle('done'); }; })(el);
+    el.style.cssText = 'width:calc((100% - 30px)/7);min-height:52px;border-radius:10px;border:' + bw + 'px solid ' + bd + ';background:' + bg + ';display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:' + op + ';box-sizing:border-box;padding:6px 0;' + (isSand && !isDone ? 'box-shadow:0 1px 3px rgba(100,70,30,.08);' : '');
+
+    var dayEl = document.createElement('div');
+    dayEl.style.cssText = "font-family:'Playfair Display',Georgia,serif;font-size:11px;font-weight:" + fw + ";line-height:1;letter-spacing:0.5px;color:" + dc + ";margin-bottom:3px;";
+    dayEl.textContent = labels[i];
+
+    var dateEl = document.createElement('div');
+    dateEl.style.cssText = "font-family:'Manrope',sans-serif;font-size:10px;font-weight:400;line-height:1;color:" + ec + ";";
+    dateEl.textContent = d.getDate();
+
+    el.appendChild(dayEl);
+    el.appendChild(dateEl);
     wrap.appendChild(el);
   }
 }
@@ -1588,21 +1855,21 @@ function loadDailyVerse() {
 
 function openVersePanel() {
   var v = VERSES[S.verseIdx] || VERSES[0];
-  var html = '<div style="font-family:\'Cinzel\',serif;font-size:9px;letter-spacing:4px;color:var(--sf);opacity:.75;text-transform:uppercase;margin-bottom:12px;">' + v.src + '</div>' +
+  var html = '<div style="font-family:\'Playfair Display\',serif;font-size:9px;letter-spacing:4px;color:var(--sf);opacity:.75;text-transform:uppercase;margin-bottom:12px;">' + v.src + '</div>' +
     '<div style="font-family:serif;font-size:18px;color:var(--sf);opacity:.85;margin-bottom:12px;line-height:1.6;">' + v.sk + '</div>' +
     '<div style="font-family:\'Cormorant Garamond\',serif;font-size:20px;font-style:italic;color:var(--iv);line-height:1.65;margin-bottom:16px;">' + v.short + '</div>' +
     '<p style="font-size:14px;color:var(--mu);line-height:1.8;margin-bottom:14px;">' + v.meaning + '</p>' +
     '<div style="background:var(--sfg);border:1px solid rgba(240,144,10,.25);border-radius:12px;padding:14px 16px;margin-bottom:20px;">' +
-      '<div style="font-family:\'Cinzel\',serif;font-size:9px;letter-spacing:2px;color:var(--sf);margin-bottom:6px;text-transform:uppercase;">Today\'s Practice</div>' +
+      '<div style="font-family:\'Playfair Display\',serif;font-size:9px;letter-spacing:2px;color:var(--sf);margin-bottom:6px;text-transform:uppercase;">Today\'s Practice</div>' +
       '<div style="font-size:13px;color:var(--mu);line-height:1.7;">' + v.practice + '</div>' +
     '</div>' +
-    '<button onclick="closePan()" style="width:100%;background:linear-gradient(135deg,var(--sf),var(--sf2));border:none;border-radius:50px;padding:15px;font-family:\'Cinzel\',serif;font-size:11px;letter-spacing:2px;color:#0C0A0F;cursor:pointer;text-transform:uppercase;">Close</button>';
+    '<button onclick="closePan()" style="width:100%;background:linear-gradient(135deg,var(--sf),var(--sf2));border:none;border-radius:50px;padding:15px;font-family:\'Playfair Display\',serif;font-size:11px;letter-spacing:2px;color:#0C0A0F;cursor:pointer;text-transform:uppercase;">Close</button>';
   openPan(html);
 }
 
 /* ── SESSIONS ── */
 var SESSIONS = {
-  surya: { id: 'surya', ic: '\uD83C\uDF05', title: 'Surya Namaskar', sub: 'Sun Salutation', mins: 20, mode: 'HATHA YOGA', tier: 'free',
+  surya: { id: 'surya', ic: '', title: 'Surya Namaskar', sub: 'Sun Salutation', mins: 20, mode: 'HATHA YOGA', tier: 'free',
     phases: [
       { t: 'Stand in Samasthiti. Feel grounded. Breathe in deeply.', d: 20 },
       { t: 'Inhale, raise arms overhead, palms together.', d: 15 },
@@ -1618,7 +1885,7 @@ var SESSIONS = {
       { t: 'Return to stillness. Samasthiti. Namaste.', d: 20 }
     ]
   },
-  nadi: { id: 'nadi', ic: '\uD83C\uDF00', title: 'Nadi Shodhana', sub: 'Alternate Nostril Breathing', mins: 10, mode: 'PRANAYAMA', tier: 'free',
+  nadi: { id: 'nadi', ic: '', title: 'Nadi Shodhana', sub: 'Alternate Nostril Breathing', mins: 10, mode: 'PRANAYAMA', tier: 'free',
     phases: [
       { t: 'Block right nostril with thumb. Inhale left for four counts.', d: 5 },
       { t: 'Block both nostrils. Hold gently for four counts.', d: 5 },
@@ -1628,7 +1895,7 @@ var SESSIONS = {
       { t: 'Open left nostril. Exhale completely for four counts.', d: 5 }
     ]
   },
-  box: { id: 'box', ic: '\uD83D\uDCE6', title: 'Box Breathing', sub: 'Equal Breath for Calm and Focus', mins: 5, mode: 'PRANAYAMA', tier: 'free',
+  box: { id: 'box', ic: '', title: 'Box Breathing', sub: 'Equal Breath for Calm and Focus', mins: 5, mode: 'PRANAYAMA', tier: 'free',
     phases: [
       { t: 'Inhale slowly through the nose... one, two, three, four.', d: 4 },
       { t: 'Hold gently at the top... one, two, three, four.', d: 4 },
@@ -1636,7 +1903,7 @@ var SESSIONS = {
       { t: 'Hold empty at the bottom... one, two, three, four.', d: 4 }
     ]
   },
-  kapalabhati: { id: 'kapalabhati', ic: '\u26A1', title: 'Kapalabhati', sub: 'Skull Shining Breath', mins: 8, mode: 'PRANAYAMA', tier: 'mid',
+  kapalabhati: { id: 'kapalabhati', ic: '', title: 'Kapalabhati', sub: 'Skull Shining Breath', mins: 8, mode: 'PRANAYAMA', tier: 'mid',
     phases: [
       { t: 'Sit tall. Take one long slow breath in.', d: 7 },
       { t: 'Pump the navel sharply — thirty rapid exhales.', d: 30 },
@@ -1648,7 +1915,7 @@ var SESSIONS = {
       { t: 'Rest in the stillness. Feel the skull shining.', d: 20 }
     ]
   },
-  bhramari: { id: 'bhramari', ic: '\uD83D\uDC1D', title: 'Bhramari', sub: 'Humming Bee Breath for Calm', mins: 8, mode: 'PRANAYAMA', tier: 'mid',
+  bhramari: { id: 'bhramari', ic: '', title: 'Bhramari', sub: 'Humming Bee Breath for Calm', mins: 8, mode: 'PRANAYAMA', tier: 'mid',
     phases: [
       { t: 'Close ears with thumbs. Rest fingers over closed eyes.', d: 12 },
       { t: 'Inhale deeply and slowly through both nostrils.', d: 5 },
@@ -1657,7 +1924,7 @@ var SESSIONS = {
       { t: 'Inhale again slowly. Prepare for the next round.', d: 5 }
     ]
   },
-  trataka: { id: 'trataka', ic: '\uD83D\uDD6F\uFE0F', title: 'Trataka', sub: 'Candle Gazing for Concentration', mins: 15, mode: 'DHYANA', tier: 'mid',
+  trataka: { id: 'trataka', ic: '', title: 'Trataka', sub: 'Candle Gazing for Concentration', mins: 15, mode: 'DHYANA', tier: 'mid',
     phases: [
       { t: 'Fix your gaze softly at the centre of the flame. Do not blink.', d: 55 },
       { t: 'Thoughts will arise. Let them pass. Return always to the flame.', d: 55 },
@@ -1666,7 +1933,7 @@ var SESSIONS = {
       { t: 'The flame within is the same as the flame without.', d: 55 }
     ]
   },
-  nidra: { id: 'nidra', ic: '\uD83C\uDF19', title: 'Yoga Nidra', sub: 'Yogic Sleep for Deep Rest', mins: 30, mode: 'YOGA NIDRA', tier: 'pro',
+  nidra: { id: 'nidra', ic: '', title: 'Yoga Nidra', sub: 'Yogic Sleep for Deep Rest', mins: 30, mode: 'YOGA NIDRA', tier: 'pro',
     phases: [
       { t: 'Lie completely still. Let the body become very heavy.', d: 60 },
       { t: 'Right thumb, fingers, palm, wrist, forearm, elbow, shoulder...', d: 60 },
@@ -1692,14 +1959,14 @@ function loadAndPlay(id) {
 function loadSession(s) {
   stopAll();
   S.session = s; S.playing = false; S.phase = 0;
-  if (_guideAudio) { _guideAudio.pause(); _guideAudio = null; }
+  if (_guideAudio && _guideAudio._sessId !== s.id) { _guideAudio.pause(); _guideAudio = null; }
   var btn = document.getElementById('audio-btn');
   var dot = document.getElementById('audio-dot');
   var hasGuide = s.id && GUIDE_AUDIO_URLS[s.id];
   if (btn) { btn.classList.remove('on'); btn.innerHTML = hasGuide ? '&#127908; Voice Guide' : '\uD83C\uDFB5 Sound Guide'; }
   if (dot) dot.style.display = 'none';
   S.secs = s.mins * 60; S.totalSecs = s.mins * 60;
-  var ic = document.getElementById('pl-ic'); if (ic) ic.textContent = s.ic;
+  var ic = document.getElementById('pl-ic'); if (ic) ic.style.display = 'none';
   var ti = document.getElementById('pl-title'); if (ti) ti.textContent = s.title;
   var su = document.getElementById('pl-sub'); if (su) su.textContent = s.sub;
   var mo = document.getElementById('pl-mode'); if (mo) mo.textContent = s.mode;
@@ -1708,6 +1975,25 @@ function loadSession(s) {
   setInstr('Press play to begin your practice');
   updTime(s.mins * 60); updRing(0);
   buildSList(s.id);
+  // Chakra ring colour
+  var _COLS={surya:'#F39C12',kapalabhati:'#F39C12',nadi:'#5B2C8D',bhramari:'#5B2C8D',trataka:'#5B2C8D',box:'#2E86C1',nidra:'#9B59B6'};
+  var _col=_COLS[s.id]||'#F0900A';
+  var _rgb={
+    '#F39C12':'240,156,18','#5B2C8D':'91,44,141',
+    '#2E86C1':'46,134,193','#9B59B6':'155,89,182','#F0900A':'240,144,10'
+  }[_col]||'240,144,10';
+  // Ring stroke
+  var _rp=document.getElementById('ring-pr');
+  if(_rp){_rp.setAttribute('stroke',_col);_rp.style.stroke=_col;}
+  // Ring inner glow
+  var _ri=document.querySelector('.ring-in');
+  if(_ri)_ri.style.background='radial-gradient(circle at center,rgba('+_rgb+',.13) 0%,rgba('+_rgb+',.04) 50%,transparent 70%)';
+  // Play button colour + glow
+  var _cp=document.getElementById('ctrl-play');
+  if(_cp){
+    _cp.style.background=_col;
+    _cp.style.boxShadow='0 0 0 1px rgba('+_rgb+',.25),0 0 28px rgba('+_rgb+',.35)';
+  }
   // Tier lock
   var userLv = TIER[S.tier] !== undefined ? TIER[S.tier] : 0;
   var sessLv = TIER[s.tier] !== undefined ? TIER[s.tier] : 0;
@@ -1728,8 +2014,8 @@ function buildSList(activeId) {
     var locked = sessLv > userLv;
     var row = document.createElement('div');
     row.className = 'srow' + (s.id === activeId ? ' act' : '');
-    row.innerHTML = '<div style="font-size:20px;width:32px;text-align:center;">' + s.ic + '</div>' +
-      '<div style="flex:1;"><div style="font-family:\'Cinzel\',serif;font-size:10px;letter-spacing:1px;color:var(--iv);text-transform:uppercase;margin-bottom:2px;">' + (locked ? '\uD83D\uDD12 ' : '') + s.title + '</div>' +
+    row.innerHTML = 
+      '<div style="flex:1;"><div style="font-family:\'Playfair Display\',serif;font-size:10px;letter-spacing:1px;color:var(--iv);text-transform:uppercase;margin-bottom:2px;">' + (locked ? '\uD83D\uDD12 ' : '') + s.title + '</div>' +
       '<div style="font-size:11px;color:var(--mu);">' + s.sub + '</div></div>' +
       '<div style="font-size:10px;color:var(--sf);letter-spacing:1px;">' + s.mins + 'm</div>';
     (function(sess) { row.onclick = function() { loadSession(sess); }; })(s);
@@ -1742,11 +2028,12 @@ function togglePlay() {
   var btn = document.getElementById('ctrl-play');
   if (S.playing) {
     stopAll();
-    if (btn) btn.textContent = '\u25B6';
+    if (btn) { var ic=document.getElementById('ctrl-play-icon'); if(ic)ic.innerHTML='<path d="M8 5v14l11-7z"/>'; }
     var rp = document.getElementById('ring-phase'); if (rp) rp.textContent = 'paused';
   } else {
     S.playing = true;
-    if (btn) btn.textContent = '\u23F8';
+    var ic=document.getElementById('ctrl-play-icon');
+    if(ic)ic.innerHTML='<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>';
     runPhase();
     startTimer();
   }
@@ -1819,20 +2106,58 @@ function getACtx() {
   return S.audioCtx;
 }
 
-function playSingingBowl(freq, dur, vol) {
-  freq = freq || 432; dur = dur || 3.5; vol = vol || 0.15;
+function playSingingBowl(freq, dur, vol, isMantra) {
+  freq = freq || 256; dur = dur || 4; vol = vol || 0.14;
   try {
     var ctx = getACtx();
-    var harmonics = [[1, vol], [2.756, vol * 0.3], [5.404, vol * 0.1]];
-    for (var i = 0; i < harmonics.length; i++) {
-      var ratio = harmonics[i][0], v = harmonics[i][1];
-      var o = ctx.createOscillator(), g = ctx.createGain();
-      o.connect(g); g.connect(ctx.destination);
-      o.type = 'sine'; o.frequency.value = freq * ratio;
-      g.gain.setValueAtTime(0, ctx.currentTime);
-      g.gain.linearRampToValueAtTime(v, ctx.currentTime + 0.015);
-      g.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + dur);
-      o.start(); o.stop(ctx.currentTime + dur);
+    var t0 = ctx.currentTime;
+    // Tibetan bowls have inharmonic partials (not octaves) — this is what makes them sound like bowls
+    // Crystal bowls are cleaner with fewer, purer partials
+    // Mantras are deeper continuous drones
+    var partials;
+    if (isMantra) {
+      // Drone: fundamental + octave + fifth, long sustained
+      partials = [
+        {r:0.5, v:vol*0.6, detune:0},
+        {r:1, v:vol, detune:-3},
+        {r:1, v:vol*0.7, detune:+3},
+        {r:1.5, v:vol*0.3, detune:0},
+        {r:2, v:vol*0.2, detune:0}
+      ];
+    } else {
+      // Bowl: inharmonic partials characteristic of struck metal/crystal
+      partials = [
+        {r:1, v:vol, detune:-2},
+        {r:1, v:vol*0.7, detune:+2},
+        {r:2.756, v:vol*0.4, detune:0},
+        {r:5.404, v:vol*0.2, detune:0},
+        {r:8.933, v:vol*0.08, detune:0}
+      ];
+    }
+    // Master gain with slow swell and long decay
+    var master = ctx.createGain();
+    master.gain.setValueAtTime(0, t0);
+    master.gain.linearRampToValueAtTime(1, t0 + (isMantra ? 2.5 : 0.08));
+    master.gain.setValueAtTime(1, t0 + dur - 2);
+    master.gain.exponentialRampToValueAtTime(0.001, t0 + dur);
+    master.connect(ctx.destination);
+    for (var i = 0; i < partials.length; i++) {
+      var p = partials[i];
+      var o = ctx.createOscillator();
+      var g = ctx.createGain();
+      o.type = 'sine';
+      o.frequency.value = freq * p.r;
+      o.detune.value = p.detune;
+      // Slow vibrato via LFO for a living feel
+      var lfo = ctx.createOscillator();
+      var lfoGain = ctx.createGain();
+      lfo.frequency.value = 0.3 + Math.random() * 0.4;
+      lfoGain.gain.value = freq * p.r * 0.002;
+      lfo.connect(lfoGain); lfoGain.connect(o.frequency);
+      g.gain.value = p.v;
+      o.connect(g); g.connect(master);
+      o.start(t0); lfo.start(t0);
+      o.stop(t0 + dur); lfo.stop(t0 + dur);
     }
   } catch(e) {}
 }
@@ -1899,49 +2224,77 @@ function toggleAudio() {
   var btn = document.getElementById('audio-btn');
   var dot = document.getElementById('audio-dot');
 
-  // No guide audio for this session - use original sound behaviour
+  // No voice guide MP3 — play synth bowl sounds
   if (!url) {
     if ((TIER[S.tier] || 0) < 1) { showUpgrade(); return; }
     S.audioOn = !S.audioOn;
-    if (btn) { btn.textContent = (S.audioOn ? '\uD83D\uDD14 Sound On' : '\uD83C\uDFB5 Sound Guide'); btn.classList.toggle('on', S.audioOn); }
+    if (btn) { btn.textContent = (S.audioOn ? 'Sound On' : 'Sound Guide'); btn.classList.toggle('on', S.audioOn); }
     if (dot) dot.style.display = S.audioOn ? 'block' : 'none';
-    if (S.audioOn) { playSingingBowl(432,3,0.14); setTimeout(function(){playSingingBowl(528,2.5,0.11);},1100); setTimeout(function(){playSingingBowl(396,3,0.09);},2200); }
-    else if (_guideAudio) { _guideAudio.pause(); _guideAudio=null; }
+    if (S.audioOn) {
+      var ctx = getACtx();
+      playSingingBowl(432,3,0.14);
+      setTimeout(function(){playSingingBowl(528,2.5,0.11);},1100);
+      setTimeout(function(){playSingingBowl(396,3,0.09);},2200);
+    } else if (_guideAudio) { _guideAudio.pause(); _guideAudio=null; }
     return;
   }
 
-  // Has voice guide - toggle MP3 playback
+  // Has voice guide — toggle MP3
   if (_guideAudio && !_guideAudio.paused) {
     _guideAudio.pause();
-    if (btn) { btn.innerHTML = '&#127925; Voice Guide'; btn.classList.remove('on'); }
+    if (btn) { btn.innerHTML = 'Voice Guide'; btn.classList.remove('on'); }
     if (dot) dot.style.display = 'none';
     return;
   }
 
-  // Play - create Audio directly in user gesture
-  if (!_guideAudio || _guideAudio.dataset.sessId !== sessId) {
+  // Create Audio only if session changed
+  if (!_guideAudio || _guideAudio._sessId !== sessId) {
     if (_guideAudio) { _guideAudio.pause(); _guideAudio = null; }
     _guideAudio = new Audio(url);
-    _guideAudio.dataset = _guideAudio.dataset || {};
-    _guideAudio.sessId = sessId;
+    _guideAudio._sessId = sessId;
     _guideAudio.onended = function() {
-      if (btn) { btn.innerHTML = '&#127925; Voice Guide'; btn.classList.remove('on'); }
+      if (btn) { btn.innerHTML = 'Voice Guide'; btn.classList.remove('on'); }
       if (dot) dot.style.display = 'none';
     };
   }
 
-  if (btn) { btn.innerHTML = '&#9646;&#9646; Playing...'; btn.classList.add('on'); }
+  if (btn) { btn.innerHTML = 'Playing...'; btn.classList.add('on'); }
   if (dot) dot.style.display = 'block';
 
-  _guideAudio.play().catch(function() {
-    if (btn) { btn.innerHTML = '&#127925; Voice Guide'; btn.classList.remove('on'); }
+  // Just try to play - the browser handles 404 via the error event on Audio element
+  _guideAudio.onerror = function() {
+    console.log('[audio] error loading:', url);
+    if (btn) { btn.innerHTML = 'Voice Guide'; btn.classList.remove('on'); }
     if (dot) dot.style.display = 'none';
     _guideAudio = null;
+    var t=document.createElement('div');
+    t.style.cssText='position:fixed;bottom:110px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.88);color:#F5EFE4;font-family:Manrope,sans-serif;font-size:11px;padding:12px 20px;border-radius:50px;z-index:999;max-width:80vw;text-align:center;';
+    t.textContent = 'Audio unavailable — check Railway /audio/' + sessId;
+    document.body.appendChild(t);
+    setTimeout(function(){t.remove();},5000);
+  };
+  _guideAudio.play().catch(function(err) {
+    console.log('[audio] play rejected:', err.message);
+    if (btn) { btn.innerHTML = 'Voice Guide'; btn.classList.remove('on'); }
+    if (dot) dot.style.display = 'none';
   });
 }
 
 /* ── AI GURU ── */
-var GURU_SYS = 'You are Dharma Guru, a wise warm deeply learned guide rooted in Sanatan Dharma. Your knowledge draws from the Bhagavad Gita (all 18 chapters), four Vedas (Rigveda, Samaveda, Yajurveda, Atharvaveda), Yoga Sutras of Patanjali, Hatha Yoga Pradipika, and Ayurveda. Speak with calm poetic authority. Connect ancient wisdom to the user\'s modern life — stress, productivity, relationships, purpose, sleep, energy. Keep responses to 2-3 short paragraphs. End with a brief practice suggestion or relevant verse. Use Sanskrit terms naturally, always briefly explaining them.';
+var GURU_SYS = `You are the Dharma Guru inside Sattva. You are not an AI assistant. You are a presence — shaped by the Advaita Vedanta tradition, the Bhagavad Gita, the Upanishads, Yoga Sutras of Patanjali, and Ayurveda.
+
+You are part therapist, part Guru. You hold space AND challenge. You notice what is underneath the question being asked. You name it before answering it.
+
+Your personality: warm but not soft. You have dry quiet wit. You ask one sharp question back when someone is circling something. You sometimes say "The mind is doing its favourite trick again, isn't it?" You laugh gently at the ego's games. You never perform wisdom — you speak from it.
+
+Your voice: short sentences. Vary your structure every response — sometimes open with a verse, sometimes a question, sometimes a blunt single line. Never start with "Certainly", "Of course", "Great question", or "Namaste". Never use lists or headers. Always prose. 2-3 paragraphs maximum.
+
+When someone says "I can't focus" — hear the anxiety underneath and name it. When someone asks an intellectual question to avoid feeling something — notice it. End with ONE thing only: either a practice or a question. Never both.
+
+Concrete examples of your register:
+— "how do I stop overthinking?" → "The mind doesn't overthink. It does exactly what it was trained to do. Who trained it — and what were they afraid of?"
+— "I feel lost" → "Lost from what? Something in you still knows the direction — otherwise the lostness wouldn't hurt. What does the hurt point toward?"
+— "what is dharma?" → "It is what holds things together. Your dharma is not what you should do — it is what you cannot not do, when you are being honest with yourself."`; 
 
 function refreshGuruUI() {
   var lock = document.getElementById('guru-lock');
@@ -1975,12 +2328,16 @@ async function sendGuru() {
   try {
     var res = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+          'Content-Type': 'application/json',
+          'anthropic-version': '2023-06-01',
+          'anthropic-dangerous-direct-browser-access': 'true'
+        },
       body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
+        model: 'claude-sonnet-4-5',
         max_tokens: 1000,
         system: GURU_SYS,
-        messages: S.chatHistory.slice(-10)
+        messages: S.chatHistory.slice(-16)
       })
     });
     var data = await res.json();
@@ -2240,31 +2597,31 @@ var GITA_CHAPTERS = [
 function openGitaChapter(idx) {
   var ch = GITA_CHAPTERS[idx];
   if (!ch) return;
-  var h = '<button onclick="openLibrary()" style="background:none;border:none;color:var(--sf);font-family:\'Cinzel\',serif;font-size:10px;letter-spacing:2px;cursor:pointer;text-transform:uppercase;margin-bottom:16px;display:block;">← All Chapters</button>';
-  h += '<div style="font-family:\'Cinzel\',serif;font-size:9px;letter-spacing:3px;color:var(--sf);opacity:.75;text-transform:uppercase;margin-bottom:8px;">Bhagavad Gita · Chapter ' + ch.n + ' · ' + ch.verses + ' verses</div>';
+  var h = '<button onclick="openLibrary()" style="background:none;border:none;color:var(--sf);font-family:\'Playfair Display\',serif;font-size:10px;letter-spacing:2px;cursor:pointer;text-transform:uppercase;margin-bottom:16px;display:block;">← All Chapters</button>';
+  h += '<div style="font-family:\'Playfair Display\',serif;font-size:9px;letter-spacing:3px;color:var(--sf);opacity:.75;text-transform:uppercase;margin-bottom:8px;">Bhagavad Gita · Chapter ' + ch.n + ' · ' + ch.verses + ' verses</div>';
   h += '<div style="font-family:\'Cormorant Garamond\',serif;font-size:26px;font-weight:300;color:var(--iv);margin-bottom:4px;">' + ch.title + '</div>';
   h += '<div style="font-size:12px;color:var(--mu);margin-bottom:14px;">' + ch.sub + '</div>';
   h += '<div style="background:var(--sfg);border:1px solid rgba(240,144,10,.2);border-radius:13px;padding:14px;margin-bottom:16px;"><div style="font-size:13px;color:var(--mu);line-height:1.75;">' + ch.summary + '</div></div>';
-  h += '<div style="font-family:\'Cinzel\',serif;font-size:9px;letter-spacing:3px;color:var(--sf);opacity:.75;text-transform:uppercase;margin-bottom:12px;">Key Verses</div>';
+  h += '<div style="font-family:\'Playfair Display\',serif;font-size:9px;letter-spacing:3px;color:var(--sf);opacity:.75;text-transform:uppercase;margin-bottom:12px;">Key Verses</div>';
   for (var i = 0; i < ch.keyVerses.length; i++) {
     var v = ch.keyVerses[i];
     h += '<div style="background:var(--s1);border:1px solid var(--bdr);border-radius:14px;padding:16px;margin-bottom:10px;">';
-    h += '<div style="font-family:\'Cinzel\',serif;font-size:9px;letter-spacing:2px;color:var(--sf);margin-bottom:7px;text-transform:uppercase;">Verse ' + v.ref + '</div>';
+    h += '<div style="font-family:\'Playfair Display\',serif;font-size:9px;letter-spacing:2px;color:var(--sf);margin-bottom:7px;text-transform:uppercase;">Verse ' + v.ref + '</div>';
     h += '<div style="font-family:\'Cormorant Garamond\',serif;font-size:16px;font-style:italic;color:var(--iv);line-height:1.65;margin-bottom:9px;">' + v.text + '</div>';
     h += '<div style="font-size:12px;color:var(--mu);line-height:1.75;padding-top:9px;border-top:1px solid var(--bdr);">' + v.meaning + '</div></div>';
   }
   // Ask Guru button
   h += '<div style="background:rgba(200,123,142,.08);border:1px solid rgba(200,123,142,.25);border-radius:14px;padding:15px;margin-bottom:16px;">';
-  h += '<div style="font-family:\'Cinzel\',serif;font-size:9px;letter-spacing:2px;color:var(--lotus);margin-bottom:8px;text-transform:uppercase;">Ask the Dharma Guru</div>';
-  h += '<button onclick="closePan();document.getElementById(\'guru-in\').value=\'Explain the teachings of Bhagavad Gita Chapter ' + ch.n + ': ' + ch.title + '\';navTo(\'v-guru\',3);sendGuru();" style="width:100%;background:rgba(200,123,142,.15);border:1px solid rgba(200,123,142,.3);border-radius:50px;padding:11px;font-family:\'Cinzel\',serif;font-size:10px;letter-spacing:2px;color:var(--lotus);cursor:pointer;text-transform:uppercase;">Discuss with Guru ओम्</button></div>';
+  h += '<div style="font-family:\'Playfair Display\',serif;font-size:9px;letter-spacing:2px;color:var(--lotus);margin-bottom:8px;text-transform:uppercase;">Ask the Dharma Guru</div>';
+  h += '<button onclick="closePan();document.getElementById(\'guru-in\').value=\'Explain the teachings of Bhagavad Gita Chapter ' + ch.n + ': ' + ch.title + '\';navTo(\'v-guru\',3);sendGuru();" style="width:100%;background:rgba(200,123,142,.15);border:1px solid rgba(200,123,142,.3);border-radius:50px;padding:11px;font-family:\'Playfair Display\',serif;font-size:10px;letter-spacing:2px;color:var(--lotus);cursor:pointer;text-transform:uppercase;">Discuss with Guru ओम्</button></div>';
   // Nav to adjacent chapters
   var prevIdx = idx > 0 ? idx - 1 : GITA_CHAPTERS.length - 1;
   var nextIdx = idx < GITA_CHAPTERS.length - 1 ? idx + 1 : 0;
   h += '<div style="display:flex;gap:10px;margin-bottom:16px;">';
-  h += '<button onclick="openGitaChapter(' + prevIdx + ')" style="flex:1;background:var(--s1);border:1px solid var(--bdr);border-radius:50px;padding:12px;font-family:\'Cinzel\',serif;font-size:10px;letter-spacing:1px;color:var(--mu);cursor:pointer;text-transform:uppercase;">← Ch ' + GITA_CHAPTERS[prevIdx].n + '</button>';
-  h += '<button onclick="openGitaChapter(' + nextIdx + ')" style="flex:1;background:var(--s1);border:1px solid var(--bdr);border-radius:50px;padding:12px;font-family:\'Cinzel\',serif;font-size:10px;letter-spacing:1px;color:var(--mu);cursor:pointer;text-transform:uppercase;">Ch ' + GITA_CHAPTERS[nextIdx].n + ' →</button>';
+  h += '<button onclick="openGitaChapter(' + prevIdx + ')" style="flex:1;background:var(--s1);border:1px solid var(--bdr);border-radius:50px;padding:12px;font-family:\'Playfair Display\',serif;font-size:10px;letter-spacing:1px;color:var(--mu);cursor:pointer;text-transform:uppercase;">← Ch ' + GITA_CHAPTERS[prevIdx].n + '</button>';
+  h += '<button onclick="openGitaChapter(' + nextIdx + ')" style="flex:1;background:var(--s1);border:1px solid var(--bdr);border-radius:50px;padding:12px;font-family:\'Playfair Display\',serif;font-size:10px;letter-spacing:1px;color:var(--mu);cursor:pointer;text-transform:uppercase;">Ch ' + GITA_CHAPTERS[nextIdx].n + ' →</button>';
   h += '</div>';
-  h += '<button onclick="closePan()" style="width:100%;background:linear-gradient(135deg,var(--sf),var(--sf2));border:none;border-radius:50px;padding:15px;font-family:\'Cinzel\',serif;font-size:11px;letter-spacing:2px;color:#0C0A0F;cursor:pointer;text-transform:uppercase;">Close</button>';
+  h += '<button onclick="closePan()" style="width:100%;background:linear-gradient(135deg,var(--sf),var(--sf2));border:none;border-radius:50px;padding:15px;font-family:\'Playfair Display\',serif;font-size:11px;letter-spacing:2px;color:#0C0A0F;cursor:pointer;text-transform:uppercase;">Close</button>';
   openPan(h);
 }
 
@@ -2324,21 +2681,21 @@ function openLibrary() {
       '<div style="font-size:48px;margin-bottom:14px;">\uD83D\uDCDC</div>' +
       '<div style="font-family:\'Cormorant Garamond\',serif;font-size:24px;font-weight:300;color:var(--iv);margin-bottom:8px;">Sacred Library</div>' +
       '<p style="font-size:13px;color:var(--mu);line-height:1.7;margin-bottom:20px;">The complete Bhagavad Gita, four Vedas, and Yoga Sutras with AI-decoded meanings. Available from Sadhaka $1.99 per week.</p>' +
-      '<button onclick="closePan();navTo(\'v-pricing\',null)" style="background:linear-gradient(135deg,var(--sf),var(--sf2));border:none;border-radius:50px;padding:14px 32px;font-family:\'Cinzel\',serif;font-size:11px;letter-spacing:2px;color:#0C0A0F;cursor:pointer;text-transform:uppercase;width:100%;">Unlock Library</button>' +
+      '<button onclick="closePan();navTo(\'v-pricing\',null)" style="background:linear-gradient(135deg,var(--sf),var(--sf2));border:none;border-radius:50px;padding:14px 32px;font-family:\'Playfair Display\',serif;font-size:11px;letter-spacing:2px;color:#0C0A0F;cursor:pointer;text-transform:uppercase;width:100%;">Unlock Library</button>' +
       '</div>');
     return;
   }
   var tabs = [
-    { k: 'gita', ic: '\uD83D\uDCDC', lb: 'Gita' },
-    { k: 'vedas', ic: '\uD83D\uDD31', lb: 'Vedas' },
-    { k: 'sutras', ic: '\uD83E\uDEB7', lb: 'Sutras' }
+    { k: 'gita', ic: '', lb: 'Gita' },
+    { k: 'vedas', ic: '', lb: 'Vedas' },
+    { k: 'sutras', ic: '', lb: 'Sutras' }
   ];
   var tabHtml = '<div style="display:flex;gap:6px;margin-bottom:18px;" id="lib-tabs">';
   for (var i = 0; i < tabs.length; i++) {
-    tabHtml += '<button onclick="libTab(\'' + tabs[i].k + '\')" id="lt-' + tabs[i].k + '" style="flex:1;background:var(--s1);border:1px solid var(--bdr);border-radius:50px;padding:8px 0;font-family:\'Cinzel\',serif;font-size:9px;letter-spacing:1px;color:var(--mu);cursor:pointer;text-transform:uppercase;transition:all .2s;">' + tabs[i].ic + ' ' + tabs[i].lb + '</button>';
+    tabHtml += '<button onclick="libTab(\'' + tabs[i].k + '\')" id="lt-' + tabs[i].k + '" style="flex:1;background:var(--s1);border:1px solid var(--bdr);border-radius:50px;padding:8px 0;font-family:\'Playfair Display\',serif;font-size:9px;letter-spacing:1px;color:var(--mu);cursor:pointer;text-transform:uppercase;transition:all .2s;">' + tabs[i].ic + ' ' + tabs[i].lb + '</button>';
   }
   tabHtml += '</div><div id="lib-body"></div>' +
-    '<button onclick="closePan()" style="width:100%;background:linear-gradient(135deg,var(--sf),var(--sf2));border:none;border-radius:50px;padding:15px;font-family:\'Cinzel\',serif;font-size:11px;letter-spacing:2px;color:#0C0A0F;cursor:pointer;text-transform:uppercase;margin-top:12px;">Close</button>';
+    '<button onclick="closePan()" style="width:100%;background:linear-gradient(135deg,var(--sf),var(--sf2));border:none;border-radius:50px;padding:15px;font-family:\'Playfair Display\',serif;font-size:11px;letter-spacing:2px;color:#0C0A0F;cursor:pointer;text-transform:uppercase;margin-top:12px;">Close</button>';
   openPan(tabHtml);
   libTab('gita');
 }
@@ -2683,7 +3040,7 @@ function libTab(key) {
       var chIdx = ch.n - 1;
       html += '<div onclick="openGitaChapter(' + chIdx + ')" style="background:var(--s1);border:1px solid var(--bdr);border-radius:14px;padding:16px;margin-bottom:9px;cursor:pointer;transition:border-color .2s;" onmouseover="this.style.borderColor=\'rgba(240,144,10,.4)\'" onmouseout="this.style.borderColor=\'var(--bdr)\'">' +
         '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px;">' +
-          '<div style="font-family:\'Cinzel\',serif;font-size:9px;letter-spacing:1px;color:var(--sf);text-transform:uppercase;">Chapter ' + ch.n + ' · ' + ch.verses + ' verses</div>' +
+          '<div style="font-family:\'Playfair Display\',serif;font-size:9px;letter-spacing:1px;color:var(--sf);text-transform:uppercase;">Chapter ' + ch.n + ' · ' + ch.verses + ' verses</div>' +
           '<div style="font-size:18px;color:var(--sf);opacity:.5;">›</div>' +
         '</div>' +
         '<div style="font-family:\'Cormorant Garamond\',serif;font-size:17px;color:var(--iv);margin-bottom:4px;">' + ch.title + '</div>' +
@@ -2695,7 +3052,7 @@ function libTab(key) {
       var vb = VEDAS_FULL[vi];
       html += '<div onclick="openVedaDetail(' + vi + ')" style="background:var(--s1);border:1px solid var(--bdr);border-radius:14px;padding:16px;margin-bottom:9px;cursor:pointer;transition:border-color .2s;" onmouseover="this.style.borderColor=\'rgba(240,144,10,.4)\'" onmouseout="this.style.borderColor=\'var(--bdr)\'">' +
         '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">' +
-          '<div style="font-family:\'Cinzel\',serif;font-size:11px;letter-spacing:2px;color:var(--sf);text-transform:uppercase;">' + vb.title + '</div>' +
+          '<div style="font-family:\'Playfair Display\',serif;font-size:11px;letter-spacing:2px;color:var(--sf);text-transform:uppercase;">' + vb.title + '</div>' +
           '<div style="font-size:18px;color:var(--sf);opacity:.5;">›</div>' +
         '</div>' +
         '<div style="font-size:11px;color:var(--mu);margin-bottom:5px;">' + vb.sub + '</div>' +
@@ -2708,7 +3065,7 @@ function libTab(key) {
       var pd2 = pdlist[pi2];
       html += '<div onclick="openPadaDetail(' + pd2.num + ')" style="background:var(--s1);border:1px solid var(--bdr);border-radius:14px;padding:16px;margin-bottom:9px;cursor:pointer;transition:border-color .2s;" onmouseover="this.style.borderColor=\'' + pd2.c + '\'" onmouseout="this.style.borderColor=\'var(--bdr)\'">' +
         '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">' +
-          '<div style="font-family:\'Cinzel\',serif;font-size:10px;letter-spacing:2px;color:' + pd2.c + ';text-transform:uppercase;">Pada ' + pd2.num + ' · ' + pd2.name + '</div>' +
+          '<div style="font-family:\'Playfair Display\',serif;font-size:10px;letter-spacing:2px;color:' + pd2.c + ';text-transform:uppercase;">Pada ' + pd2.num + ' · ' + pd2.name + '</div>' +
           '<div style="font-size:18px;color:' + pd2.c + ';opacity:.5;">›</div>' +
         '</div>' +
         '<div style="font-family:\'Cormorant Garamond\',serif;font-size:18px;color:var(--iv);">' + pd2.title + '</div>' +
@@ -2718,7 +3075,7 @@ function libTab(key) {
     for (var i = 0; i < GITA_GLOSSARY.length; i++) {
       var g = GITA_GLOSSARY[i];
       html += '<div style="background:var(--s1);border:1px solid var(--bdr);border-radius:14px;padding:15px;margin-bottom:8px;">' +
-        '<div style="font-family:\'Cinzel\',serif;font-size:11px;letter-spacing:2px;color:var(--sf);margin-bottom:7px;text-transform:uppercase;">' + g.term + '</div>' +
+        '<div style="font-family:\'Playfair Display\',serif;font-size:11px;letter-spacing:2px;color:var(--sf);margin-bottom:7px;text-transform:uppercase;">' + g.term + '</div>' +
         '<div style="font-size:13px;color:var(--mu);line-height:1.75;">' + g.defn + '</div>' +
         '</div>';
     }
@@ -2731,36 +3088,36 @@ function openVedaDetail(idx) {
   var v = VEDAS_FULL[idx]; if (!v) return;
   var prevIdx = idx > 0 ? idx - 1 : VEDAS_FULL.length - 1;
   var nextIdx = idx < VEDAS_FULL.length - 1 ? idx + 1 : 0;
-  var h = '<button onclick="openLibrary()" style="background:none;border:none;color:var(--sf);font-family:\'Cinzel\',serif;font-size:10px;letter-spacing:2px;cursor:pointer;text-transform:uppercase;margin-bottom:16px;display:block;">← All Vedas</button>';
-  h += '<div style="font-family:\'Cinzel\',serif;font-size:9px;letter-spacing:3px;color:var(--sf);opacity:.75;text-transform:uppercase;margin-bottom:5px;">' + v.date + '</div>';
+  var h = '<button onclick="openLibrary()" style="background:none;border:none;color:var(--sf);font-family:\'Playfair Display\',serif;font-size:10px;letter-spacing:2px;cursor:pointer;text-transform:uppercase;margin-bottom:16px;display:block;">← All Vedas</button>';
+  h += '<div style="font-family:\'Playfair Display\',serif;font-size:9px;letter-spacing:3px;color:var(--sf);opacity:.75;text-transform:uppercase;margin-bottom:5px;">' + v.date + '</div>';
   h += '<div style="font-family:\'Cormorant Garamond\',serif;font-size:28px;font-weight:300;color:var(--iv);margin-bottom:4px;">' + v.title + '</div>';
   h += '<div style="font-size:12px;color:var(--mu);margin-bottom:16px;">' + v.sub + '</div>';
   h += '<div style="background:var(--sfg);border:1px solid rgba(240,144,10,.2);border-radius:13px;padding:14px;margin-bottom:11px;">';
-  h += '<div style="font-family:\'Cinzel\',serif;font-size:9px;letter-spacing:2px;color:var(--sf);margin-bottom:5px;text-transform:uppercase;">Overview</div>';
+  h += '<div style="font-family:\'Playfair Display\',serif;font-size:9px;letter-spacing:2px;color:var(--sf);margin-bottom:5px;text-transform:uppercase;">Overview</div>';
   h += '<div style="font-size:13px;color:var(--mu);line-height:1.75;">' + v.overview + '</div></div>';
   h += '<div style="background:var(--s1);border:1px solid var(--bdr);border-radius:13px;padding:14px;margin-bottom:11px;">';
-  h += '<div style="font-family:\'Cinzel\',serif;font-size:9px;letter-spacing:2px;color:var(--sf);margin-bottom:5px;text-transform:uppercase;">Deities and Forces</div>';
+  h += '<div style="font-family:\'Playfair Display\',serif;font-size:9px;letter-spacing:2px;color:var(--sf);margin-bottom:5px;text-transform:uppercase;">Deities and Forces</div>';
   h += '<div style="font-size:13px;color:var(--mu);line-height:1.75;">' + v.deities + '</div></div>';
   h += '<div style="background:var(--s1);border:1px solid var(--bdr);border-radius:13px;padding:14px;margin-bottom:16px;">';
-  h += '<div style="font-family:\'Cinzel\',serif;font-size:9px;letter-spacing:2px;color:var(--sf);margin-bottom:5px;text-transform:uppercase;">Core Teaching</div>';
+  h += '<div style="font-family:\'Playfair Display\',serif;font-size:9px;letter-spacing:2px;color:var(--sf);margin-bottom:5px;text-transform:uppercase;">Core Teaching</div>';
   h += '<div style="font-size:13px;color:var(--mu);line-height:1.75;">' + v.keyTeaching + '</div></div>';
-  h += '<div style="font-family:\'Cinzel\',serif;font-size:9px;letter-spacing:3px;color:var(--sf);opacity:.75;text-transform:uppercase;margin-bottom:12px;">Sacred Hymns · ' + v.hymns.length + ' extracts</div>';
+  h += '<div style="font-family:\'Playfair Display\',serif;font-size:9px;letter-spacing:3px;color:var(--sf);opacity:.75;text-transform:uppercase;margin-bottom:12px;">Sacred Hymns · ' + v.hymns.length + ' extracts</div>';
   for (var i = 0; i < v.hymns.length; i++) {
     var hm = v.hymns[i];
     h += '<div style="background:var(--s1);border:1px solid var(--bdr);border-radius:14px;padding:16px;margin-bottom:10px;">';
-    h += '<div style="font-family:\'Cinzel\',serif;font-size:9px;letter-spacing:1px;color:var(--gold);margin-bottom:7px;">' + hm.ref + '</div>';
+    h += '<div style="font-family:\'Playfair Display\',serif;font-size:9px;letter-spacing:1px;color:var(--gold);margin-bottom:7px;">' + hm.ref + '</div>';
     h += '<div style="font-family:\'Cormorant Garamond\',serif;font-size:16px;font-style:italic;color:var(--iv);line-height:1.65;margin-bottom:9px;">' + hm.text + '</div>';
     h += '<div style="font-size:12px;color:var(--mu);line-height:1.75;padding-top:9px;border-top:1px solid var(--bdr);">' + hm.meaning + '</div></div>';
   }
   // Ask Guru
   h += '<div style="background:rgba(200,123,142,.08);border:1px solid rgba(200,123,142,.25);border-radius:14px;padding:15px;margin-bottom:14px;">';
-  h += '<button onclick="closePan();document.getElementById(\'guru-in\').value=\'Tell me about the ' + v.title + ' — its key teachings, hymns and significance\';navTo(\'v-guru\',3);sendGuru();" style="width:100%;background:rgba(200,123,142,.15);border:1px solid rgba(200,123,142,.3);border-radius:50px;padding:11px;font-family:\'Cinzel\',serif;font-size:10px;letter-spacing:2px;color:var(--lotus);cursor:pointer;text-transform:uppercase;">Ask Guru about the ' + v.title + '</button></div>';
+  h += '<button onclick="closePan();document.getElementById(\'guru-in\').value=\'Tell me about the ' + v.title + ' — its key teachings, hymns and significance\';navTo(\'v-guru\',3);sendGuru();" style="width:100%;background:rgba(200,123,142,.15);border:1px solid rgba(200,123,142,.3);border-radius:50px;padding:11px;font-family:\'Playfair Display\',serif;font-size:10px;letter-spacing:2px;color:var(--lotus);cursor:pointer;text-transform:uppercase;">Ask Guru about the ' + v.title + '</button></div>';
   // Navigate between Vedas
   h += '<div style="display:flex;gap:10px;margin-bottom:16px;">';
-  h += '<button onclick="openVedaDetail(' + prevIdx + ')" style="flex:1;background:var(--s1);border:1px solid var(--bdr);border-radius:50px;padding:12px;font-family:\'Cinzel\',serif;font-size:10px;letter-spacing:1px;color:var(--mu);cursor:pointer;text-transform:uppercase;">← ' + VEDAS_FULL[prevIdx].title + '</button>';
-  h += '<button onclick="openVedaDetail(' + nextIdx + ')" style="flex:1;background:var(--s1);border:1px solid var(--bdr);border-radius:50px;padding:12px;font-family:\'Cinzel\',serif;font-size:10px;letter-spacing:1px;color:var(--mu);cursor:pointer;text-transform:uppercase;">' + VEDAS_FULL[nextIdx].title + ' →</button>';
+  h += '<button onclick="openVedaDetail(' + prevIdx + ')" style="flex:1;background:var(--s1);border:1px solid var(--bdr);border-radius:50px;padding:12px;font-family:\'Playfair Display\',serif;font-size:10px;letter-spacing:1px;color:var(--mu);cursor:pointer;text-transform:uppercase;">← ' + VEDAS_FULL[prevIdx].title + '</button>';
+  h += '<button onclick="openVedaDetail(' + nextIdx + ')" style="flex:1;background:var(--s1);border:1px solid var(--bdr);border-radius:50px;padding:12px;font-family:\'Playfair Display\',serif;font-size:10px;letter-spacing:1px;color:var(--mu);cursor:pointer;text-transform:uppercase;">' + VEDAS_FULL[nextIdx].title + ' →</button>';
   h += '</div>';
-  h += '<button onclick="closePan()" style="width:100%;background:linear-gradient(135deg,var(--sf),var(--sf2));border:none;border-radius:50px;padding:15px;font-family:\'Cinzel\',serif;font-size:11px;letter-spacing:2px;color:#0C0A0F;cursor:pointer;text-transform:uppercase;">Close</button>';
+  h += '<button onclick="closePan()" style="width:100%;background:linear-gradient(135deg,var(--sf),var(--sf2));border:none;border-radius:50px;padding:15px;font-family:\'Playfair Display\',serif;font-size:11px;letter-spacing:2px;color:#0C0A0F;cursor:pointer;text-transform:uppercase;">Close</button>';
   openPan(h);
 }
 
@@ -2771,24 +3128,24 @@ function openPadaDetail(num) {
   var c = cs[num] || 'var(--sf)';
   var prevNum = num > 1 ? num - 1 : 4;
   var nextNum = num < 4 ? num + 1 : 1;
-  var h = '<button onclick="openLibrary()" style="background:none;border:none;color:var(--sf);font-family:\'Cinzel\',serif;font-size:10px;letter-spacing:2px;cursor:pointer;text-transform:uppercase;margin-bottom:16px;display:block;">← All Padas</button>';
-  h += '<div style="font-family:\'Cinzel\',serif;font-size:9px;letter-spacing:3px;color:' + c + ';opacity:.75;text-transform:uppercase;margin-bottom:5px;">Pada ' + num + ' · ' + pd.name + '</div>';
+  var h = '<button onclick="openLibrary()" style="background:none;border:none;color:var(--sf);font-family:\'Playfair Display\',serif;font-size:10px;letter-spacing:2px;cursor:pointer;text-transform:uppercase;margin-bottom:16px;display:block;">← All Padas</button>';
+  h += '<div style="font-family:\'Playfair Display\',serif;font-size:9px;letter-spacing:3px;color:' + c + ';opacity:.75;text-transform:uppercase;margin-bottom:5px;">Pada ' + num + ' · ' + pd.name + '</div>';
   h += '<div style="font-family:\'Cormorant Garamond\',serif;font-size:26px;font-weight:300;color:var(--iv);margin-bottom:4px;">' + pd.title + '</div>';
   h += '<div style="font-size:12px;color:var(--mu);margin-bottom:14px;">' + pd.sutras + ' sutras</div>';
   h += '<div style="background:var(--sfg);border:1px solid rgba(240,144,10,.2);border-radius:13px;padding:14px;margin-bottom:16px;"><div style="font-size:13px;color:var(--mu);line-height:1.75;">' + pd.desc + '</div></div>';
   // Key sutras section
-  h += '<div style="font-family:\'Cinzel\',serif;font-size:9px;letter-spacing:3px;color:' + c + ';opacity:.75;text-transform:uppercase;margin-bottom:12px;">Featured Sutras</div>';
+  h += '<div style="font-family:\'Playfair Display\',serif;font-size:9px;letter-spacing:3px;color:' + c + ';opacity:.75;text-transform:uppercase;margin-bottom:12px;">Featured Sutras</div>';
   for (var i = 0; i < pd.keySutras.length; i++) {
     var s = pd.keySutras[i];
     h += '<div style="background:var(--s1);border:1px solid var(--bdr);border-radius:14px;padding:16px;margin-bottom:10px;">';
-    h += '<div style="font-family:\'Cinzel\',serif;font-size:9px;letter-spacing:2px;color:' + c + ';margin-bottom:6px;text-transform:uppercase;">Sutra ' + s.ref + '</div>';
+    h += '<div style="font-family:\'Playfair Display\',serif;font-size:9px;letter-spacing:2px;color:' + c + ';margin-bottom:6px;text-transform:uppercase;">Sutra ' + s.ref + '</div>';
     h += '<div style="font-family:\'Cormorant Garamond\',serif;font-size:16px;font-style:italic;color:var(--iv);line-height:1.65;margin-bottom:8px;">' + s.text + '</div>';
     h += '<div style="font-size:12px;color:var(--mu);line-height:1.75;padding-top:9px;border-top:1px solid var(--bdr);">' + s.meaning + '</div></div>';
   }
   // ALL sutras section (collapsible)
   h += '<div style="background:var(--s1);border:1px solid var(--bdr);border-radius:14px;margin-bottom:14px;overflow:hidden;">';
   h += '<div onclick="toggleAllSutras(this)" style="padding:15px 16px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;">';
-  h += '<div><div style="font-family:\'Cinzel\',serif;font-size:10px;letter-spacing:2px;color:' + c + ';text-transform:uppercase;">All ' + pd.sutras + ' Sutras</div>';
+  h += '<div><div style="font-family:\'Playfair Display\',serif;font-size:10px;letter-spacing:2px;color:' + c + ';text-transform:uppercase;">All ' + pd.sutras + ' Sutras</div>';
   h += '<div style="font-size:11px;color:var(--mu);margin-top:3px;">Tap to expand the complete pada</div></div>';
   h += '<div style="font-size:22px;color:' + c + ';opacity:.6;" class="expand-arrow">+</div></div>';
   h += '<div class="all-sutras-content" style="display:none;padding:0 16px 16px;">';
@@ -2796,7 +3153,7 @@ function openPadaDetail(num) {
     for (var j = 0; j < pd.allSutras.length; j++) {
       var as = pd.allSutras[j];
       h += '<div style="padding:12px 0;border-bottom:1px solid var(--bdr);">';
-      h += '<div style="font-family:\'Cinzel\',serif;font-size:9px;letter-spacing:2px;color:' + c + ';margin-bottom:5px;opacity:.75;">Sutra ' + as.ref + '</div>';
+      h += '<div style="font-family:\'Playfair Display\',serif;font-size:9px;letter-spacing:2px;color:' + c + ';margin-bottom:5px;opacity:.75;">Sutra ' + as.ref + '</div>';
       h += '<div style="font-size:13px;color:var(--mu);line-height:1.7;">' + as.text + '</div></div>';
     }
   } else {
@@ -2805,13 +3162,13 @@ function openPadaDetail(num) {
   h += '</div></div>';
   // Ask Guru
   h += '<div style="background:rgba(200,123,142,.08);border:1px solid rgba(200,123,142,.25);border-radius:14px;padding:15px;margin-bottom:14px;">';
-  h += '<button onclick="closePan();document.getElementById(\'guru-in\').value=\'Explain the key teachings of Yoga Sutras Pada ' + num + ': ' + pd.name + '\';navTo(\'v-guru\',3);sendGuru();" style="width:100%;background:rgba(200,123,142,.15);border:1px solid rgba(200,123,142,.3);border-radius:50px;padding:11px;font-family:\'Cinzel\',serif;font-size:10px;letter-spacing:2px;color:var(--lotus);cursor:pointer;text-transform:uppercase;">Ask Guru about Pada ' + num + '</button></div>';
+  h += '<button onclick="closePan();document.getElementById(\'guru-in\').value=\'Explain the key teachings of Yoga Sutras Pada ' + num + ': ' + pd.name + '\';navTo(\'v-guru\',3);sendGuru();" style="width:100%;background:rgba(200,123,142,.15);border:1px solid rgba(200,123,142,.3);border-radius:50px;padding:11px;font-family:\'Playfair Display\',serif;font-size:10px;letter-spacing:2px;color:var(--lotus);cursor:pointer;text-transform:uppercase;">Ask Guru about Pada ' + num + '</button></div>';
   // Navigate between padas
   h += '<div style="display:flex;gap:10px;margin-bottom:16px;">';
-  h += '<button onclick="openPadaDetail(' + prevNum + ')" style="flex:1;background:var(--s1);border:1px solid var(--bdr);border-radius:50px;padding:12px;font-family:\'Cinzel\',serif;font-size:10px;letter-spacing:1px;color:var(--mu);cursor:pointer;text-transform:uppercase;">← Pada ' + prevNum + '</button>';
-  h += '<button onclick="openPadaDetail(' + nextNum + ')" style="flex:1;background:var(--s1);border:1px solid var(--bdr);border-radius:50px;padding:12px;font-family:\'Cinzel\',serif;font-size:10px;letter-spacing:1px;color:var(--mu);cursor:pointer;text-transform:uppercase;">Pada ' + nextNum + ' →</button>';
+  h += '<button onclick="openPadaDetail(' + prevNum + ')" style="flex:1;background:var(--s1);border:1px solid var(--bdr);border-radius:50px;padding:12px;font-family:\'Playfair Display\',serif;font-size:10px;letter-spacing:1px;color:var(--mu);cursor:pointer;text-transform:uppercase;">← Pada ' + prevNum + '</button>';
+  h += '<button onclick="openPadaDetail(' + nextNum + ')" style="flex:1;background:var(--s1);border:1px solid var(--bdr);border-radius:50px;padding:12px;font-family:\'Playfair Display\',serif;font-size:10px;letter-spacing:1px;color:var(--mu);cursor:pointer;text-transform:uppercase;">Pada ' + nextNum + ' →</button>';
   h += '</div>';
-  h += '<button onclick="closePan()" style="width:100%;background:linear-gradient(135deg,var(--sf),var(--sf2));border:none;border-radius:50px;padding:15px;font-family:\'Cinzel\',serif;font-size:11px;letter-spacing:2px;color:#0C0A0F;cursor:pointer;text-transform:uppercase;">Close</button>';
+  h += '<button onclick="closePan()" style="width:100%;background:linear-gradient(135deg,var(--sf),var(--sf2));border:none;border-radius:50px;padding:15px;font-family:\'Playfair Display\',serif;font-size:11px;letter-spacing:2px;color:#0C0A0F;cursor:pointer;text-transform:uppercase;">Close</button>';
   openPan(h);
 }
 
@@ -2879,15 +3236,6 @@ refreshGuruUI();
 })();
 
 // ── VOICE GUIDE ──
-var GUIDE_AUDIO_URLS = {
-  'surya':       'https://dee0496.github.io/Sattva.app/Surya_Namaskar.mp3',
-  'nadi':        'https://dee0496.github.io/Sattva.app/Nadi_Shodhana.mp3',
-  'nidra':       'https://dee0496.github.io/Sattva.app/Yoga_Nidra.mp3',
-  'kapalabhati': 'https://dee0496.github.io/Sattva.app/Kapalbharti.mp3',
-  'bhramari':    'https://dee0496.github.io/Sattva.app/Bharamari.mp3',
-  'box':         'https://dee0496.github.io/Sattva.app/Box_breathing.mp3',
-  'trataka':     'https://dee0496.github.io/Sattva.app/Trataka.mp3'
-};
 var _guideAudio = null;
 
 // ── CURRENCY ──
@@ -2901,6 +3249,15 @@ function detectCurrency() {
       setBilling(S.billing || 'weekly');
     }
   } catch(e) {}
+  // Founder offer INR
+  var fsym = document.getElementById('founder-sym');
+  var famt = document.getElementById('founder-amt');
+  var fstr = document.getElementById('founder-strike');
+  if (isIndia) {
+    if (fsym) fsym.textContent = '\u20B9';
+    if (famt) famt.textContent = '5,999';
+    if (fstr) fstr.textContent = '\u20B915,000';
+  }
 }
 document.addEventListener('DOMContentLoaded', detectCurrency);
 
@@ -2913,7 +3270,8 @@ function toggleSound(){var t=document.getElementById('sound-toggle'),k=document.
 // ── REFER ──
 function showRefer(){var m=document.getElementById('refer-modal');if(m){m.style.display='flex';document.body.style.overflow='hidden';}}
 function closeRefer(){var m=document.getElementById('refer-modal');if(m){m.style.display='none';document.body.style.overflow='';}}
-function shareApp(){if(navigator.share){navigator.share({title:'Sattva',text:'Try this Vedic yoga app free!',url:'https://www.sattvaapp.com'}).catch(function(){});}else{var el=document.createElement('textarea');el.value='https://www.sattvaapp.com';document.body.appendChild(el);el.select();document.execCommand('copy');document.body.removeChild(el);alert('Link copied!');}}
+function shareApp(){if(navigator.share){navigator.share({title:'Sattva',text:'Try this Vedic yoga app free!',url:'https://www.sattvaapp.com'}).catch(function(){  buildHabitDots();
+});}else{var el=document.createElement('textarea');el.value='https://www.sattvaapp.com';document.body.appendChild(el);el.select();document.execCommand('copy');document.body.removeChild(el);alert('Link copied!');}}
 
 
 function startStripeCheckout(plan) {
@@ -2922,7 +3280,7 @@ function startStripeCheckout(plan) {
   localStorage.setItem('sattva_name', S.name);
   localStorage.setItem('sattva_plan', plan);
   localStorage.setItem('sattva_email', S.email || '');
-  fetch(API_URL + '/api/payments/checkout', {
+  fetch(API_URL + '/api/payments/guest-checkout', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ plan: plan, user_name: S.name, email: S.email || 'guest@sattvaapp.com' })
@@ -2977,17 +3335,349 @@ function checkStep1() {
   if (email.value.trim()) S.email = email.value.trim();
 }
 
+
+// ══ DRAWER ══
+function openDrawer(){document.getElementById('drawer').classList.add('open');document.getElementById('drawer-overlay').classList.add('open');}
+function closeDrawer(){document.getElementById('drawer').classList.remove('open');document.getElementById('drawer-overlay').classList.remove('open');}
+
+// ══ CHAKRA DATA ══
+var CHAKRA_DATA=[
+  {n:1,col:'#C0392B',skt:'Muladhara',eng:'Root Chakra',element:'Earth',attrs:'Stability · Safety · Grounding',desc:'The foundation of your energetic body. When balanced, you feel secure and grounded.',imbalance:'Anxiety, fear, financial worry, disconnection.',open:'A profound sense of belonging and trust in life.',affirmation:'I am safe. I am grounded. I belong to this earth.',sess:null},
+  {n:2,col:'#E67E22',skt:'Svadhisthana',eng:'Sacral Chakra',element:'Water',attrs:'Creativity · Pleasure · Flow',desc:'Governs creativity and the flow of life.',imbalance:'Guilt, emotional numbness, creative blocks.',open:'Creative ideas flow freely, emotions move gracefully.',affirmation:'I honour my creative power. I embrace flow.',sess:null},
+  {n:3,col:'#F39C12',skt:'Manipura',eng:'Solar Plexus',element:'Fire',attrs:'Will · Power · Transformation',desc:'The seat of personal power. Governs your ability to act with purpose.',imbalance:'Low self-worth, powerlessness, anger.',open:'A strong sense of purpose and the fire to act.',affirmation:'My inner fire burns bright. I act with power.',sess:'surya'},
+  {n:4,col:'#27AE60',skt:'Anahata',eng:'Heart Chakra',element:'Air',attrs:'Love · Compassion · Connection',desc:'Governs love — not only romantic, but universal compassion.',imbalance:'Grief, inability to forgive, isolation.',open:'Unconditional love flows freely in all relationships.',affirmation:'I give and receive love freely. My heart is open.',sess:'bhramari'},
+  {n:5,col:'#2E86C1',skt:'Vishuddha',eng:'Throat Chakra',element:'Ether',attrs:'Truth · Expression · Sound',desc:'Governs your ability to communicate truth. Activated through sound and breath.',imbalance:'Difficulty speaking up, living out of alignment.',open:'You express yourself clearly and live in truth.',affirmation:'I speak my truth with clarity and grace.',sess:'box'},
+  {n:6,col:'#5B2C8D',skt:'Ajna',eng:'Third Eye',element:'Light',attrs:'Intuition · Wisdom · Vision',desc:'The centre of intuition. Governs your ability to see beyond the surface.',imbalance:'Confusion, lack of direction.',open:'Clear intuition and a deep sense of knowing.',affirmation:'I trust my intuition. I see beyond the visible.',sess:'nadi'},
+  {n:7,col:'#9B59B6',skt:'Sahasrara',eng:'Crown Chakra',element:'Consciousness',attrs:'Unity · Liberation · Bliss',desc:'Connects you to the divine and to the experience of oneness.',imbalance:'Spiritual disconnection, meaninglessness.',open:'A profound sense of peace and unity with all.',affirmation:'I am one with all that is. I surrender.',sess:'nidra'},
+];
+
+function hexRgb(h){h=h.replace('#','');return parseInt(h.slice(0,2),16)+','+parseInt(h.slice(2,4),16)+','+parseInt(h.slice(4,6),16);}
+
+function buildChakraList(){
+  var list=document.getElementById('chakra-list');if(!list)return;
+  list.innerHTML='';
+  CHAKRA_DATA.forEach(function(ck,idx){
+    var d=document.createElement('div');d.className='ck-card';
+    d.style.borderColor='rgba('+hexRgb(ck.col)+',.2)';
+    var stripe=document.createElement('div');stripe.className='ck-stripe';stripe.style.background=ck.col;
+    var num=document.createElement('div');num.className='ck-num';num.textContent=ck.n;
+    var body=document.createElement('div');body.className='ck-body';
+    var skt=document.createElement('div');skt.className='ck-skt';skt.style.color=ck.col;skt.textContent=ck.skt;
+    var eng=document.createElement('div');eng.className='ck-eng';eng.textContent=ck.eng;
+    var attrs=document.createElement('div');attrs.className='ck-attrs';attrs.textContent=ck.element+' \u00B7 '+ck.attrs;
+    var tag=document.createElement('div');
+    tag.style.cssText='display:inline-block;margin-top:7px;padding:3px 8px;border-radius:10px;font-family:Playfair Display,serif;font-size:8px;letter-spacing:1px;';
+    if(ck.sess){tag.style.background='rgba(240,144,10,.1)';tag.style.color='#F0900A';tag.textContent='Practice available';}
+    else{tag.style.background='rgba(255,255,255,.04)';tag.style.color='rgba(245,239,228,.4)';tag.textContent='Coming soon';}
+    body.appendChild(skt);body.appendChild(eng);body.appendChild(attrs);body.appendChild(tag);
+    var arr=document.createElement('div');arr.className='ck-arr';arr.innerHTML='&#8250;';
+    d.appendChild(stripe);d.appendChild(num);d.appendChild(body);d.appendChild(arr);
+    d.onclick=(function(i){return function(){openCkDetail(i);};})(idx);
+    list.appendChild(d);
+  });
+}
+
+function openCkDetail(idx){
+  var ck=CHAKRA_DATA[idx];if(!ck)return;
+  var detail=document.getElementById('ck-detail');if(!detail)return;
+  var lbl=document.getElementById('ck-lbl');var ttl=document.getElementById('ck-ttl');
+  if(lbl){lbl.textContent='Chakra '+ck.n+' of 7';lbl.style.color=ck.col;}
+  if(ttl)ttl.textContent=ck.skt+' \u00B7 '+ck.eng;
+  var b=document.getElementById('ck-body');if(!b)return;
+  b.innerHTML='';
+  var hero=document.createElement('div');hero.style.cssText='text-align:center;padding:20px 0 24px;border-bottom:1px solid rgba(245,239,228,.08);margin-bottom:22px;';
+  var dot=document.createElement('div');dot.style.cssText='width:52px;height:52px;border-radius:50%;background:rgba('+hexRgb(ck.col)+',.15);border:1px solid rgba('+hexRgb(ck.col)+',.4);margin:0 auto 14px;display:flex;align-items:center;justify-content:center;';
+  var inner=document.createElement('div');inner.style.cssText='width:18px;height:18px;border-radius:50%;background:'+ck.col+';';
+  dot.appendChild(inner);
+  var s=document.createElement('div');s.style.cssText='font-family:Playfair Display,serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:'+ck.col+';margin-bottom:8px;';s.textContent=ck.skt.toUpperCase();
+  var e=document.createElement('div');e.style.cssText='font-family:Cormorant Garamond,serif;font-size:26px;color:var(--iv);margin-bottom:6px;';e.textContent=ck.eng;
+  var el=document.createElement('div');el.style.cssText='font-size:12px;color:var(--fa);';el.textContent=ck.element+' \u00B7 Chakra '+ck.n+' of 7';
+  hero.appendChild(dot);hero.appendChild(s);hero.appendChild(e);hero.appendChild(el);b.appendChild(hero);
+  function sec(title,body){
+    var t=document.createElement('div');t.style.cssText='font-family:Playfair Display,serif;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--fa);margin-bottom:10px;';t.textContent=title;b.appendChild(t);
+    var p=document.createElement('div');p.style.cssText='font-family:Cormorant Garamond,serif;font-size:16px;line-height:1.8;color:var(--mu);margin-bottom:22px;';p.textContent=body;b.appendChild(p);
+  }
+  sec('What it governs',ck.desc);sec('Signs of imbalance',ck.imbalance);
+  var aff=document.createElement('div');aff.style.cssText='font-family:Cormorant Garamond,serif;font-size:18px;font-style:italic;color:var(--iv);text-align:center;padding:20px;border:1px solid rgba('+hexRgb(ck.col)+',.25);border-radius:14px;margin-bottom:24px;line-height:1.7;';aff.textContent='\u201c'+ck.affirmation+'\u201d';b.appendChild(aff);
+  var btn=document.createElement('button');
+  btn.style.cssText='width:100%;padding:15px;border:none;border-radius:50px;font-family:Playfair Display,serif;font-size:11px;letter-spacing:4px;text-transform:uppercase;cursor:pointer;margin-bottom:12px;';
+  if(ck.sess){btn.style.background=ck.col;btn.style.color='#0E0B16';btn.textContent='Begin Practice';(function(sid){btn.onclick=function(){loadAndPlay(sid);closeCkDetail();navTo('v-player',1);};})(ck.sess);}
+  else{btn.style.cssText+=';background:none;border:1px solid rgba(255,255,255,.1);color:rgba(245,239,228,.3);cursor:default;';btn.textContent='Session Coming Soon';}
+  b.appendChild(btn);
+  detail.classList.add('open');
+}
+function closeCkDetail(){var d=document.getElementById('ck-detail');if(d)d.classList.remove('open');}
+
+// ══ MOOD + QUIZ ══
+var MOOD_MAP={
+  'Anxious':{n:1,col:'#C0392B',skt:'MULADHARA',name:'Root Chakra',desc:'Anxiety signals an ungrounded root chakra.'},
+  'Low':{n:4,col:'#27AE60',skt:'ANAHATA',name:'Heart Chakra',desc:'Low energy may reflect a closing heart chakra.'},
+  'Sad':{n:4,col:'#27AE60',skt:'ANAHATA',name:'Heart Chakra',desc:'Sadness invites you to open the heart chakra.'},
+  'Energetic':{n:3,col:'#F39C12',skt:'MANIPURA',name:'Solar Plexus',desc:'Channel high energy with Surya Namaskar.'},
+  'Content':{n:7,col:'#9B59B6',skt:'SAHASRARA',name:'Crown Chakra',desc:'Deepen contentment with Yoga Nidra.'},
+  'Stressed':{n:5,col:'#2E86C1',skt:'VISHUDDHA',name:'Throat Chakra',desc:'Box Breathing restores calm through Vishuddha.'},
+  'Happy':{n:4,col:'#27AE60',skt:'ANAHATA',name:'Heart Chakra',desc:'Joy lives in Anahata. Deepen it with Bhramari.'},
+};
+var _quizChakra=null;
+
+function selectMood(mood,el){
+  document.querySelectorAll('[onclick^="selectMood"]').forEach(function(b){b.style.borderColor='rgba(240,144,10,.35)';b.style.color='var(--mu)';b.style.background='none';});
+  if(el){el.style.borderColor='#F0900A';el.style.color='#F0900A';el.style.background='rgba(240,144,10,.06)';}
+  _quizChakra=MOOD_MAP[mood]||MOOD_MAP['Anxious'];
+  var opts0=['Chest and heart','Stomach and gut','Throat and jaw','Upper back and shoulders','Lower back and hips','Head and mind'];
+  var opts1=['Feeling safe and secure','Expressing myself','Feeling love and connection','My personal power','A sense of meaning'];
+  function fillOpts(id,opts,nextStep){
+    var el2=document.getElementById(id);if(!el2)return;el2.innerHTML='';
+    opts.forEach(function(o){var b=document.createElement('button');b.className='quiz-opt';b.textContent=o;b.onclick=function(){quizStep(nextStep);};el2.appendChild(b);});
+  }
+  fillOpts('quiz-opts-0',opts0,1);fillOpts('quiz-opts-1',opts1,2);
+  quizStep(0);
+  document.getElementById('quiz-overlay').classList.add('open');
+}
+function quizStep(n){
+  document.querySelectorAll('.quiz-step').forEach(function(s){s.classList.remove('on');});
+  var el=document.getElementById('quiz-step-'+n);if(el)el.classList.add('on');
+  if(n===2&&_quizChakra){
+    var dot=document.getElementById('quiz-dot');var nm=document.getElementById('quiz-name');
+    var skt=document.getElementById('quiz-skt');var desc=document.getElementById('quiz-desc');
+    if(dot){dot.style.background=_quizChakra.col;dot.style.boxShadow='0 0 20px '+_quizChakra.col;}
+    if(nm)nm.textContent=_quizChakra.name;
+    if(skt){skt.textContent=_quizChakra.skt;skt.style.color=_quizChakra.col;}
+    if(desc)desc.textContent=_quizChakra.desc;
+  }
+}
+function quizGoChakra(){closeQuiz();navTo('v-chakra',2);setTimeout(function(){if(_quizChakra)openCkDetail(_quizChakra.n-1);},350);}
+function closeQuiz(){document.getElementById('quiz-overlay').classList.remove('open');}
+
+// ══ SOUND BOWL SYSTEM ══
+var BOWL_TRACKS=[
+  {id:'deep-ground',title:'Grounding Bowl',sub:'Tibetan bronze · Deep, earthy resonance',dur:'10 min',freq:256,color:'#8B4513',isMantra:false},
+  {id:'warm-hearth',title:'Hearth Bowl',sub:'Tibetan bronze · Warm, enveloping tones',dur:'10 min',freq:320,color:'#C0392B',isMantra:false},
+  {id:'crystal-clear',title:'Crystal Bowl',sub:'Quartz · Bright, sustained shimmer',dur:'12 min',freq:440,color:'#E8D4F1',isMantra:false},
+  {id:'soft-bloom',title:'Bloom Bowl',sub:'Crystal · Opening, heart-soft',dur:'10 min',freq:520,color:'#27AE60',isMantra:false},
+  {id:'river-flow',title:'River Bowl',sub:'Tibetan · Flowing, meditative',dur:'12 min',freq:294,color:'#2E86C1',isMantra:false},
+  {id:'night-sky',title:'Night Sky Bowl',sub:'Crystal · Still, expansive',dur:'15 min',freq:370,color:'#5B2C8D',isMantra:false},
+  {id:'cosmic-bell',title:'Cosmic Bell',sub:'Deep bronze · Timeless, echoing',dur:'10 min',freq:192,color:'#9B59B6',isMantra:false},
+  {id:'om-drone',title:'Sacred OM Drone',sub:'Pulse of Earth · Continuous hum',dur:'20 min',freq:136.1,color:'#F0900A',isMantra:true},
+  {id:'gayatri-drone',title:'Gayatri Drone',sub:'Rishi tone · Wisdom current',dur:'15 min',freq:111,color:'#C9963A',isMantra:true},
+  {id:'so-hum-drone',title:'So Hum Breath',sub:'"I am That" · Breath-paced',dur:'12 min',freq:60,color:'#6E9E78',isMantra:true},
+  {id:'shiva-pulse',title:'Shiva Pulse',sub:'Cosmic rhythm · Transformation',dur:'10 min',freq:108,color:'#2E86C1',isMantra:true}
+];
+var _bowlCtx=null,_bowlNodes=[],_bowlPlaying=null,_bowlTimer=null,_bowlStart=null,_bowlOsc=[],_bowlMaster=null;
+
+function buildBowlList(){
+  var list=document.getElementById('bowl-list');if(!list)return;
+  list.innerHTML='';
+  BOWL_TRACKS.forEach(function(track){
+    var card=document.createElement('div');card.className='bowl-card';card.id='bowl-card-'+track.id;
+    var top=document.createElement('div');top.style.cssText='display:flex;align-items:center;gap:14px;padding:16px 18px;cursor:pointer;';
+    var info=document.createElement('div');info.style.flex='1';
+    var t=document.createElement('div');t.style.cssText='font-family:Playfair Display,serif;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px;color:'+track.color+';';t.textContent=track.title;
+    var s=document.createElement('div');s.style.cssText='font-size:12px;color:var(--mu);';s.textContent=track.sub;
+    info.appendChild(t);info.appendChild(s);
+    var dur=document.createElement('div');dur.style.cssText='font-family:Playfair Display,serif;font-size:9px;color:var(--fa);margin-right:8px;';dur.textContent=track.dur;
+    var btn=document.createElement('button');btn.className='bowl-play-btn';btn.id='bowl-btn-'+track.id;btn.innerHTML='<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';
+    (function(tid){btn.onclick=function(e){e.stopPropagation();toggleBowl(tid);};})(track.id);
+    top.appendChild(info);top.appendChild(dur);top.appendChild(btn);
+    // Only button triggers toggle — prevents double-fire when button is clicked
+    var prog=document.createElement('div');prog.id='bowl-prog-'+track.id;prog.style.cssText='height:2px;background:rgba(255,255,255,.06);border-radius:1px;margin:0 18px 14px;display:none;';
+    var fill=document.createElement('div');fill.id='bowl-fill-'+track.id;fill.style.cssText='height:100%;background:'+track.color+';border-radius:1px;width:0%;transition:width .5s linear;';
+    prog.appendChild(fill);
+    card.appendChild(top);card.appendChild(prog);
+    list.appendChild(card);
+  });
+}
+
+function toggleBowl(id){
+  var track=BOWL_TRACKS.find(function(t){return t.id===id;});
+  if(!track){console.log('[bowl] track not found:',id);return;}
+  // If this bowl is currently playing -> PAUSE
+  if(_bowlPlaying===id){
+    console.log('[bowl] pausing',id);
+    var wasPlaying=_bowlPlaying;
+    stopBowl();
+    updateBowlUI(wasPlaying,false);
+    return;
+  }
+  // Otherwise -> PLAY (stopping any other first)
+  if(_bowlPlaying){
+    var other=_bowlPlaying;
+    stopBowl();
+    updateBowlUI(other,false);
+  }
+  console.log('[bowl] playing',id);
+  _bowlPlaying=id;
+  updateBowlUI(id,true);
+  playBowlTone(track.freq,id,track.isMantra);
+}
+
+function stopBowl(){
+  try{
+    clearInterval(_bowlTimer);
+    if(_bowlMaster&&_bowlCtx){
+      var t=_bowlCtx.currentTime;
+      _bowlMaster.gain.cancelScheduledValues(t);
+      _bowlMaster.gain.setValueAtTime(_bowlMaster.gain.value||1,t);
+      _bowlMaster.gain.linearRampToValueAtTime(0.0001,t+0.25);
+    }
+    if(_bowlOsc&&_bowlOsc.length){
+      var stopAt=(_bowlCtx?_bowlCtx.currentTime:0)+0.3;
+      for(var i=0;i<_bowlOsc.length;i++){try{_bowlOsc[i].stop(stopAt);}catch(e){}}
+    }
+    _bowlOsc=[];_bowlMaster=null;_bowlPlaying=null;
+  }catch(e){_bowlPlaying=null;_bowlOsc=[];_bowlMaster=null;}
+}
+
+function playBowlTone(freq,id,isMantra){
+  try{
+    var ctx=getACtx();
+    // DO NOT call stopBowl here - toggleBowl manages state
+    _bowlCtx=ctx;_bowlOsc=[];
+    var t0=ctx.currentTime;
+    var partials;
+    if(isMantra){
+      partials=[{r:0.5,v:0.10,det:0},{r:1,v:0.18,det:-3},{r:1,v:0.12,det:+3},{r:1.5,v:0.06,det:0},{r:2,v:0.04,det:0}];
+    }else{
+      partials=[{r:1,v:0.16,det:-2},{r:1,v:0.12,det:+2},{r:2.756,v:0.06,det:0},{r:5.404,v:0.03,det:0},{r:8.933,v:0.015,det:0}];
+    }
+    var master=ctx.createGain();
+    master.gain.setValueAtTime(0,t0);
+    master.gain.linearRampToValueAtTime(1,t0+(isMantra?3:1.5));
+    master.connect(ctx.destination);
+    _bowlMaster=master;
+    for(var i=0;i<partials.length;i++){
+      var p=partials[i];
+      var o=ctx.createOscillator();
+      var g=ctx.createGain();
+      o.type='sine';
+      o.frequency.value=freq*p.r;
+      o.detune.value=p.det;
+      var lfo=ctx.createOscillator();
+      var lfoG=ctx.createGain();
+      lfo.frequency.value=0.25+Math.random()*0.4;
+      lfoG.gain.value=freq*p.r*0.0018;
+      lfo.connect(lfoG);lfoG.connect(o.frequency);
+      g.gain.value=p.v;
+      o.connect(g);g.connect(master);
+      o.start(t0);lfo.start(t0);
+      _bowlOsc.push(o);_bowlOsc.push(lfo);
+    }
+    // Progress bar timer
+    _bowlStart=Date.now();
+    _bowlTimer=setInterval(function(){
+      if(!_bowlPlaying||_bowlPlaying!==id){clearInterval(_bowlTimer);return;}
+      var pct=Math.min((Date.now()-_bowlStart)/600000*100,100);
+      var f=document.getElementById('bowl-fill-'+id);if(f)f.style.width=pct+'%';
+      if(pct>=100){clearInterval(_bowlTimer);stopBowl();updateBowlUI(id,false);}
+    },1000);
+  }catch(e){console.log('Bowl error:',e);_bowlPlaying=null;updateBowlUI(id,false);}
+}
+
+function updateBowlUI(id,playing){
+  var btn=document.getElementById('bowl-btn-'+id);
+  var prog=document.getElementById('bowl-prog-'+id);
+  var card=document.getElementById('bowl-card-'+id);
+  if(btn){btn.innerHTML=playing?'<svg viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>':'<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';btn.classList.toggle('playing',playing);}
+  if(prog)prog.style.display=playing?'block':'none';
+  if(card)card.classList.toggle('bowl-playing',playing);
+}
+
+// ══ RING COLOUR BY CHAKRA ══
+var SESS_COLOURS={surya:'#F39C12',kapalabhati:'#F39C12',nadi:'#5B2C8D',bhramari:'#5B2C8D',trataka:'#5B2C8D',box:'#2E86C1',nidra:'#9B59B6'};
+
+
+
+// ══ DAILY VERSE ══
+var VERSES=[
+  {t:'"You have a right to perform your prescribed duties, but you are not entitled to the fruits of your actions."',a:'Bhagavad Gita \u00B7 Chapter 2, Verse 47'},
+  {t:'"Elevate yourself through the power of your own mind, and do not degrade yourself."',a:'Bhagavad Gita \u00B7 Chapter 6, Verse 5'},
+  {t:'"Let noble thoughts come to us from all directions."',a:'Rigveda \u00B7 Mandala 1, Hymn 89'},
+  {t:'"Yoga is the cessation of the fluctuations of the mind."',a:'Patanjali \u00B7 Yoga Sutras 1.2'},
+  {t:'"The soul is never born, nor does it die at any time."',a:'Bhagavad Gita \u00B7 Chapter 2, Verse 20'},
+  {t:'"To those who worship me with devotion, I carry what they lack and preserve what they have."',a:'Bhagavad Gita \u00B7 Chapter 9, Verse 22'},
+  {t:'"When the mind is still, the beauty of the Self is seen."',a:'Upanishads'},
+];
+
+// ══ HOOK INTO navTo ══
+
+
+// ══ RING COLOUR HOOK ══
+
+
+// ══ INIT ══
+document.addEventListener('DOMContentLoaded',function(){
+  buildChakraList();
+  var day=Math.floor(Date.now()/86400000)%VERSES.length;
+  var vt=document.getElementById('h-verse-text'),va=document.getElementById('h-verse-attr');
+  if(vt)vt.textContent=VERSES[day].t;if(va)va.textContent=VERSES[day].a;
+  buildHabitDots();
+});
+
+
+// ── THEME SYSTEM ──
+var THEMES = {
+  dark: { label: 'Night', icon: '🌑', desc: 'Deep cosmic dark' },
+  sky:  { label: 'Sky',   icon: '☀️', desc: 'Clear blue light' },
+  sand: { label: 'Sand',  icon: '🌅', desc: 'Warm golden earth' },
+};
+
+function setTheme(t) {
+  var app = document.getElementById('app');
+  if (app) app.setAttribute('data-theme', t);
+  S.theme = t;
+  try { localStorage.setItem('sattva_theme', t); } catch(e) {}
+  document.querySelectorAll('.theme-swatch').forEach(function(sw) {
+    sw.classList.toggle('active', sw.dataset.theme === t);
+  });
+  buildHabitDots();
+}
+
+function initTheme() {
+  setTheme('dark'); // always cosmic black & gold on load
+}
+
+document.addEventListener('DOMContentLoaded', initTheme);
+document.addEventListener('DOMContentLoaded', function() {
+  if (window.location.protocol === 'file:') {
+    var w = document.createElement('div');
+    w.style.cssText = 'position:fixed;top:0;left:0;right:0;background:#B5620A;color:#fff;text-align:center;padding:10px;font-size:12px;z-index:9999;font-family:sans-serif;';
+    w.textContent = 'Please open via GitHub Pages URL — local file mode blocks payments & AI';
+    document.body.appendChild(w);
+  }
+});
+
 </script>
 
 <div id="settings-modal" style="display:none;position:fixed;inset:0;z-index:500;background:rgba(10,8,14,.97);overflow-y:auto;">
   <div style="max-width:430px;margin:0 auto;padding:60px 24px 40px;">
     <div style="display:flex;align-items:center;gap:16px;margin-bottom:32px;">
       <button onclick="closeSettings()" style="background:none;border:none;color:#F5EFE4;font-size:26px;cursor:pointer;">&#8249;</button>
-      <div style="font-family:'Cinzel',serif;font-size:13px;letter-spacing:3px;color:#F5EFE4;text-transform:uppercase;">Settings</div>
+      <div style="font-family:'Playfair Display',serif;font-size:13px;letter-spacing:3px;color:#F5EFE4;text-transform:uppercase;">Settings</div>
+    <div style="margin-bottom:22px;">
+      <div style="font-family:'Playfair Display',serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--fa);margin-bottom:14px;">App Theme</div>
+      <div style="display:flex;gap:10px;">
+        <div class="theme-swatch active" data-theme="dark" onclick="setTheme('dark')" style="flex:1;border-radius:12px;border:2px solid var(--sf);cursor:pointer;overflow:hidden;transition:border-color .2s;">
+          <div style="background:#0E0B16;padding:12px 10px;text-align:center;">
+            <div style="width:16px;height:16px;border-radius:50%;background:#F0900A;margin:0 auto 6px;box-shadow:0 0 8px rgba(240,144,10,.5);"></div>
+            <div style="font-family:'Playfair Display',serif;font-size:8px;letter-spacing:1px;color:#F5EFE4;">NIGHT</div>
+          </div>
+        </div>
+        
+        </div>
+        <div class="theme-swatch" data-theme="sand" onclick="setTheme('sand')" style="flex:1;border-radius:12px;border:2px solid transparent;cursor:pointer;overflow:hidden;transition:border-color .2s;">
+          <div style="background:#F7F1E8;padding:12px 10px;text-align:center;">
+            <div style="width:16px;height:16px;border-radius:50%;background:#B5620A;margin:0 auto 6px;"></div>
+            <div style="font-family:'Playfair Display',serif;font-size:8px;letter-spacing:1px;color:#2C1A06;">SAND</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="height:1px;background:var(--bdr);margin-bottom:22px;"></div>
+
     </div>
     <div style="background:#110E18;border:1px solid rgba(255,255,255,.1);border-radius:16px;overflow:hidden;margin-bottom:16px;">
       <div style="padding:20px;border-bottom:1px solid rgba(255,255,255,.06);">
-        <div style="font-family:'Cinzel',serif;font-size:9px;letter-spacing:3px;color:rgba(240,144,10,.8);text-transform:uppercase;margin-bottom:16px;">Practice</div>
+        <div style="font-family:'Playfair Display',serif;font-size:9px;letter-spacing:3px;color:rgba(240,144,10,.8);text-transform:uppercase;margin-bottom:16px;">Practice</div>
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;">
           <span style="font-size:15px;color:#F5EFE4;">Daily reminder</span>
           <div id="notif-toggle" onclick="toggleNotif()" style="width:48px;height:26px;background:rgba(240,144,10,.3);border-radius:13px;cursor:pointer;position:relative;transition:background .3s;">
@@ -3002,23 +3692,23 @@ function checkStep1() {
         </div>
       </div>
       <div style="padding:20px;border-bottom:1px solid rgba(255,255,255,.06);">
-        <div style="font-family:'Cinzel',serif;font-size:9px;letter-spacing:3px;color:rgba(240,144,10,.8);text-transform:uppercase;margin-bottom:16px;">Account</div>
+        <div style="font-family:'Playfair Display',serif;font-size:9px;letter-spacing:3px;color:rgba(240,144,10,.8);text-transform:uppercase;margin-bottom:16px;">Account</div>
         <div onclick="window.open('mailto:hello@sattvaapp.com')" style="font-size:15px;color:#F5EFE4;cursor:pointer;margin-bottom:16px;display:flex;justify-content:space-between;"><span>Contact support</span><span style="color:#F0900A;">&#8250;</span></div>
         <div onclick="window.open('https://www.sattvaapp.com')" style="font-size:15px;color:#F5EFE4;cursor:pointer;margin-bottom:16px;display:flex;justify-content:space-between;"><span>Privacy policy</span><span style="color:#F0900A;">&#8250;</span></div>
         <div onclick="window.open('https://www.sattvaapp.com')" style="font-size:15px;color:#F5EFE4;cursor:pointer;display:flex;justify-content:space-between;"><span>Terms of service</span><span style="color:#F0900A;">&#8250;</span></div>
       </div>
       <div style="padding:20px;"><div style="font-size:13px;color:rgba(245,239,228,.7);display:flex;justify-content:space-between;"><span>Version</span><span>1.0.0</span></div></div>
     </div>
-    <button onclick="if(confirm('Sign out?')){S.name='';S.tier='free';navTo('v-splash',null);closeSettings();}" style="width:100%;background:none;border:1px solid rgba(255,255,255,.15);border-radius:50px;padding:16px;font-family:'Cinzel',serif;font-size:11px;letter-spacing:3px;color:rgba(245,239,228,.8);cursor:pointer;text-transform:uppercase;">Sign Out</button>
+    <button onclick="if(confirm('Sign out?')){S.name='';S.tier='free';navTo('v-splash',null);closeSettings();}" style="width:100%;background:none;border:1px solid rgba(255,255,255,.15);border-radius:50px;padding:16px;font-family:'Playfair Display',serif;font-size:11px;letter-spacing:3px;color:rgba(245,239,228,.8);cursor:pointer;text-transform:uppercase;">Sign Out</button>
   </div>
 </div>
 <div id="refer-modal" style="display:none;position:fixed;inset:0;z-index:500;background:rgba(10,8,14,.95);backdrop-filter:blur(12px);align-items:center;justify-content:center;padding:24px;">
   <div style="background:#110E18;border:1px solid rgba(240,144,10,.25);border-radius:24px;padding:36px 28px;max-width:380px;width:100%;text-align:center;">
     <div style="font-size:48px;margin-bottom:16px;">&#129306;</div>
-    <div style="font-family:'Cinzel',serif;font-size:13px;letter-spacing:3px;color:#F5EFE4;text-transform:uppercase;margin-bottom:10px;">Refer a Friend</div>
+    <div style="font-family:'Playfair Display',serif;font-size:13px;letter-spacing:3px;color:#F5EFE4;text-transform:uppercase;margin-bottom:10px;">Refer a Friend</div>
     <div style="font-family:'Cormorant Garamond',serif;font-size:18px;font-style:italic;color:#F5EFE4;line-height:1.7;margin-bottom:20px;">Share Sattva. Earn together.<br><span style="font-size:14px;font-style:normal;color:rgba(245,239,228,.85);">When a friend subscribes, you both get one week of Yogi Pro free.</span></div>
-    <button onclick="shareApp()" style="width:100%;background:linear-gradient(135deg,#F0900A,#C96B10);border:none;border-radius:50px;padding:16px;font-family:'Cinzel',serif;font-size:12px;letter-spacing:3px;color:#0A080E;cursor:pointer;text-transform:uppercase;margin-bottom:12px;">Share Sattva &#128591;</button>
-    <button onclick="closeRefer()" style="width:100%;background:none;border:1px solid rgba(255,255,255,.12);border-radius:50px;padding:14px;font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;color:rgba(245,239,228,.8);cursor:pointer;text-transform:uppercase;">Close</button>
+    <button onclick="shareApp()" style="width:100%;background:linear-gradient(135deg,#F0900A,#C96B10);border:none;border-radius:50px;padding:16px;font-family:'Playfair Display',serif;font-size:12px;letter-spacing:3px;color:#0A080E;cursor:pointer;text-transform:uppercase;margin-bottom:12px;">Share Sattva &#128591;</button>
+    <button onclick="closeRefer()" style="width:100%;background:none;border:1px solid rgba(255,255,255,.12);border-radius:50px;padding:14px;font-family:'Playfair Display',serif;font-size:11px;letter-spacing:2px;color:rgba(245,239,228,.8);cursor:pointer;text-transform:uppercase;">Close</button>
   </div>
 </div>
 
