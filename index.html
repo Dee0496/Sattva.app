@@ -723,8 +723,8 @@ input{font-family:'Manrope',sans-serif}
 .quiz-opt:active{border-color:var(--sf);color:var(--sf);}
 /* SOUND BOWL */
 .bowl-card{border:1px solid var(--bdr);border-radius:14px;background:var(--s1);margin-bottom:10px;overflow:hidden;}
-.bowl-play-btn{width:28px;height:28px;border:none;background:none;cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;opacity:.55;transition:opacity .2s;padding:0;}.bowl-play-btn:active,.bowl-play-btn.playing{opacity:1;}.bowl-play-btn svg{width:16px;height:16px;fill:var(--iv);}.bowl-play-btn.playing svg{fill:var(--sf);}
-.bowl-play-btn.playing{background:var(--sf);color:var(--bg);}
+.bowl-play-btn{width:36px;height:36px;border:1px solid var(--bdr2);background:transparent;border-radius:50%;cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;opacity:.65;transition:all .2s;padding:0;}.bowl-play-btn:active,.bowl-play-btn.playing{opacity:1;border-color:var(--sf);}.bowl-play-btn svg{width:12px;height:12px;fill:var(--iv);}.bowl-play-btn.playing svg{fill:var(--sf);}
+.bowl-play-btn.playing{background:transparent;}
 .bowl-playing{border-color:rgba(240,144,10,.4)!important;}
 
 /* ── THEMES ── */
@@ -780,7 +780,7 @@ input{font-family:'Manrope',sans-serif}
 <!-- ══════════════════════════════════
      SPLASH
 ══════════════════════════════════ -->
-<div class="view show" id="v-splash"><div style="position:absolute;top:max(14px,env(safe-area-inset-top,14px));right:14px;font-family:monospace;font-size:9px;color:rgba(240,144,10,.4);z-index:50;letter-spacing:1px;">build 05:47</div>
+<div class="view show" id="v-splash"><div style="position:absolute;top:max(14px,env(safe-area-inset-top,14px));right:14px;font-family:monospace;font-size:9px;color:rgba(240,144,10,.4);z-index:50;letter-spacing:1px;">build 01:30</div>
   <div class="inner">
     <div class="sp-om">ॐ</div>
 
@@ -863,10 +863,10 @@ input{font-family:'Manrope',sans-serif}
         <div class="tier-name">🔥 Yogi Pro</div>
         <div class="tier-price-row">
           <span class="tier-cur">$</span>
-          <span class="tier-amt" id="pro-amt">3.99</span>
+          <span class="tier-amt" id="pro-amt">2.99</span>
           <span class="tier-per" id="pro-per">&nbsp;/ week</span>
         </div>
-        <div class="tier-trial" id="pro-trial">7 days free, then $3.99 per week</div>
+        <div class="tier-trial" id="pro-trial">7 days free, then $2.99 per week</div>
         <ul class="tier-feats">
           <li class="yes">Everything in Sadhaka</li>
           <li class="yes">Yoga Nidra sleep library</li>
@@ -1150,6 +1150,7 @@ input{font-family:'Manrope',sans-serif}
     <div class="pl-ic" id="pl-ic">🧘</div>
     <div class="pl-title" id="pl-title">Select a Session</div>
     <div class="pl-sub" id="pl-sub">Choose from the list below</div>
+    <div id="vayu-tagline" style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:12px;color:var(--sf);opacity:.7;text-align:center;margin-top:-4px;margin-bottom:12px;letter-spacing:.5px;"></div>
     <div class="ring-wrap">
       <svg class="ring-svg" viewBox="0 0 190 190">
         <defs>
@@ -1263,7 +1264,7 @@ input{font-family:'Manrope',sans-serif}
     <div class="pro-hero">
       <div class="pro-av">🧘</div>
       <div><div class="pro-name" id="pro-name">Seeker</div><div class="pro-mem">Sattva Member</div></div>
-      <div class="pro-plan-badge pb-pro" id="pro-badge"><div class="pb-nm" id="pb-nm">Pro</div><div class="pb-pr" id="pb-pr">$3.99</div></div>
+      <div class="pro-plan-badge pb-pro" id="pro-badge"><div class="pb-nm" id="pb-nm">Pro</div><div class="pb-pr" id="pb-pr">$2.99</div></div>
     </div>
     <div class="upg-banner" id="upg-banner" onclick="showUpgrade()">
       <span style="font-size:26px;">✨</span>
@@ -1297,7 +1298,7 @@ input{font-family:'Manrope',sans-serif}
     </div>
     <div class="menu-list">
       <div class="mi" onclick="openLibrary()" style="cursor:pointer;"><div class="mi-ic" style="display:none;"></div><div><div class="mi-nm">Sacred Library</div><div class="mi-ds">Vedas, Gita, Yoga Sutras</div></div><div class="mi-arr">›</div></div>
-      <div class="mi" onclick="navTo('v-pricing',null)"><div class="mi-ic" style="display:none;"></div><div><div class="mi-nm">Subscription</div><div class="mi-ds" id="sub-ds">Yogi Pro · $3.99/week</div></div><div class="mi-arr">›</div></div>
+      <div class="mi" onclick="navTo('v-pricing',null)"><div class="mi-ic" style="display:none;"></div><div><div class="mi-nm">Subscription</div><div class="mi-ds" id="sub-ds">Yogi Pro · $2.99/week</div></div><div class="mi-arr">›</div></div>
       <div class="mi" onclick="showSettings()"><div class="mi-ic" style="display:none;"></div><div><div class="mi-nm">Settings</div><div class="mi-ds">Notifications and account</div></div><div class="mi-arr">›</div></div>
       <div class="mi" onclick="showRefer()"><div class="mi-ic" style="display:none;"></div><div><div class="mi-nm">Refer a Friend</div><div class="mi-ds">Share Sattva, earn 1 free week</div></div><div class="mi-arr">›</div></div>
       <div class="mi" onclick="navTo('v-splash',null)"><div class="mi-ic" style="display:none;"></div><div><div class="mi-nm">Sign Out</div><div class="mi-ds">Return to welcome screen</div></div><div class="mi-arr">›</div></div>
@@ -1342,7 +1343,7 @@ input{font-family:'Manrope',sans-serif}
     <div style="background:rgba(240,144,10,.08);border:2px solid rgba(240,144,10,.35);border-radius:16px;padding:18px;margin-bottom:16px;cursor:pointer;position:relative;" onclick="doUpgrade('pro')">
       <div style="position:absolute;top:12px;right:12px;background:var(--sf);color:var(--bg);font-family:'Playfair Display',serif;font-size:8px;letter-spacing:2px;padding:3px 8px;border-radius:20px;">BEST VALUE</div>
       <div style="font-family:'Playfair Display',serif;font-size:10px;letter-spacing:2px;color:var(--sf);text-transform:uppercase;margin-bottom:6px;">Yogi Pro</div>
-      <div style="font-family:'Manrope',sans-serif;font-size:32px;font-weight:700;color:var(--iv);letter-spacing:-1px;margin-bottom:3px;">$3.99<span style="font-size:14px;font-weight:400;color:var(--mu);"> / week</span></div>
+      <div style="font-family:'Manrope',sans-serif;font-size:32px;font-weight:700;color:var(--iv);letter-spacing:-1px;margin-bottom:3px;">$2.99<span style="font-size:14px;font-weight:400;color:var(--mu);"> / week</span></div>
       <div style="font-size:11px;color:var(--sage);margin-bottom:10px;">7 days free · or $89 per year</div>
       <div style="font-size:12px;color:var(--mu);">◆ Unlimited everything · Full library · Unlimited AI Guru · Offline</div>
     </div>
@@ -1554,9 +1555,9 @@ function setBilling(mode) {
   if (ma) ma.textContent = mode === 'weekly' ? (USER_CURRENCY==='INR'?'39':'1.99') : (USER_CURRENCY==='INR'?'1,499':'49');
   if (mp) mp.innerHTML = mode === 'weekly' ? '&nbsp;/ week' : '&nbsp;/ year';
   var _s=USER_CURRENCY==='INR'?'₹':'$'; if (mt) mt.textContent = mode === 'weekly' ? '7 days free, then '+_s+(USER_CURRENCY==='INR'?'39':'1.99')+' per week' : '7 days free, then '+_s+(USER_CURRENCY==='INR'?'1,499':'49')+' per year — save 53%';
-  if (pa) pa.textContent = mode === 'weekly' ? (USER_CURRENCY==='INR'?'69':'3.99') : (USER_CURRENCY==='INR'?'2,999':'89');
+  if (pa) pa.textContent = mode === 'weekly' ? (USER_CURRENCY==='INR'?'69':'2.99') : (USER_CURRENCY==='INR'?'2,999':'89');
   if (pp) pp.innerHTML = mode === 'weekly' ? '&nbsp;/ week' : '&nbsp;/ year';
-  if (pt) pt.textContent = mode === 'weekly' ? '7 days free, then '+_s+(USER_CURRENCY==='INR'?'69':'3.99')+' per week' : '7 days free, then '+_s+(USER_CURRENCY==='INR'?'2,999':'89')+' per year — save 57%';
+  if (pt) pt.textContent = mode === 'weekly' ? '7 days free, then '+_s+(USER_CURRENCY==='INR'?'69':'2.99')+' per week' : '7 days free, then '+_s+(USER_CURRENCY==='INR'?'2,999':'89')+' per year — save 57%';
   // Update lifetime prices
   var ltMidSym = document.getElementById('lt-mid-sym');
   var ltMidAmt = document.getElementById('lt-mid-amt');
@@ -1732,7 +1733,7 @@ function skipToApp() {
 /* ── PROFILE UI UPDATE ── */
 function updateProfileUI() {
   var labels = { free: 'Free', mid: 'Sadhaka', pro: 'Yogi Pro' };
-  var prices = { free: '$0', mid: '$1.99', pro: '$3.99' };
+  var prices = { free: '$0', mid: '$1.99', pro: '$2.99' };
   var nm = document.getElementById('pb-nm'), pr = document.getElementById('pb-pr');
   if (nm) nm.textContent = labels[S.tier] || 'Free';
   if (pr) pr.textContent = prices[S.tier] || '$0';
@@ -1741,7 +1742,7 @@ function updateProfileUI() {
     badge.className = 'pro-plan-badge ' + (S.tier === 'free' ? 'pb-free' : S.tier === 'mid' ? 'pb-mid' : 'pb-pro');
   }
   var sd = document.getElementById('sub-ds');
-  if (sd) sd.textContent = S.tier === 'free' ? 'Free plan' : S.tier === 'mid' ? 'Sadhaka $1.99 per week' : 'Yogi Pro $3.99 per week';
+  if (sd) sd.textContent = S.tier === 'free' ? 'Free plan' : S.tier === 'mid' ? 'Sadhaka $1.99 per week' : 'Yogi Pro $2.99 per week';
   var ub = document.getElementById('upg-banner');
   if (ub) ub.classList.toggle('show', S.tier !== 'pro');
   var hw = document.getElementById('habit-wrap');
@@ -1885,7 +1886,7 @@ var SESSIONS = {
       { t: 'Return to stillness. Samasthiti. Namaste.', d: 20 }
     ]
   },
-  nadi: { id: 'nadi', ic: '', title: 'Nadi Shodhana', sub: 'Alternate Nostril Breathing', mins: 10, mode: 'PRANAYAMA', tier: 'free',
+  nadi: { id: 'nadi', ic: '', title: 'Nadi Shodhana', sub: 'Nadi Shodhana · Vayu Flow', mins: 10, mode: 'VAYU · PRANAYAMA', tier: 'free',
     phases: [
       { t: 'Block right nostril with thumb. Inhale left for four counts.', d: 5 },
       { t: 'Block both nostrils. Hold gently for four counts.', d: 5 },
@@ -1895,7 +1896,7 @@ var SESSIONS = {
       { t: 'Open left nostril. Exhale completely for four counts.', d: 5 }
     ]
   },
-  box: { id: 'box', ic: '', title: 'Box Breathing', sub: 'Equal Breath for Calm and Focus', mins: 5, mode: 'PRANAYAMA', tier: 'free',
+  box: { id: 'box', ic: '', title: 'Box Breathing', sub: 'Sama Vritti · Steady Vayu', mins: 5, mode: 'VAYU · PRANAYAMA', tier: 'free',
     phases: [
       { t: 'Inhale slowly through the nose... one, two, three, four.', d: 4 },
       { t: 'Hold gently at the top... one, two, three, four.', d: 4 },
@@ -1903,7 +1904,7 @@ var SESSIONS = {
       { t: 'Hold empty at the bottom... one, two, three, four.', d: 4 }
     ]
   },
-  kapalabhati: { id: 'kapalabhati', ic: '', title: 'Kapalabhati', sub: 'Skull Shining Breath', mins: 8, mode: 'PRANAYAMA', tier: 'mid',
+  kapalabhati: { id: 'kapalabhati', ic: '', title: 'Kapalabhati', sub: 'Kapalabhati · Cleansing Vayu', mins: 8, mode: 'VAYU · PRANAYAMA', tier: 'mid',
     phases: [
       { t: 'Sit tall. Take one long slow breath in.', d: 7 },
       { t: 'Pump the navel sharply — thirty rapid exhales.', d: 30 },
@@ -1915,7 +1916,7 @@ var SESSIONS = {
       { t: 'Rest in the stillness. Feel the skull shining.', d: 20 }
     ]
   },
-  bhramari: { id: 'bhramari', ic: '', title: 'Bhramari', sub: 'Humming Bee Breath for Calm', mins: 8, mode: 'PRANAYAMA', tier: 'mid',
+  bhramari: { id: 'bhramari', ic: '', title: 'Bhramari', sub: 'Bhramari · Humming Vayu', mins: 8, mode: 'VAYU · PRANAYAMA', tier: 'mid',
     phases: [
       { t: 'Close ears with thumbs. Rest fingers over closed eyes.', d: 12 },
       { t: 'Inhale deeply and slowly through both nostrils.', d: 5 },
@@ -1963,14 +1964,17 @@ function loadSession(s) {
   var btn = document.getElementById('audio-btn');
   var dot = document.getElementById('audio-dot');
   var hasGuide = s.id && GUIDE_AUDIO_URLS[s.id];
-  if (btn) { btn.classList.remove('on'); btn.innerHTML = hasGuide ? '&#127908; Voice Guide' : '\uD83C\uDFB5 Sound Guide'; }
+  if (btn) { btn.classList.remove('on'); btn.innerHTML = hasGuide ? 'Voice Guide' : 'Sound Guide'; }
   if (dot) dot.style.display = 'none';
   S.secs = s.mins * 60; S.totalSecs = s.mins * 60;
   var ic = document.getElementById('pl-ic'); if (ic) ic.style.display = 'none';
   var ti = document.getElementById('pl-title'); if (ti) ti.textContent = s.title;
   var su = document.getElementById('pl-sub'); if (su) su.textContent = s.sub;
   var mo = document.getElementById('pl-mode'); if (mo) mo.textContent = s.mode;
-  var cp = document.getElementById('ctrl-play'); if (cp) { cp.textContent = '\u25B6'; cp.disabled = false; cp.style.opacity = '1'; }
+  // Vayu tagline for pranayama sessions
+  var _vt = document.getElementById('vayu-tagline');
+  if (_vt) _vt.textContent = (s.mode && s.mode.indexOf('VAYU') >= 0) ? '· The breath as Vayu, god of wind ·' : '';
+  var cp = document.getElementById('ctrl-play'); if (cp) { var _ci=document.getElementById('ctrl-play-icon'); if(_ci)_ci.innerHTML='<path d="M8 5v14l11-7z"/>'; cp.disabled = false; cp.style.opacity = '1'; }
   var rp = document.getElementById('ring-phase'); if (rp) rp.textContent = 'ready';
   setInstr('Press play to begin your practice');
   updTime(s.mins * 60); updRing(0);
@@ -2048,7 +2052,7 @@ function startTimer() {
       updRing(1 - (S.secs / S.totalSecs));
     } else {
       stopAll();
-      var btn = document.getElementById('ctrl-play'); if (btn) btn.textContent = '\u25B6';
+      var btn = document.getElementById('ctrl-play'); if (btn) { var _ci2=document.getElementById('ctrl-play-icon'); if(_ci2)_ci2.innerHTML='<path d="M8 5v14l11-7z"/>'; }
       S.playing = false;
       setInstr('Session complete. Namaste. \uD83D\uDE4F');
       var rp = document.getElementById('ring-phase'); if (rp) rp.textContent = 'done';
@@ -2247,14 +2251,21 @@ function toggleAudio() {
     return;
   }
 
+  // Wake Railway backend first (free tier sleeps after inactivity)
+  if (btn) { btn.innerHTML = 'Loading...'; btn.classList.add('on'); }
+  
   // Create Audio only if session changed
   if (!_guideAudio || _guideAudio._sessId !== sessId) {
     if (_guideAudio) { _guideAudio.pause(); _guideAudio = null; }
     _guideAudio = new Audio(url);
+    _guideAudio.preload = 'auto';
     _guideAudio._sessId = sessId;
     _guideAudio.onended = function() {
       if (btn) { btn.innerHTML = 'Voice Guide'; btn.classList.remove('on'); }
       if (dot) dot.style.display = 'none';
+    };
+    _guideAudio.oncanplay = function() {
+      if (btn) { btn.innerHTML = 'Playing...'; }
     };
   }
 
@@ -3589,6 +3600,7 @@ var SESS_COLOURS={surya:'#F39C12',kapalabhati:'#F39C12',nadi:'#5B2C8D',bhramari:
 
 // ══ DAILY VERSE ══
 var VERSES=[
+  {t:'"Vayu is the breath of the universe. When Vayu flows freely, life flows freely."',a:'Upanishads · The Wisdom of Breath'},
   {t:'"You have a right to perform your prescribed duties, but you are not entitled to the fruits of your actions."',a:'Bhagavad Gita \u00B7 Chapter 2, Verse 47'},
   {t:'"Elevate yourself through the power of your own mind, and do not degrade yourself."',a:'Bhagavad Gita \u00B7 Chapter 6, Verse 5'},
   {t:'"Let noble thoughts come to us from all directions."',a:'Rigveda \u00B7 Mandala 1, Hymn 89'},
