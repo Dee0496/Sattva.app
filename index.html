@@ -1455,13 +1455,13 @@ var API_URL = 'https://sattva-backend-production.up.railway.app';
 (function(){ try { fetch(API_URL + '/health').catch(function(){}); } catch(e){} })();
 
 var GUIDE_AUDIO_URLS = {
-  'surya':       'https://sattva-backend-production.up.railway.app/audio/surya',
-  'nadi':        'https://sattva-backend-production.up.railway.app/audio/nadi',
-  'nidra':       'https://sattva-backend-production.up.railway.app/audio/nidra',
-  'kapalabhati': 'https://sattva-backend-production.up.railway.app/audio/kapalabhati',
-  'bhramari':    'https://sattva-backend-production.up.railway.app/audio/bhramari',
-  'box':         'https://sattva-backend-production.up.railway.app/audio/box',
-  'trataka':     'https://sattva-backend-production.up.railway.app/audio/trataka'
+  'surya':       'https://dee0496.github.io/Sattva.app/Surya_Namaskar.mp3',
+  'nadi':        'https://dee0496.github.io/Sattva.app/Nadi_Shodhana.mp3',
+  'nidra':       'https://dee0496.github.io/Sattva.app/Yoga_Nidra.mp3',
+  'kapalabhati': 'https://dee0496.github.io/Sattva.app/Kapalbharti.mp3',
+  'bhramari':    'https://dee0496.github.io/Sattva.app/Bharamari.mp3',
+  'box':         'https://dee0496.github.io/Sattva.app/Box_breathing.mp3',
+  'trataka':     'https://dee0496.github.io/Sattva.app/Trataka.mp3'
 };
 
 /* ============================================================
@@ -2251,7 +2251,7 @@ function toggleAudio() {
     return;
   }
 
-  // Wake Railway backend first (free tier sleeps after inactivity)
+  // Show loading state while MP3 buffers from GitHub Pages
   if (btn) { btn.innerHTML = 'Loading...'; btn.classList.add('on'); }
   
   // Create Audio only if session changed
@@ -2280,7 +2280,7 @@ function toggleAudio() {
     _guideAudio = null;
     var t=document.createElement('div');
     t.style.cssText='position:fixed;bottom:110px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.88);color:#F5EFE4;font-family:Manrope,sans-serif;font-size:11px;padding:12px 20px;border-radius:50px;z-index:999;max-width:80vw;text-align:center;';
-    t.textContent = 'Audio unavailable — check Railway /audio/' + sessId;
+    t.textContent = 'Audio unavailable — please check your connection';
     document.body.appendChild(t);
     setTimeout(function(){t.remove();},5000);
   };
@@ -3287,41 +3287,49 @@ function shareApp(){if(navigator.share){navigator.share({title:'Sattva',text:'Tr
 
 function startStripeCheckout(plan) {
   var btn = document.getElementById('btn5');
+
+  var PAYMENT_LINKS = {
+    'mid_weekly':        'https://buy.stripe.com/28E8wOcMveXSaDm5Vq6EU05',
+    'mid_annual':        'https://buy.stripe.com/4gMcN413NaHC8ve97C6EU04',
+    'mid_lifetime':      'https://buy.stripe.com/aFa00ibIrcPK9zi97C6EU03',
+    'pro_weekly':        'https://buy.stripe.com/dRm4gy8wfaHC5j22Je6EU00',
+    'pro_annual':        'https://buy.stripe.com/14A28q7sbeXS26Q83y6EU02',
+    'pro_lifetime':      'https://buy.stripe.com/eVq3cu5k3172fXG97C6EU01',
+    'founder_lifetime':  'https://buy.stripe.com/dRm7sK7sb2b67raabG6EU06'
+  };
+
+  var url = PAYMENT_LINKS[plan];
+  if (!url) {
+    if (btn) { btn.textContent = 'Start My Journey \u2192'; btn.disabled = false; }
+    alert('Plan not found. Please try again.');
+    return;
+  }
+
   if (btn) { btn.textContent = 'Redirecting...'; btn.disabled = true; }
   localStorage.setItem('sattva_name', S.name);
   localStorage.setItem('sattva_plan', plan);
   localStorage.setItem('sattva_email', S.email || '');
-  fetch(API_URL + '/api/payments/guest-checkout', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ plan: plan, user_name: S.name, email: S.email || 'guest@sattvaapp.com' })
-  })
-  .then(function(r) { return r.json(); })
-  .then(function(data) {
-    if (data.url) {
-      window.location.href = data.url;
-    } else {
-      if (btn) { btn.textContent = 'Start My Journey →'; btn.disabled = false; }
-      alert('Payment setup failed. Please try again.');
-    }
-  })
-  .catch(function() {
-    if (btn) { btn.textContent = 'Start My Journey →'; btn.disabled = false; }
-    alert('Connection error. Please try again.');
-  });
+
+  // Prefill email on Stripe checkout page
+  var sep = url.indexOf('?') >= 0 ? '&' : '?';
+  if (S.email) { url = url + sep + 'prefilled_email=' + encodeURIComponent(S.email); }
+
+  window.location.href = url;
 }
 
 // Handle Stripe payment success return
 (function() {
-  // Handle Stripe success return
   var params = new URLSearchParams(window.location.search);
   var sessionId = params.get('session_id');
-  var isSuccess = params.get('payment-success') === '1';
-  if (sessionId && isSuccess) {
+  var isSuccess = params.get('payment-success') === '1' || !!sessionId;
+  if (isSuccess && sessionId) {
     var plan = localStorage.getItem('sattva_plan') || 'mid_weekly';
     var name = localStorage.getItem('sattva_name') || 'Seeker';
     S.name = name;
-    S.tier = plan.indexOf('pro') > -1 ? 'pro' : 'mid';
+    // Determine tier from plan key
+    if (plan.indexOf('founder') > -1) { S.tier = 'pro'; }
+    else if (plan.indexOf('pro') > -1) { S.tier = 'pro'; }
+    else { S.tier = 'mid'; }
     S.email = localStorage.getItem('sattva_email') || '';
     localStorage.removeItem('sattva_plan');
     localStorage.removeItem('sattva_name');
