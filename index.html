@@ -780,7 +780,7 @@ input{font-family:'Manrope',sans-serif}
 <!-- ══════════════════════════════════
      SPLASH
 ══════════════════════════════════ -->
-<div class="view show" id="v-splash"><div style="position:absolute;top:max(14px,env(safe-area-inset-top,14px));right:14px;font-family:monospace;font-size:9px;color:rgba(240,144,10,.4);z-index:50;letter-spacing:1px;">build 01:30</div>
+<div class="view show" id="v-splash">
   <div class="inner">
     <div class="sp-om">ॐ</div>
 
@@ -1451,6 +1451,7 @@ input{font-family:'Manrope',sans-serif}
 </div><!-- /app -->
 <script>
 var API_URL = 'https://sattva-backend-production.up.railway.app';
+var USER_CURRENCY = 'USD';
 // Wake Railway backend on load
 (function(){ try { fetch(API_URL + '/health').catch(function(){}); } catch(e){} })();
 
@@ -3249,8 +3250,6 @@ refreshGuruUI();
 // ── VOICE GUIDE ──
 var _guideAudio = null;
 
-// ── CURRENCY ──
-var USER_CURRENCY = 'USD';
 function detectCurrency() {
   try {
     var tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
@@ -3264,7 +3263,7 @@ function detectCurrency() {
   var fsym = document.getElementById('founder-sym');
   var famt = document.getElementById('founder-amt');
   var fstr = document.getElementById('founder-strike');
-  if (isIndia) {
+  if (USER_CURRENCY === 'INR') {
     if (fsym) fsym.textContent = '\u20B9';
     if (famt) famt.textContent = '5,999';
     if (fstr) fstr.textContent = '\u20B915,000';
