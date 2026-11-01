@@ -1451,6 +1451,7 @@ input{font-family:'Manrope',sans-serif}
 </div><!-- /app -->
 <script>
 var API_URL = 'https://sattva-backend-production.up.railway.app';
+var TIER_API = 'https://sattva-tier.dpshakpr04.workers.dev';
 var USER_CURRENCY = 'USD';
 // Wake Railway backend on load
 (function(){ try { fetch(API_URL + '/health').catch(function(){}); } catch(e){} })();
@@ -1508,6 +1509,7 @@ setInterval(tick, 15000);
 
 /* ── VIEW NAVIGATION ── */
 function nav(id) {
+  if (id === 'v-splash') { try { localStorage.removeItem('sattva_email_v2'); } catch(e) {} S.tier = 'free'; S.email = ''; }
   var views = document.querySelectorAll('.view');
   for (var i = 0; i < views.length; i++) views[i].classList.remove('show');
   var t = document.getElementById(id);
@@ -1723,12 +1725,79 @@ function enterApp() {
 }
 
 function skipToApp() {
-  S.tier = 'free'; // Always enter as free - upgrade only after payment
+  S.tier = 'free'; // free until Stripe confirms a purchase for this email
+  var saved = '';
+  try { saved = localStorage.getItem('sattva_email_v2') || ''; } catch(e) {}
+  if (saved) {
+    S.email = saved;
+    enterAppShell();
+    syncTier(saved, function() {});
+    return;
+  }
+  showRestorePanel();
+}
+
+function enterAppShell() {
   buildHabitDots();
   updateProfileUI();
   loadDailyVerse();
   refreshGuruUI();
   navTo('v-home', 0);
+}
+
+/* ── STRIPE-VERIFIED TIER SYNC ── */
+function syncTier(email, cb, tries) {
+  tries = tries || 1;
+  var done = false;
+  fetch(TIER_API + '/tier?email=' + encodeURIComponent(email))
+    .then(function(r) { if (!r.ok) throw new Error('bad'); return r.json(); })
+    .then(function(d) {
+      done = true;
+      var t = d && d.tier;
+      if (t !== 'free' && t !== 'mid' && t !== 'pro') t = 'free';
+      S.tier = t;
+      S.email = email;
+      try { localStorage.setItem('sattva_email_v2', email); } catch(e) {}
+      updateProfileUI(); refreshGuruUI();
+      if (S.session) buildSList(S.session.id);
+      cb(t, null);
+    })
+    .catch(function() {
+      if (done) return;
+      if (tries < 3) { setTimeout(function() { syncTier(email, cb, tries + 1); }, 1500); return; }
+      cb(null, 'network');
+    });
+}
+
+function showRestorePanel() {
+  var saved = '';
+  try { saved = localStorage.getItem('sattva_email_v2') || ''; } catch(e) {}
+  var h = '<div style="text-align:center;padding:6px 0 4px;">' +
+    '<div style="font-family:\'Cormorant Garamond\',serif;font-size:24px;font-weight:300;color:var(--iv);margin-bottom:8px;">Restore your plan</div>' +
+    '<p style="font-size:13px;color:var(--mu);line-height:1.7;margin-bottom:18px;">Enter the email you used when you paid. We will check Stripe and unlock your plan.</p>' +
+    '<input id="restore-email" type="email" value="' + saved.replace(/"/g, '') + '" placeholder="your@email.com" autocomplete="email" style="width:100%;background:var(--s1);border:1px solid var(--bdr);color:var(--iv);padding:14px 16px;border-radius:14px;font-size:16px;outline:none;margin-bottom:12px;">' +
+    '<div id="restore-msg" style="font-size:12px;color:var(--lotus);min-height:18px;margin-bottom:10px;"></div>' +
+    '<button id="restore-btn" onclick="doRestore()" style="width:100%;background:linear-gradient(135deg,var(--sf),var(--sf2));border:none;border-radius:50px;padding:15px;font-family:\'Playfair Display\',serif;font-size:11px;letter-spacing:2px;color:#0C0A0F;cursor:pointer;text-transform:uppercase;margin-bottom:10px;">Restore Purchase</button>' +
+    '<button onclick="closePan();enterAppShell();" style="width:100%;background:none;border:1px solid var(--bdr2);border-radius:50px;padding:13px;font-family:\'Playfair Display\',serif;font-size:10px;letter-spacing:2px;color:var(--mu);cursor:pointer;text-transform:uppercase;">Continue on Free</button>' +
+    '</div>';
+  openPan(h);
+}
+
+function doRestore() {
+  var inp = document.getElementById('restore-email');
+  var msg = document.getElementById('restore-msg');
+  var btn = document.getElementById('restore-btn');
+  var email = inp ? inp.value.trim() : '';
+  if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { if (msg) msg.textContent = 'Please enter a valid email.'; return; }
+  if (btn) { btn.disabled = true; btn.textContent = 'Checking...'; }
+  if (msg) msg.textContent = '';
+  syncTier(email, function(t, err) {
+    if (btn) { btn.disabled = false; btn.textContent = 'Restore Purchase'; }
+    if (err) { if (msg) msg.textContent = 'Could not reach the server. Check your connection and try again.'; return; }
+    if (t === 'free') { if (msg) msg.textContent = 'No active plan found for that email. Try the email you used at checkout, or contact hello@sattvaapp.com.'; return; }
+    closePan();
+    enterAppShell();
+  });
 }
 
 /* ── PROFILE UI UPDATE ── */
@@ -3220,12 +3289,9 @@ function closeUpgrade() {
   if (m) m.style.display = 'none';
 }
 function doUpgrade(tier) {
-  S.tier = tier;
+  // Access is granted only by a Stripe-verified lookup, never by tapping a plan
   closeUpgrade();
-  updateProfileUI();
-  refreshGuruUI();
-  addMsg('ai', 'Welcome to Sattva ' + (tier === 'mid' ? 'Sadhaka' : 'Yogi Pro') + '! \uD83E\uDEB7 Your full path is now open. Ask me anything — I am here.');
-  navTo('v-guru', 3);
+  navTo('v-pricing', null);
 }
 
 /* ── INIT ── */
@@ -3308,6 +3374,7 @@ function startStripeCheckout(plan) {
   localStorage.setItem('sattva_name', S.name);
   localStorage.setItem('sattva_plan', plan);
   localStorage.setItem('sattva_email', S.email || '');
+  try { if (S.email) localStorage.setItem('sattva_email_v2', S.email); } catch(e) {}
 
   // Prefill email on Stripe checkout page
   var sep = url.indexOf('?') >= 0 ? '&' : '?';
@@ -3316,30 +3383,29 @@ function startStripeCheckout(plan) {
   window.location.href = url;
 }
 
-// Handle Stripe payment success return
+// Handle Stripe payment success return — tier comes from the Stripe lookup, not the URL
 (function() {
   var params = new URLSearchParams(window.location.search);
-  var sessionId = params.get('session_id');
-  var isSuccess = params.get('payment-success') === '1' || !!sessionId;
-  if (isSuccess && sessionId) {
-    var plan = localStorage.getItem('sattva_plan') || 'mid_weekly';
-    var name = localStorage.getItem('sattva_name') || 'Seeker';
-    S.name = name;
-    // Determine tier from plan key
-    if (plan.indexOf('founder') > -1) { S.tier = 'pro'; }
-    else if (plan.indexOf('pro') > -1) { S.tier = 'pro'; }
-    else { S.tier = 'mid'; }
-    S.email = localStorage.getItem('sattva_email') || '';
-    localStorage.removeItem('sattva_plan');
-    localStorage.removeItem('sattva_name');
-    localStorage.removeItem('sattva_email');
-    // Clean URL
-    window.history.replaceState({}, document.title, window.location.pathname);
-    setTimeout(function() {
-      buildHabitDots(); updateProfileUI(); loadDailyVerse(); refreshGuruUI();
-      navTo('v-home', 0);
-    }, 100);
-  }
+  var returned = params.get('payment-success') === '1' || !!params.get('session_id');
+  var saved = '';
+  try { saved = localStorage.getItem('sattva_email_v2') || localStorage.getItem('sattva_email') || ''; } catch(e) {}
+  var nm = '';
+  try { nm = localStorage.getItem('sattva_name') || ''; } catch(e) {}
+  if (nm) S.name = nm;
+  if (returned) { try { window.history.replaceState({}, document.title, window.location.pathname); } catch(e) {} }
+  if (!saved) return;
+  S.email = saved;
+  var start = function() {
+    syncTier(saved, function(t) {
+      if (returned) {
+        if (t === 'free' || t === null) {
+          // Stripe can lag a few seconds after checkout; try once more
+          setTimeout(function() { syncTier(saved, function() { enterAppShell(); }); }, 4000);
+        } else { enterAppShell(); }
+      } else if (t) { enterAppShell(); }
+    });
+  };
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else start();
 })();
 
 
