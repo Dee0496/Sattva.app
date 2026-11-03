@@ -2406,37 +2406,32 @@ async function sendGuru() {
   var ty = document.getElementById('g-typing'); if (ty) ty.classList.add('show');
   S.chatHistory.push({ role: 'user', content: text });
   var ca = document.getElementById('chat-msgs'); if (ca) ca.scrollTop = ca.scrollHeight;
+  var reply = null, errMsg = null;
   try {
-    var res = await fetch('https://api.anthropic.com/v1/messages', {
+    var res = await fetch(TIER_API + '/guru', {
       method: 'POST',
-      headers: {
-          'Content-Type': 'application/json',
-          'anthropic-version': '2023-06-01',
-          'anthropic-dangerous-direct-browser-access': 'true'
-        },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-5',
-        max_tokens: 1000,
-        system: GURU_SYS,
-        messages: S.chatHistory.slice(-16)
-      })
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: S.email, messages: S.chatHistory.slice(-16) })
     });
     var data = await res.json();
-    if (ty) ty.classList.remove('show');
-    var reply = 'The cosmos asks for a moment of stillness. Please try again.';
-    if (data && data.content) {
-      for (var i = 0; i < data.content.length; i++) {
-        if (data.content[i].type === 'text') { reply = data.content[i].text; break; }
-      }
+    if (res.ok && data && data.reply) {
+      reply = data.reply;
+    } else if (data && data.message) {
+      errMsg = data.message;
+      if (res.status === 403) { syncTier(S.email, function() {}); }
+    } else {
+      errMsg = 'The Guru is quiet for a moment. Please try again shortly.' + (data && data.detail ? ' [' + data.detail + ']' : (data && data.error ? ' [' + data.error + ']' : ''));
     }
+  } catch(e) {
+    errMsg = 'The Guru could not be reached. Please check your connection and try again.';
+  }
+  if (ty) ty.classList.remove('show');
+  if (reply) {
     addMsg('ai', reply);
     S.chatHistory.push({ role: 'assistant', content: reply });
-  } catch(e) {
-    if (ty) ty.classList.remove('show');
-    // API not accessible in preview - show helpful local response
-    var localReply = getLocalGuruReply(text);
-    addMsg('ai', localReply);
-    S.chatHistory.push({ role: 'assistant', content: localReply });
+  } else {
+    S.chatHistory.pop(); // keep history alternating so the next message still works
+    addMsg('ai', errMsg);
   }
   if (snd) snd.disabled = false;
 }
