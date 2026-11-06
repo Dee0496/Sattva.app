@@ -791,7 +791,7 @@ input{font-family:'Manrope',sans-serif}
       <cite>— Bhagavad Gita · 6.20</cite>
     </div>
     <div class="sp-btns">
-      <button class="btn btn-p" onclick="nav('v-pricing')">Begin Your Journey</button>
+      <button class="btn btn-p" onclick="startFree()">Start Free</button>
       <button class="btn btn-g" onclick="skipToApp()">I already have an account</button>
     </div>
   </div>
@@ -828,7 +828,7 @@ input{font-family:'Manrope',sans-serif}
           <li class="yes">Basic pranayama library</li>
           <li class="yes">Daily Vedic verse</li>
           <li class="no">Habit tracker &amp; streaks</li>
-          <li class="no">Guided audio breathwork</li>
+          <li class="yes">Voice guide on free sessions</li>
           <li class="no">AI Guru access</li>
           <li class="no">Full session library</li>
         </ul>
@@ -976,7 +976,7 @@ input{font-family:'Manrope',sans-serif}
     <div class="sec" style="margin-bottom:10px;margin-top:16px;display:block;">Your Email</div>
     <input class="ob-input" id="inp-email" type="email" placeholder="your@email.com" autocomplete="email" oninput="checkStep1()">
     <div class="ob-grow"></div>
-    <button class="btn btn-p" id="btn1" onclick="obNext(2)" disabled>Continue →</button>
+    <button class="btn btn-p" id="btn1" onclick="step1Next()" disabled>Continue →</button>
   </div>
 
   <!-- STEP 2: Experience -->
@@ -1331,7 +1331,7 @@ input{font-family:'Manrope',sans-serif}
     <button class="upg-close" onclick="closeUpgrade()">✕</button>
     <div style="text-align:center;font-size:40px;margin-bottom:14px;">✨</div>
     <div style="font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:300;color:var(--iv);margin-bottom:6px;text-align:center;">Upgrade Sattva</div>
-    <p style="font-size:13px;color:var(--mu);margin-bottom:20px;line-height:1.6;text-align:center;">Unlock AI Guru, audio guidance and the full sacred library.</p>
+    <p id="upg-sub" style="font-size:13px;color:var(--mu);margin-bottom:20px;line-height:1.6;text-align:center;">Unlock AI Guru, audio guidance and the full sacred library.</p>
     <!-- Sadhaka -->
     <div style="background:rgba(200,123,142,.08);border:1px solid rgba(200,123,142,.3);border-radius:16px;padding:18px;margin-bottom:12px;cursor:pointer;" onclick="doUpgrade('mid')">
       <div style="font-family:'Playfair Display',serif;font-size:10px;letter-spacing:2px;color:var(--lotus);text-transform:uppercase;margin-bottom:6px;">Sadhaka</div>
@@ -1347,6 +1347,7 @@ input{font-family:'Manrope',sans-serif}
       <div style="font-size:11px;color:var(--sage);margin-bottom:10px;">7 days free · or $89 per year</div>
       <div style="font-size:12px;color:var(--mu);">◆ Unlimited everything · Full library · Unlimited AI Guru · Offline</div>
     </div>
+    <button onclick="closeUpgrade();showRestorePanel()" style="width:100%;background:none;border:none;padding:8px;margin-bottom:6px;font-family:'Manrope',sans-serif;font-size:12px;color:var(--sf);cursor:pointer;text-decoration:underline;">Already subscribed? Restore purchase</button>
     <button onclick="closeUpgrade()" style="width:100%;background:transparent;border:1px solid var(--bdr2);border-radius:50px;padding:13px;font-family:'Playfair Display',serif;font-size:11px;letter-spacing:2px;color:var(--mu);cursor:pointer;text-transform:uppercase;">Maybe later</button>
   </div>
 </div>
@@ -1509,7 +1510,7 @@ setInterval(tick, 15000);
 
 /* ── VIEW NAVIGATION ── */
 function nav(id) {
-  if (id === 'v-splash') { try { localStorage.removeItem('sattva_email_v2'); } catch(e) {} S.tier = 'free'; S.email = ''; }
+  if (id === 'v-splash') { try { localStorage.removeItem('sattva_email_v2'); localStorage.removeItem('sattva_started'); } catch(e) {} S.tier = 'free'; S.email = ''; }
   var views = document.querySelectorAll('.view');
   for (var i = 0; i < views.length; i++) views[i].classList.remove('show');
   var t = document.getElementById(id);
@@ -1579,16 +1580,42 @@ function chooseTier(tier) {
   var ps = document.getElementById('pay-section');
   var tn = document.getElementById('trial-note');
   if (tier === 'free') {
-    S.tier = 'free'; // Free is fine to set immediately
+    S.express = false;
     if (ps) ps.style.display = 'none';
     if (tn) tn.style.display = 'none';
-  } else {
-    // Paid tier - show payment, keep tier as free until paid
-    if (ps) ps.style.display = 'block';
-    if (tn) tn.style.display = 'block';
+    startFree();
+    return;
   }
+  // Paid tier - show payment, keep tier as free until paid
+  S.express = true; // short path: details, then trial terms and checkout
+  S.obHistory = [];
+  if (ps) ps.style.display = 'block';
+  if (tn) tn.style.display = 'block';
+  var l1 = document.querySelector('#step1 .ob-lbl'); if (l1) l1.textContent = 'Step 1 of 2 \u00B7 Your details';
+  var l5 = document.querySelector('#step5 .ob-lbl'); if (l5) l5.textContent = 'Step 2 of 2 \u00B7 Start your trial';
   nav('v-onboard');
   obGoTo(1);
+}
+
+function step1Next() {
+  if (S.express) obNext(5); else obNext(2);
+}
+
+/* ── FREE START: no sign-up, straight into the app ── */
+function startFree() {
+  S.tier = 'free';
+  S.name = S.name || 'Seeker';
+  try { localStorage.setItem('sattva_started', '1'); } catch(e) {}
+  var hn = document.getElementById('h-name'); if (hn) hn.textContent = S.name + ' \uD83D\uDE4F';
+  var pn = document.getElementById('pro-name'); if (pn) pn.textContent = S.name;
+  enterAppShell();
+}
+
+function sessLocked(sess) {
+  if (!sess) return false;
+  var u = TIER[S.tier] !== undefined ? TIER[S.tier] : 0;
+  var r = TIER[sess.tier] !== undefined ? TIER[sess.tier] : 0;
+  return r > u;
 }
 
 /* ── ONBOARDING ── */
@@ -2072,8 +2099,8 @@ function loadSession(s) {
   var userLv = TIER[S.tier] !== undefined ? TIER[S.tier] : 0;
   var sessLv = TIER[s.tier] !== undefined ? TIER[s.tier] : 0;
   if (sessLv > userLv) {
-    if (cp) { cp.disabled = true; cp.style.opacity = '0.32'; }
-    setInstr('\uD83D\uDD12 Upgrade to unlock this session');
+    if (cp) { cp.style.opacity = '0.55'; }
+    setInstr('\uD83D\uDD12 Part of Sadhaka \u00B7 tap play to see plans');
   }
 }
 
@@ -2099,6 +2126,7 @@ function buildSList(activeId) {
 
 function togglePlay() {
   if (!S.session) return;
+  if (sessLocked(S.session)) { showUpgrade('Unlock ' + S.session.title + ' and every session with Sadhaka.'); return; }
   var btn = document.getElementById('ctrl-play');
   if (S.playing) {
     stopAll();
@@ -2297,6 +2325,9 @@ function toggleAudio() {
   var url = sessId ? GUIDE_AUDIO_URLS[sessId] : null;
   var btn = document.getElementById('audio-btn');
   var dot = document.getElementById('audio-dot');
+
+  // Voice guide for a locked session is part of the paid plan
+  if (S.session && sessLocked(S.session)) { showUpgrade('The ' + S.session.title + ' voice guide is part of Sadhaka.'); return; }
 
   // No voice guide MP3 — play synth bowl sounds
   if (!url) {
@@ -3275,7 +3306,9 @@ function closePan() {
 }
 
 /* ── UPGRADE MODAL ── */
-function showUpgrade() {
+function showUpgrade(msg) {
+  var sub = document.getElementById('upg-sub');
+  if (sub) sub.textContent = (typeof msg === 'string' && msg) ? msg : 'Unlock AI Guru, audio guidance and the full sacred library.';
   var m = document.getElementById('upg-mod');
   if (m) m.style.display = 'flex';
 }
@@ -3403,6 +3436,24 @@ function startStripeCheckout(plan) {
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else start();
 })();
 
+
+// Returning users skip the splash and open straight into the app
+(function() {
+  var started = '', saved = '', nm = '';
+  try {
+    started = localStorage.getItem('sattva_started') || '';
+    saved = localStorage.getItem('sattva_email_v2') || '';
+    nm = localStorage.getItem('sattva_name') || '';
+  } catch(e) {}
+  if (!started && !saved) return;
+  S.name = nm || 'Seeker';
+  var go = function() {
+    var hn = document.getElementById('h-name'); if (hn) hn.textContent = S.name + ' \uD83D\uDE4F';
+    var pn = document.getElementById('pro-name'); if (pn) pn.textContent = S.name;
+    enterAppShell();
+  };
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', go); else go();
+})();
 
 function checkStep1() {
   var name = document.getElementById('inp-name');
