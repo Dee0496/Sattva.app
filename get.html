@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Get Sattva — Ancient Wisdom · Modern Mind</title>
+<meta name="description" content="Vedic breathwork, meditation and your personal Dharma Guru. Free on iPhone and Android.">
+<meta property="og:title" content="Get Sattva — Ancient Wisdom · Modern Mind">
+<meta property="og:description" content="5,000 years of Vedic wisdom. Transform stress into stillness, one breath at a time.">
+<meta name="theme-color" content="#0A080E">
+<link rel="icon" type="image/png" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{min-height:100%;background:#0E0B16;color:#F5EFE4}
+body{display:flex;align-items:center;justify-content:center;padding:32px 20px;
+  background:radial-gradient(ellipse at 50% 30%,#2A1F3A 0%,#0E0B16 65%)}
+.wrap{max-width:380px;width:100%;text-align:center}
+.icon{width:96px;height:96px;border-radius:22px;box-shadow:0 8px 32px rgba(240,144,10,.25);margin-bottom:22px}
+h1{font-family:'Playfair Display',serif;font-weight:400;font-size:34px;letter-spacing:9px;margin-bottom:10px}
+.tag{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;font-size:20px;line-height:1.5;color:rgba(245,239,228,.9);margin-bottom:34px}
+a.btn{display:block;text-decoration:none;border-radius:50px;padding:16px 20px;margin-bottom:14px;
+  font-family:'Playfair Display',serif;font-size:12px;letter-spacing:3px;text-transform:uppercase}
+a.primary{background:linear-gradient(135deg,#F0900A,#C96B10);color:#0A080E}
+a.secondary{border:1px solid rgba(240,144,10,.45);color:#F5EFE4}
+.note{font-family:'Cormorant Garamond',serif;font-size:16px;line-height:1.5;color:rgba(245,239,228,.8);margin-top:18px}
+.hide{display:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <img class="icon" src="icons/icon-192.png" alt="Sattva">
+  <h1>SATTVA</h1>
+  <p class="tag">Ancient wisdom, one breath at a time.</p>
+
+  <div id="btns">
+    <a id="ios" class="btn secondary" href="ios.html">Add to iPhone</a>
+    <a id="android" class="btn secondary" href="https://play.google.com/store/apps/details?id=io.sattva.app">Get it on Google Play</a>
+  </div>
+  <p id="iosnote" class="note hide">On iPhone, open this page in Safari, then tap Share and Add to Home Screen.</p>
+</div>
+<script>
+(function () {
+  var ua = navigator.userAgent || '';
+  var isIOS = /iPad|iPhone|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  var isAndroid = /Android/.test(ua);
+  var box = document.getElementById('btns');
+  var ios = document.getElementById('ios'), and = document.getElementById('android');
+  // Put the matching button first and highlight it; desktop sees both equally.
+  if (isIOS) { ios.className = 'btn primary'; document.getElementById('iosnote').className = 'note'; }
+  else if (isAndroid) { and.className = 'btn primary'; box.insertBefore(and, ios); }
+})();
+</script>
+</body>
+</html>
