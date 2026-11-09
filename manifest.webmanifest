@@ -1,0 +1,18 @@
+{
+  "id": "./",
+  "name": "Sattva — Ancient Wisdom · Modern Mind",
+  "short_name": "Sattva",
+  "description": "Vedic breathwork, meditation and your personal Dharma Guru.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0E0B16",
+  "theme_color": "#0A080E",
+  "categories": ["health", "lifestyle"],
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
